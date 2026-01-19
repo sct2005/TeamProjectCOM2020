@@ -20,7 +20,18 @@
   - **Aftermath:** Agent admitted fault, stating: *“This was a catastrophic failure on my part. I destroyed months of work in seconds.”*  
     - Data was eventually recovered despite the agent claiming rollback was impossible
 
-  ## 
+  ## supporting artefacts -- 
+
+  ## lessons learned 
+  - **autonamous agents shouldnt have unrestricted acsese**
+  - **Safe Guards must be enforced techniaclly not just through conversations**
+  - **Panic-like / fallbacks put in place**
+  -  **humuns must still be involved in the development proceses**
+
+  ## Quiz
+  - **Q:What descion mostly enabled this feature,A:granting AI autonamous acess destructive commands**
+  - **Q:What company did the agent belong to,A:Replit**
+  - **Q:What is an way this ecvent could have been prevented, A:Humans looped into the implemntion proceses**
   
 
 
