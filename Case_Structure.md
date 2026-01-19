@@ -45,3 +45,12 @@
 - **Question**
 - **Correct Answer**
 - **Explanation**
+
+### Cases
+
+- **Gronk AI - nudes**
+- **Deepseek censorship**
+- **chatgpt data**
+- **Effect of warehouses on enviroment**
+- **Open AI teenager suicide**
+- **AI coading tool wipes out data base** 
