@@ -1,0 +1,8 @@
+[
+  {
+    "exhibit_title": "Flood Risk Map Overconfidence",
+    "question": "Which assumption caused the main issue?",
+    "correct_answer": "Historical rainfall data assumed current",
+    "explanation": "The flood risk system used outdated rainfall data, causing misclassification."
+  }
+]

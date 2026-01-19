@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Flood Risk Map Overconfidence",
+    "domain": "Flooding",
+    "deployment_context": "Regional flood dashboard",
+    "intended_use": "Assist local authorities with flood risk",
+    "system_type": "Decision support dashboard",
+    "inputs_and_assumptions": "Used historical rainfall data up to 2010",
+    "outputs_presented": "Flood risk maps showing risk zones",
+    "failure_description": "Maps overestimated safety due to outdated data",
+    "detection_method": "Field verification and user reports",
+    "affected_parties": "Residents and city planners",
+    "contributing_factors": "Old data, lack of uncertainty display",
+    "lessons_learned": "Always validate data currency and show uncertainty"
+  }
+]
