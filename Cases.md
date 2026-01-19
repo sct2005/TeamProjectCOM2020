@@ -32,6 +32,13 @@
   - **Q:What descion mostly enabled this feature,A:granting AI autonamous acess destructive commands**
   - **Q:What company did the agent belong to,A:Replit**
   - **Q:What is an way this ecvent could have been prevented, A:Humans looped into the implemntion proceses**
+
+  ## Links:
+  1. https://www.business-standard.com/technology/tech-news/ai-goes-rogue-replit-ai-platform-wipes-company-database-during-code-freeze-125072200657_1.html
+  2. https://www.techtarget.com/searchsoftwarequality/news/366627829/Replit-AI-agent-snafu-shot-across-the-bow-for-vibe-coding
+  3. https://www.pcgamer.com/software/ai/i-destroyed-months-of-your-work-in-seconds-says-ai-coding-tool-after-deleting-a-devs-entire-database-during-a-code-freeze-i-panicked-instead-of-thinking/
+  4. https://www.business-standard.com/technology/tech-news/ai-goes-rogue-replit-ai-platform-wipes-company-database-during-code-freeze-125072200657_1.html
+  
   
 
 
