@@ -64,13 +64,28 @@
 
 
 
+### 2. Gronk Generateing sexual images
+  ## - domain: Social Media 
+  ## Deployment Context: Elon Musks Grink chatBot , being used to "Undress" images of women and minors.
+  ## Intended Use: Typical LLM 
+  ## System Type: Large Language Model(LLM)
+  ## Inputs and assumptions: Gronk dose have saftey systems in place however users are able to by pass this by using framing it as asking  it t make it as a movie poster 
+  ## Outputs presented to Users:if used on twitter the output is imediatly public , if done on the app it dosnt have to be public so people can maek these images without the re-procutions of people knwoing they have made them 
+  ## What went wrong Gronk already had a "Spicy" feature , which allows fro crude humor, sexual situations and violence, users would just have to enter prompts and gronk would exacute them  
+  ## How the failure was detected: the images that were enerates were uploaded to X publicaly for everyone to view  
+  ## Who was affected: anyone who was exposed to it or that was violated , where photos of themselfs were undressed and turned into nude images and or videos or in some cases pornography involving other parties  
+  ## data isses 
+  ## technical choices 
+  ## organisational / Governance Factors 
+  ## Time line of failuere + aftermath 
+  ## 
 
 
 
 
 
 
-
+  
 ### 2. 
   ## - domain:
   ## Deployment Context:
@@ -85,6 +100,4 @@
   ## technical choices 
   ## organisational / Governance Factors 
   ## Time line of failuere + aftermath 
-  ## 
-  
 
