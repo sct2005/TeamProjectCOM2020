@@ -82,6 +82,121 @@
 
 
 
+# Racial Bias in Healthcare AI Risk Prediction
+
+## Domain
+Healthcare
+
+---
+
+## Deployment Context
+Healthcare providers in the United States deployed machine-learning–based risk prediction algorithms to identify patients who should be enrolled in high-risk care management programs. These systems were widely used by hospitals and insurers to allocate limited healthcare resources more efficiently.
+
+---
+
+## Intended Use
+To predict which patients were at highest medical risk and would benefit from additional medical support, monitoring, and preventive care.
+
+---
+
+## System Type
+Machine Learning–based Risk Prediction Algorithm
+
+---
+
+## Inputs and Assumptions
+- Historical patient healthcare data (medical records, diagnoses, healthcare spending)
+- Assumption that **past healthcare costs are an accurate proxy for medical need**
+- Assumption that historical data reflects true patient health rather than systemic inequality
+
+---
+
+## Outputs Presented to Users
+- Risk scores ranking patients by predicted future healthcare need
+- Automated recommendations for enrollment in care management programs
+
+---
+
+## What Went Wrong
+The algorithm systematically **underestimated the health needs of Black patients**. Because healthcare spending was used as the prediction target, the model interpreted lower historical spending as lower medical risk—despite evidence that Black patients often receive **less care than white patients with similar or worse health conditions** due to structural inequality.
+
+---
+
+## How the Failure Was Detected
+Academic researchers evaluated the system and found that:
+- At the same risk score, Black patients were significantly sicker than white patients
+- Black patients were far less likely to be selected for high-risk care programs
+
+---
+
+## Who Was Affected
+- Black patients who were denied access to additional healthcare support
+- Healthcare providers relying on biased AI recommendations
+- Health systems that unintentionally reinforced racial disparities
+
+---
+
+## Data Issues
+- Biased historical data reflecting unequal access to healthcare
+- Use of healthcare cost as a proxy rather than direct health indicators
+- Lack of demographic bias auditing during model development
+
+---
+
+## Technical Choices
+- Optimisation objective focused on cost prediction rather than clinical outcomes
+- No fairness constraints or bias-mitigation techniques applied
+- Limited transparency and explainability for clinicians
+
+---
+
+## Organisational / Governance Factors
+- Insufficient regulatory oversight of clinical AI tools
+- Overreliance on third-party vendors
+- Lack of mandatory bias and impact assessments before deployment
+
+---
+
+## Timeline of Failure + Aftermath
+- **Initial Setup:** Algorithm deployed across multiple healthcare systems  
+- **Trigger Event:** Routine use for care allocation decisions  
+- **Failure Event:** System consistently deprioritised Black patients  
+- **Detection:** Bias uncovered by independent academic researchers  
+- **Aftermath:** Algorithm redesigned to use direct health indicators; sparked broader debate on fairness in medical AI
+
+---
+
+## Supporting Artefacts
+- Obermeyer et al. (2019), *Dissecting racial bias in an algorithm used to manage the health of populations*  
+  https://www.science.org/doi/10.1126/science.aax2342
+
+- New York Times coverage of healthcare algorithm bias  
+  https://www.nytimes.com/2019/10/24/health/algorithm-bias-race.html
+
+- Brookings Institution analysis on bias in healthcare AI  
+  https://www.brookings.edu/articles/eliminating-racial-bias-in-algorithms/
+
+---
+
+## Lessons Learned
+- **Historical data can encode structural inequality**
+- **Proxy variables can introduce hidden bias**
+- **Fairness auditing is essential in high-stakes domains**
+- **AI systems must be transparent and clinically interpretable**
+- **Human oversight is critical in healthcare decision-making**
+
+---
+
+## Quiz
+- **Q:** What design choice caused the bias?  
+  **A:** Using healthcare cost as a proxy for medical need  
+
+- **Q:** What domain was affected?  
+  **A:** Healthcare  
+
+- **Q:** How could this failure have been prevented?  
+  **A:** Bias audits, fairness constraints, and using direct health indicators  
+
 
 
 
