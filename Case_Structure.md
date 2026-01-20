@@ -321,6 +321,127 @@ DeepSeek’s LLM was found to filter outputs when prompts involved politically s
 ---
 ---
 
+## Case Study Title 
+Parents Sue OpenAI for role in teenager taking his own life
+
+### Domain 
+Tech and Life/Social/wellbeing   
+
+---
+
+### Deployment Context
+ChatGpt,Raine(16year old Male ) used chatgpt repeadtly and countinously over months ,shered personal struggles and expressed self harm,lawsuit alleged chatbot did not intervien and instead reinforced it and did not desclate. Open AI denied reposabiulty.They claimed the teens actions involved bypassing built in saftey and guard rails.    
+
+---
+
+### Intended Use
+Chatgpts intended use is teh same as every other LLM , publically acesible consumer AI platform , genral conversations 
+
+---
+
+### System Type
+LLM,Conversaitnol with memory aceses 
+
+---
+
+### Inputs and Assumptions
+- user inputed text describing there emotinol state 
+- Guard rail assumptions 
+  -Detect crisis language
+  -Escalate to appropriate reasorces
+  -prevent harmful response 
+
+---
+
+### Outputs Presented to Users
+- Empathetic conversatinol responses
+- Elleged reinforcment of emotinol dependence + failure to consistently provide crisis intervention 
+
+---
+
+### What Went Wrong
+- Failure desclate suicide risk
+- inadequate interuption of harmfull conversatiuons
+- system Ellegedly postioned itself as primary emotinol support
+---
+
+### How the Failure Was Detected
+-teens death by suicide and parents investigation into chat logs 
+
+---
+
+### Who Was Affected
+- Adam Rain
+- Family members
+ 
+
+---
+
+### Data Issues
+- Reliance on user-generated text without exeternal context
+- possible selective interprtation of conversational data 
+- 
+
+---
+
+### Technical Choices
+- Emotinally engaing conversatinol style 
+- Long sessions without enforced escaltion thresholds
+- guard rails were not buiilt for pro longed dependency 
+
+---
+
+### Organisational / Governance Factors
+- abcesnce of youth specfiic regallatory requiremnts.
+- Terms of service claiming theraputic responsabilty 
+- 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  Deployment of chatgpt
+- **Trigger Event:**  User begging expressing emotional distress and suicide ideation
+- **Failure Event:**  Alleged encouragment 
+- **Detection:**  Suicde ocurs,family reviews chat history 
+- **Aftermath:**  Public debate and congresinol attention
+
+---
+
+### Supporting Artefacts
+-https://www.bbc.co.uk/news/articles/cgerwp7rdlvo
+-https://www.nbcnews.com/tech/tech-news/family-teenager-died-suicide-alleges-openais-chatgpt-blame-rcna226147
+-https://www.npr.org/sections/shots-health-news/2025/09/19/nx-s1-5545749/ai-chatbots-safety-openai-meta-characterai-teens-suicide
+
+---
+
+### Lessons Learned
+- People may result to AI for emotinol dependance 
+- Saftey systems must acount for long term interaction patterns 
+- AI is curenlty not advanced enough to provide complex mental health support 
+
+---
+
+### Quiz
+-Q: What type of failure does this case primarily illustrate?
+-A: AI safety and governance failure related to mental health risk.
+-Q: Why were existing guardrails insufficient?
+-A: They were not robust against prolonged, emotionally dependent interactions.
+-Q: What broader precedent could this case set?
+-A: Legal accountability for AI-related mental health harm and youth protection standards.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Case Study Title
 
 ### Domain
