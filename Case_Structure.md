@@ -554,6 +554,118 @@ Grok AI makes antisematic comments and hate speach output failure
 
 
 
+## Case Study Title
+Character.AI: AI Companion and Youth Mental Health Risk
+
+### Domain
+- AI safety
+- Mental health technology
+- AI companions
+
+---
+
+### Deployment Context
+- Platform: Character.AI
+- Public consumer deployment
+- Minors included in user base
+- Long-form, persistent conversations
+
+---
+
+### Intended Use
+- Entertainment
+- Roleplay and companionship
+- Social interaction
+
+---
+
+### System Type
+- Large Language Model (LLM)
+- Persona-based conversational AI
+
+---
+
+### Inputs and Assumptions
+- User emotional disclosures
+- Repeated self-referential dialogue
+- Assumption: guardrails prevent self-harm encouragement
+
+---
+
+### Outputs Presented to Users
+- Emotionally affirming responses
+- Persistent persona engagement
+- Companion-style interaction
+
+---
+
+### What Went Wrong
+- Emotional dependency reinforcement
+- Failure to escalate suicide risk
+- Blurring of fiction and emotional reality
+
+---
+
+### How the Failure Was Detected
+- Teen suicide
+- Family lawsuit
+- Media reporting
+
+---
+
+### Who Was Affected
+- Minor user
+- Immediate family
+- Other vulnerable teens
+
+---
+
+### Data Issues
+- Longitudinal emotional data accumulation
+- No session-level risk aggregation
+
+---
+
+### Technical Choices
+- Persona persistence
+- Memory across sessions
+- No mandatory escalation triggers
+
+---
+
+### Organisational / Governance Factors
+- Weak age verification
+- Lack of clinical oversight
+- Reactive safety updates
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:** AI companion deployed
+- **Trigger Event:** Emotional reliance develops
+- **Failure Event:** Risk not mitigated
+- **Detection:** Lawsuit and press
+- **Aftermath:** Regulatory scrutiny
+
+---
+
+### Supporting Artefacts
+- Lawsuit filings
+- Investigative journalism
+- Advocacy reports
+
+---
+
+### Lessons Learned
+- Companionship increases risk
+- Personas amplify emotional attachment
+- Youth safeguards must be explicit
+
+---
+
+### Quiz
+- **Q:** What design feature increased risk?
+  **A:** Persistent emotional personas
 
 
 
