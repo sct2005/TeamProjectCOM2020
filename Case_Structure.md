@@ -205,12 +205,13 @@ Tech / International Relations
 ---
 
 ## Deployment Context
-DeepSeek is a Chinese-developed large language model (LLM) and AI chatbot that rapidly became popular globally, even topping app store charts. However, due to concerns about **censorship and political bias**, Taiwan’s government banned the use of DeepSeek across public sector agencies and institutions, citing **national security and information control risks** associated with the model’s outputs and its links to Chinese authorities. :contentReference[oaicite:0]{index=0}
+DeepSeek is a Chinese-developed large language model (LLM) and AI chatbot . However, due to concerns about **censorship and political bias**, Taiwan’s government banned the use of DeepSeek across public sector agencies and institutions,
+citing **national security and information control risks** associated with the model’s outputs and its links to Chinese authorities.
 
 ---
 
 ## Intended Use
-DeepSeek was marketed as a general-purpose AI assistant capable of answering questions, generating text, and assisting with a variety of information tasks similar to other large language models like ChatGPT.
+DeepSeek was marketed as a general-purpose AI , like Chatgpt 
 
 ---
 
@@ -234,7 +235,7 @@ Large Language Model (LLM) / Generative AI Chatbot
 ---
 
 ## What Went Wrong
-DeepSeek’s LLM was found to **suppress, filter, or alter outputs** when prompts involved politically sensitive topics — especially those related to Taiwan’s sovereignty, democracy, and other geopolitically sensitive subjects. These restrictions are interpreted as **built-in censorship aligned with the Chinese government’s positions**, raising concerns that the AI could act as a channel for state-influenced information control rather than offering neutral or balanced responses. :contentReference[oaicite:2]{index=2}
+DeepSeek’s LLM was found to filter outputs when prompts involved politically sensitive topics — especially those related to Taiwan’s sovereignty, democracy, and other geopolitically sensitive subjects. These restrictions are interpreted as **built-in censorship aligned with the Chinese government’s positions**, raising concerns that the AI could act as a channel for state-influenced information control rather than offering neutral or balanced responses. :contentReference[oaicite:2]{index=2}
 
 ---
 
