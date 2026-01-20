@@ -319,31 +319,97 @@ DeepSeek’s LLM was found to filter outputs when prompts involved politically s
 
 
 ---
+---
 
-## 2. (Template Placeholder)
+## Case Study Title
 
 ### Domain
 
+---
+
 ### Deployment Context
+
+---
 
 ### Intended Use
 
+---
+
 ### System Type
 
+---
+
 ### Inputs and Assumptions
+- 
+- 
+- 
+
+---
 
 ### Outputs Presented to Users
+- 
+- 
+
+---
 
 ### What Went Wrong
 
+---
+
 ### How the Failure Was Detected
 
+---
+
 ### Who Was Affected
+- 
+- 
+- 
+
+---
 
 ### Data Issues
+- 
+- 
+
+---
 
 ### Technical Choices
+- 
+- 
+
+---
 
 ### Organisational / Governance Factors
+- 
+- 
 
-### Time line of failuere + aftermath
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  
+- **Trigger Event:**  
+- **Failure Event:**  
+- **Detection:**  
+- **Aftermath:**  
+
+---
+
+### Supporting Artefacts
+- 
+
+---
+
+### Lessons Learned
+- 
+- 
+- 
+
+---
+
+### Quiz
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**  
