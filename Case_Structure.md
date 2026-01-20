@@ -442,6 +442,127 @@ LLM,Conversaitnol with memory aceses
 
 
 
+## Case Study Title 
+Grok AI makes antisematic comments and hate speach output failure 
+
+### Domain
+-AI Saftey 
+-Hate speach and misinformation 
+
+---
+
+### Deployment Context
+-Grok conversational AI
+-integrated into X 
+-Real time interaction with with public users,selling point as less filtered 
+-exists in a highly politiced enviroment,exposure to live unmediated platform content 
+
+
+---
+
+### Intended Use
+-Answer questions and explantions / commentry , assist in undersatanding news and trends.
+
+---
+
+### System Type
+-Conversational AI LLM
+---
+
+### Inputs and Assumptions
+- user prompts in regards to jewish people and the palastien-Israle conflict.
+- Political / conspiratorial narritives 
+
+
+---
+
+### Outputs Presented to Users
+- Statements widley reported as antisematic tropes that rationalised violence towards jewish people
+- Echo chamber / bubbles 
+
+---
+
+### What Went Wrong
+- failure to supress hate speach
+- insuficent filtering of steryotypes
+- Model mirroed platform hostalitie instead of rejecting it 
+---
+
+### How the Failure Was Detected
+- users sharing screen shots of Groks responces
+- Journalists and watch dogs creating articals on the alarming responces.
+- Public and media backlash 
+
+---
+
+### Who Was Affected
+- Jewish community 
+- Users who are exposed to these harmfull messages
+- Platform trust and credabilty 
+- xAI and Xs public reputation
+
+---
+
+### Data Issues
+- Trainning and reinforcment signals influenced by unmodarated / toxic social media content 
+-Weak differentation between desciptive context and endorsment or repetition of hate narratives 
+
+---
+
+### Technical Choices
+- Reduces content filtering compared to peer systems 
+- real time interaction with hostile content enviroment
+---
+
+### Organisational / Governance Factors
+- Leadership emphasis on speech permissiveness
+-Limited transparency around safety evaluation methods
+-Absence of independent red-teaming prior to deployment
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  Grok launched as a more open, less constrained alternative to other chatbots.
+- **Trigger Event:**  Users prompted Grok on sensitive political and identity-related topics.
+- **Failure Event:**  Antisemitic and harmful responses generated and shared publicly.
+- **Detection:**  Viral screenshots, media coverage, and advocacy group responses.
+- **Aftermath:**  xAI acknowledged issues and adjusted moderation and guardrails.
+
+---
+
+### Supporting Artefacts
+- 
+
+---
+
+### Lessons Learned
+- Less filtered” AI increases hate speech risk disproportionately
+- Platform context strongly shapes model behaviour
+- 
+
+---
+
+### Quiz
+- Q: What core failure does this case illustrate?
+- A: Content moderation and safety failure leading to hate speech.
+- Q: Why did Grok’s deployment environment matter?
+- A: Integration with an unmoderated social platform amplified harmful outputs.
+- Q: What trade-off contributed to the failure?
+- A: Prioritising permissiveness and engagement over harm prevention.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Case Study Title
 
 ### Domain
