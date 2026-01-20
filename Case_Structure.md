@@ -124,22 +124,25 @@ Healthcare
 Healthcare providers in the United States deployed machine-learning–based risk prediction algorithms to identify patients who should be enrolled in high-risk care management programs. These systems were widely used by hospitals and insurers to allocate limited healthcare resources more efficiently.
 
 ### Intended Use
-To predict which patients were at highest medical risk and would benefit from additional medical support, monitoring, and preventive care.
+To predict which patients were at highest medical risk and which would benifift the most from care
 
 ### System Type
-Machine Learning–based Risk Prediction Algorithm
+Machine Learning-based Risk Prediction Algorithm
 
 ### Inputs and Assumptions
 - Historical patient healthcare data (medical records, diagnoses, healthcare spending)
-- Assumption that **past healthcare costs are an accurate proxy for medical need**
-- Assumption that historical data reflects true patient health rather than systemic inequality
+- Assumption that past healthcare cost should predict medical need
+- Assumption that historical data reflects true patient health 
 
 ### Outputs Presented to Users
 - Risk scores ranking patients by predicted future healthcare need
 - Automated recommendations for enrollment in care management programs
 
 ### What Went Wrong
-The algorithm systematically **underestimated the health needs of Black patients**. Because healthcare spending was used as the prediction target, the model interpreted lower historical spending as lower medical risk—despite evidence that Black patients often receive **less care than white patients with similar or worse health conditions** due to structural inequality.
+The algorithm systematicallyunderestimated the health needs of Black patients.
+As healthcare spending was used as the prediction target
+The model interpreted lower historical spending as lower medical risk—
+Despite evidence that Black patients often receive less care than white patients with similar or worse health conditions due to structural inequality.
 
 ### How the Failure Was Detected
 Academic researchers evaluated the system and found that:
