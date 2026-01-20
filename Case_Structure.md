@@ -194,7 +194,125 @@ Academic researchers evaluated the system and found that:
 - **Q:** What domain was affected?  
   **A:** Healthcare  
 - **Q:** How could this failure have been prevented?  
-  **A:** Bias audits, fairness constraints, and using direct health indicators  
+  **A:** Bias audits, fairness constraints, and using direct health indicators
+
+
+# DeepSeek Taiwan Censorship Case Study
+
+## Domain
+Tech / International Relations
+
+---
+
+## Deployment Context
+DeepSeek is a Chinese-developed large language model (LLM) and AI chatbot that rapidly became popular globally, even topping app store charts. However, due to concerns about **censorship and political bias**, Taiwan’s government banned the use of DeepSeek across public sector agencies and institutions, citing **national security and information control risks** associated with the model’s outputs and its links to Chinese authorities. :contentReference[oaicite:0]{index=0}
+
+---
+
+## Intended Use
+DeepSeek was marketed as a general-purpose AI assistant capable of answering questions, generating text, and assisting with a variety of information tasks similar to other large language models like ChatGPT.
+
+---
+
+## System Type
+Large Language Model (LLM) / Generative AI Chatbot
+
+---
+
+## Inputs and Assumptions
+- User-provided prompts in natural language
+- Assumption in design that the model should comply with local laws and political regulations, including **China’s censorship and information control policies**  
+- Assumption by Taiwanese authorities that political content generation could influence public perception and national information security
+
+---
+
+## Outputs Presented to Users
+- General AI responses and chat outputs  
+- Restricted or censored responses on politically sensitive subjects such as **Taiwan’s political status**, democracy, human rights, and historical events like Tiananmen Square  
+- Official language aligning with narratives consistent with Chinese government positions in some contexts :contentReference[oaicite:1]{index=1}
+
+---
+
+## What Went Wrong
+DeepSeek’s LLM was found to **suppress, filter, or alter outputs** when prompts involved politically sensitive topics — especially those related to Taiwan’s sovereignty, democracy, and other geopolitically sensitive subjects. These restrictions are interpreted as **built-in censorship aligned with the Chinese government’s positions**, raising concerns that the AI could act as a channel for state-influenced information control rather than offering neutral or balanced responses. :contentReference[oaicite:2]{index=2}
+
+---
+
+## How the Failure Was Detected
+- Governments, security agencies, and independent analysts tested the model and observed that DeepSeek either avoided answering or provided filtered answers on questions about Taiwan and related topics.  
+- Taiwan’s National Security Bureau and Ministry of Digital Affairs issued warnings after inspections found biased content generation aligned with Chinese narratives and potential security risks. :contentReference[oaicite:3]{index=3}
+
+---
+
+## Who Was Affected
+- **Taiwanese government agencies and public institutions, which were banned from using the service**  
+- **Taiwanese citizens and private sector users exposed to potentially biased information**  
+- **Global users seeking neutral AI responses on politically sensitive topics**
+
+---
+
+## Data Issues
+- Data and alignment influences that likely enforce political content restrictions  
+- Indications that DeepSeek’s model outputs shift according to geopolitically sensitive trigger topics, suppressing certain types of information or aligning outputs with state narrative preferences  
+- Lack of transparency around model training, moderation rules, and data governance
+
+---
+
+## Technical Choices
+- Implementation of automatic filtering and content suppression mechanisms for “sensitive” topics
+- Alignment to legal and regulatory expectations in China, which include political content controls
+- Insufficient safeguards or transparency mechanisms to balance censorship with open information provision
+
+---
+
+## Organisational / Governance Factors
+- DeepSeek’s operations influenced by Chinese regulatory context, including compliance with censorship laws
+- Inadequate global governance frameworks on political bias and state-aligned AI censorship
+- Lack of external auditing for political content moderation and bias
+
+---
+
+## Timeline of Failure + Aftermath
+- **Initial Setup:** DeepSeek released and rapidly adopted internationally  
+- **Trigger Event:** Users and governments tested responses to politically sensitive prompts  
+- **Failure Event:** DeepSeek either censored or refused to answer questions about Taiwan and similar topics  
+- **Detection:** Taiwanese and other foreign agencies identify censorship and security concerns  
+- **Aftermath:** Taiwan banned DeepSeek use in public sector agencies; authorities warned about biased outputs; other countries also flagged security and data risks — prompting global scrutiny of politically aligned AI models. :contentReference[oaicite:4]{index=4}
+
+---
+
+## Supporting Artefacts
+- Reuters report on Taiwan banning DeepSeek in public sector  
+  https://www.taipeitimes.com/News/taiwan/archives/2025/01/31/2003831128 :contentReference[oaicite:5]{index=5}
+- Taiwan’s government expands ban, citing data and bias concerns  
+  https://www.taipeitimes.com/News/taiwan/archives/2025/02/04/2003831313 :contentReference[oaicite:6]{index=6}
+- Taiwan NSB warns of bias and disinformation tendencies in DeepSeek content  
+  https://focustaiwan.tw/cross-strait/202511160005 :contentReference[oaicite:7]{index=7}
+- US House report on DeepSeek responses aligning with CCP narratives  
+  (similar content summarized in multiple local reports) :contentReference[oaicite:8]{index=8}
+
+---
+
+## Lessons Learned
+- **AI systems can reflect political biases mirroring regulatory environments**
+- **Lack of transparency and governance amplifies geopolitical risk**
+- **Neutrality claims must be critically audited in multinational contexts**
+- **Public sector use of AI demands stringent security and bias evaluation**
+- **Censorship mechanisms should be clearly documented and constrained**
+
+---
+
+## Quiz
+- **Q:** What problem drove Taiwan’s ban on DeepSeek?  
+  **A:** Censorship and political bias in AI outputs related to sensitive topics such as Taiwan’s status
+
+- **Q:** Which domain was impacted?  
+  **A:** Tech / International information security
+
+- **Q:** How could such failures be mitigated?  
+  **A:** Independent audits, transparency in governance, and clearer global standards on political content moderation in AI
+
+
 
 ---
 
