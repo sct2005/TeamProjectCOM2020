@@ -1,3 +1,20 @@
+
+1. Replit went rogue and wiped a database
+2. Gronk Generating sexual images
+3. Racial Bias in Healthcare AI Risk Prediction
+4. DeepSeek Taiwan Censorship Case Study
+5. Parents Sue OpenAI for role in teenager taking his own life
+6. Grok AI makes antisemitic comments and hate speech output failure
+7. Zillow Offers: Algorithmic Home Pricing Collapse
+8. Meta BlenderBot: Misinformation Propagation
+9. Amazon Alexa: Gender and Bias Controversies
+10. Air Canada Chatbot: Hallucinated Refund Policy
+11. Case Study Title (empty template)
+
+
+
+
+
 # AI Failures Case Studies
 
 ---
