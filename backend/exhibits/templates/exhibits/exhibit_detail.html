@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ exhibit.title }}</title>
+</head>
+<body>
+    <a href="{% url 'exhibits:list' %}">← Back to exhibits</a>
+
+    <h1>{{ exhibit.title }}</h1>
+    <p><strong>Domain:</strong> {{ exhibit.domain }}</p>
+
+    <h2>Context</h2>
+    <p>{{ exhibit.deployment_context }}</p>
+
+    <h2>What went wrong</h2>
+    <p>{{ exhibit.failure_description }}</p>
+
+    <h2>Lessons learned</h2>
+    <p>{{ exhibit.lessons_learned }}</p>
+
+    <hr>
+
+    <h2>Reflection Quiz</h2>
+
+    {% for quiz in quizzes %}
+        <form method="post">
+            {% csrf_token %}
+            <p><strong>{{ quiz.question }}</strong></p>
+            <input type="text" name="answer">
+            <p><em>Correct answer:</em> {{ quiz.correct_answer }}</p>
+            <p>{{ quiz.explanation }}</p>
+        </form>
+        <hr>
+    {% empty %}
+        <p>No quiz questions yet.</p>
+    {% endfor %}
+</body>
+</html>

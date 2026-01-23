@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exhibits</title>
+</head>
+<body>
+    <h1>Interactive Ethics Museum</h1>
+
+    <ul>
+        {% for exhibit in exhibits %}
+            <li>
+                <a href="{% url 'exhibits:detail' exhibit.id %}">
+                    {{ exhibit.title }}
+                </a>
+                ({{ exhibit.domain }})
+            </li>
+        {% empty %}
+            <li>No exhibits yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
