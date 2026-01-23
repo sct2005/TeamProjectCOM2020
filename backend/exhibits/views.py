@@ -9,7 +9,7 @@ def exhibit_list(request):
 
 def exhibit_detail(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
-    quizzes = exhibit.quiz_set.all()
+    quizzes = exhibit.quizzes.all()
     return render(request, "exhibits/exhibit_detail.html", {
         "exhibit": exhibit,
         "quizzes": quizzes
