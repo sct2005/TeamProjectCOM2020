@@ -2,28 +2,222 @@
 <html>
 <head>
     <title>{{ exhibit.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .exhibit-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .info-section {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .info-section p {
+            margin: 10px 0;
+        }
+        .supporting-artefacts {
+            margin-top: 20px;
+        }
+        .supporting-artefacts ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        .supporting-artefacts li {
+            margin: 12px 0;
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .supporting-artefacts a {
+            color: #0066cc;
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 500;
+        }
+        .supporting-artefacts a:hover {
+            text-decoration: underline;
+        }
+        .supporting-artefacts a:visited {
+            color: #6a4c93;
+        }
+        .references-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .quiz-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .quiz-button:hover {
+            background-color: #0052a3;
+        }
+        .domain-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #e8f0fe;
+            color: #0066cc;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <a href="{% url 'exhibits:list' %}">← Back to exhibits</a>
+    <div class="container">
+        <a href="{% url 'exhibits:list' %}" class="back-link">← Back to exhibits</a>
 
-    <h1>{{ exhibit.title }}</h1>
-    <p><strong>Domain:</strong> {{ exhibit.domain }}</p>
+        <h1>{{ exhibit.title }}</h1>
+        <span class="domain-badge">{{ exhibit.domain }}</span>
 
-    <h2>Context</h2>
-    <p>{{ exhibit.deployment_context }}</p>
+        {% if exhibit.image_url %}
+        <img src="{{ exhibit.image_url }}" alt="{{ exhibit.title }}" class="exhibit-image">
+        {% endif %}
 
-    <h2>What went wrong</h2>
-    <p>{{ exhibit.failure_description }}</p>
+        <div class="info-section">
+            <h2>Deployment Context</h2>
+            <p>{{ exhibit.deployment_context }}</p>
+        </div>
 
-    <h2>Lessons learned</h2>
-    <p>{{ exhibit.lessons_learned }}</p>
+        <div class="info-section">
+            <h2>Intended Use</h2>
+            <p>{{ exhibit.intended_use }}</p>
+        </div>
 
-    <hr>
+        <div class="info-section">
+            <h2>System Type</h2>
+            <p>{{ exhibit.system_type }}</p>
+        </div>
 
-    <h2>Test Your Knowledge</h2>
-    <p>Take a quiz to test your understanding of this exhibit.</p>
-    <a href="{% url 'exhibits:quiz' exhibit.id %}" style="display: inline-block; padding: 12px 24px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">
-        Start Quiz
-    </a>
+        <div class="info-section">
+            <h2>Inputs and Assumptions</h2>
+            <p>{{ exhibit.inputs_and_assumptions }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Outputs Presented to Users</h2>
+            <p>{{ exhibit.outputs_presented }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>What Went Wrong</h2>
+            <p>{{ exhibit.failure_description }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>How the Failure Was Detected</h2>
+            <p>{{ exhibit.detection_method }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Who Was Affected</h2>
+            <p>{{ exhibit.affected_parties }}</p>
+        </div>
+
+        {% if exhibit.data_issues %}
+        <div class="info-section">
+            <h2>Data Issues</h2>
+            <p>{{ exhibit.data_issues }}</p>
+        </div>
+        {% endif %}
+
+        {% if exhibit.technical_choices %}
+        <div class="info-section">
+            <h2>Technical Choices</h2>
+            <p>{{ exhibit.technical_choices }}</p>
+        </div>
+        {% endif %}
+
+        {% if exhibit.organizational_factors %}
+        <div class="info-section">
+            <h2>Organizational and Governance Factors</h2>
+            <p>{{ exhibit.organizational_factors }}</p>
+        </div>
+        {% endif %}
+
+        <div class="info-section">
+            <h2>Contributing Factors</h2>
+            <p>{{ exhibit.contributing_factors }}</p>
+        </div>
+
+        {% if exhibit.timeline %}
+        <div class="info-section">
+            <h2>Timeline of Failure and Aftermath</h2>
+            <p style="white-space: pre-line;">{{ exhibit.timeline }}</p>
+        </div>
+        {% endif %}
+
+        <div class="info-section">
+            <h2>Lessons Learned</h2>
+            <p>{{ exhibit.lessons_learned }}</p>
+        </div>
+
+        {% if exhibit.supporting_artefacts %}
+        <div class="info-section supporting-artefacts">
+            <h2>References</h2>
+            <p class="references-header">Supporting Artefacts and Sources:</p>
+            <ol>
+                {% for artefact in exhibit.supporting_artefacts %}
+                <li>
+                    <a href="{{ artefact }}" target="_blank" rel="noopener noreferrer">{{ artefact }}</a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #ddd;">
+
+        <h2>Test Your Knowledge</h2>
+        <p>Take a quiz to test your understanding of this exhibit.</p>
+        <a href="{% url 'exhibits:quiz' exhibit.id %}" class="quiz-button">
+            Start Quiz
+        </a>
+    </div>
 </body>
 </html>

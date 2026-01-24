@@ -17,6 +17,12 @@ class Exhibit(models.Model):
 
     contributing_factors = models.TextField()
     lessons_learned = models.TextField()
+    image_url = models.URLField(blank=True, null=True, help_text="URL to an image representing this exhibit")
+    supporting_artefacts = models.JSONField(default=list, blank=True, help_text="List of supporting artefact links")
+    data_issues = models.TextField(blank=True, help_text="Data-related issues that contributed to the failure")
+    technical_choices = models.TextField(blank=True, help_text="Technical choices that contributed to the failure")
+    organizational_factors = models.TextField(blank=True, help_text="Organizational and governance factors")
+    timeline = models.TextField(blank=True, help_text="Timeline of failure and aftermath")
 
     created_at = models.DateTimeField(auto_now_add=True)
 
