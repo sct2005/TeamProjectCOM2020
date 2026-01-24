@@ -20,19 +20,10 @@
 
     <hr>
 
-    <h2>Reflection Quiz</h2>
-
-    {% for quiz in quizzes %}
-        <form method="post">
-            {% csrf_token %}
-            <p><strong>{{ quiz.question }}</strong></p>
-            <input type="text" name="answer">
-            <p><em>Correct answer:</em> {{ quiz.correct_answer }}</p>
-            <p>{{ quiz.explanation }}</p>
-        </form>
-        <hr>
-    {% empty %}
-        <p>No quiz questions yet.</p>
-    {% endfor %}
+    <h2>Test Your Knowledge</h2>
+    <p>Take a quiz to test your understanding of this exhibit.</p>
+    <a href="{% url 'exhibits:quiz' exhibit.id %}" style="display: inline-block; padding: 12px 24px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">
+        Start Quiz
+    </a>
 </body>
 </html>

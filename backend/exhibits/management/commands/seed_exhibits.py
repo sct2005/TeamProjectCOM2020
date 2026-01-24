@@ -25,6 +25,12 @@ class Command(BaseCommand):
             )
             if created:
                 self.stdout.write(f"Created Exhibit: {ex.title}")
+            else:
+                # Update existing exhibit
+                for key, value in ex_data.items():
+                    setattr(ex, key, value)
+                ex.save()
+                self.stdout.write(f"Updated Exhibit: {ex.title}")
 
         # Load Quizzes
         with open(quizzes_path, "r") as f:
@@ -36,9 +42,17 @@ class Command(BaseCommand):
                 exhibit=exhibit,
                 question=q_data["question"],
                 defaults={
-                    "correct_answer": q_data["correct_answer"],
+                    "options": q_data.get("options", []),
+                    "correct_answer_index": q_data.get("correct_answer_index", 0),
                     "explanation": q_data.get("explanation", "")
                 }
             )
             if created:
                 self.stdout.write(f"Created Quiz: {quiz.question[:30]}...")
+            else:
+                # Update existing quiz
+                quiz.options = q_data.get("options", [])
+                quiz.correct_answer_index = q_data.get("correct_answer_index", 0)
+                quiz.explanation = q_data.get("explanation", "")
+                quiz.save()
+                self.stdout.write(f"Updated Quiz: {quiz.question[:30]}...")
