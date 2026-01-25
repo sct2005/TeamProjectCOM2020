@@ -1,0 +1,66 @@
+1. Privacy, GDPR and Data Minimisation
+
+Data Collection
+The AI Failures Museum system uses Django's built-in User model and collects the following personal data:
+
+Data collected:
+- Username
+- Email address
+- Password
+- First Name
+- Last Name
+- Account creation timestamp
+- Last login timestamp
+- Account status flags
+
+This ensures that no sensitive personal data, location tracking, payment information or third-party analytics information is stored.
+
+Legal Basis (GDPR)
+- Consent: Users consent when creating accounts
+
+User Rights (GDPR)
+Users have the following rights, implementable vis Django's admin interface:
+- Access: View their data through Django admin
+- Rectification: Edit username, email, first name and last name
+- Erasure: Delete account via Django admin
+
+2. Acceptable Use and safety of Gamification
+
+~NOT YET IMPLEMENTED~
+~NEED TO ADD ONCE DONE~
+
+3. Risks of Misinformation and MIsleading Claims
+
+Content in Database
+The stystem currently contains:
+- 20 exhibits
+- 40 quizzes
+
+Each exhibit includes:
+- Failure description, contributing factors, lessons learned
+- Supporting artefacts
+- Timeline information
+
+Risks
+Ai failure case studies risk:
+- Oversimplification of complex technical issues
+- Factural errors in technincal explanations
+- Reputable dama if real organisations are unfairly portrayed
+- Misunderstanding AI capabilities and limitations
+
+Mitigation
+
+Content creation:
+- Exhibits created/edited only by curators
+- Django admin logs all changes
+- Each exhibit has a timestamp it was created for tracking
+
+Naming policy:
+- Public incidents with wide reporting: name organisation correctly
+- Sensitivie incidents: anonymise
+
+Red lines:
+- Never name indivdual developers, includer personal identifying information, use inflammatory language and never present speculation as fact.
+
+Change tracking:
+- All exhibit modifications are logged to identify which exhibits have been modified
