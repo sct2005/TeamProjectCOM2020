@@ -117,7 +117,11 @@
 
         {% if exhibit.image_url %}
         <img src="{{ exhibit.image_url }}" alt="{{ exhibit.title }}" class="exhibit-image">
+        {% if exhibit.image_reference %}
+        <p style="font-size: 12px; color: #666; font-style: italic; margin-top: -10px; margin-bottom: 20px;">Image source: {{ exhibit.image_reference }}</p>
         {% endif %}
+        {% endif %}
+
 
         <div class="info-section">
             <h2>Deployment Context</h2>

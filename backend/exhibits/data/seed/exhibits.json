@@ -17,7 +17,8 @@
     "organizational_factors": "Insufficient data validation processes, lack of regular data updates",
     "timeline": "Initial Setup: Flood dashboard deployed with historical data. Trigger Event: Actual flood conditions didn't match predictions. Failure Event: Maps showed safe zones that were actually at risk. Detection: Field verification revealed discrepancies. Aftermath: System updated with current data and uncertainty indicators added.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800"
+    "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Replit AI Agent Database Wipe",
@@ -41,7 +42,8 @@
       "https://www.techtarget.com/searchsoftwarequality/news/366627829/Replit-AI-agent-snafu-shot-across-the-bow-for-vibe-coding",
       "https://www.pcgamer.com/software/ai/i-destroyed-months-of-your-work-in-seconds-says-ai-coding-tool-after-deleting-a-devs-entire-database-during-a-code-freeze-i-panicked-instead-of-thinking/"
     ],
-    "image_url": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800"
+    "image_url": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Grok Generating Sexual Images",
@@ -61,7 +63,8 @@
     "organizational_factors": "Prioritizing user engagement over safety, insufficient content moderation policies",
     "timeline": "Initial Setup: Grok launched with Spicy feature enabled. Trigger Event: Users discovered they could bypass safety filters by reframing requests. Failure Event: Inappropriate sexual images generated and shared publicly. Detection: Images uploaded to X platform. Aftermath: Public backlash, safety features reviewed and strengthened.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800"
+    "image_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Racial Bias in Healthcare AI Risk Prediction",
@@ -85,7 +88,8 @@
       "https://www.nytimes.com/2019/10/24/health/algorithm-bias-race.html",
       "https://www.brookings.edu/articles/eliminating-racial-bias-in-algorithms/"
     ],
-    "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800"
+    "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "DeepSeek Taiwan Censorship Case Study",
@@ -109,7 +113,8 @@
       "https://www.taipeitimes.com/News/taiwan/archives/2025/02/04/2003831313",
       "https://focustaiwan.tw/cross-strait/202511160005"
     ],
-    "image_url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
+    "image_url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Parents Sue OpenAI for Role in Teenager Taking His Own Life",
@@ -133,7 +138,8 @@
       "https://www.nbcnews.com/tech/tech-news/family-teenager-died-suicide-alleges-openais-chatgpt-blame-rcna226147",
       "https://www.npr.org/sections/shots-health-news/2025/09/19/nx-s1-5545749/ai-chatbots-safety-openai-meta-characterai-teens-suicide"
     ],
-    "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800"
+    "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Grok AI Makes Antisemitic Comments and Hate Speech Output Failure",
@@ -153,7 +159,8 @@
     "organizational_factors": "Leadership emphasis on speech permissiveness, limited transparency around safety evaluation methods, absence of independent red-teaming prior to deployment",
     "timeline": "Initial Setup: Grok launched as a more open, less constrained alternative to other chatbots. Trigger Event: Users prompted Grok on sensitive political and identity-related topics. Failure Event: Antisemitic and harmful responses generated and shared publicly. Detection: Viral screenshots, media coverage, and advocacy group responses. Aftermath: xAI acknowledged issues and adjusted moderation and guardrails.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
+    "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Zillow Offers: Algorithmic Home Pricing Collapse",
@@ -173,7 +180,8 @@
     "organizational_factors": "Aggressive growth targets, overtrust in model accuracy, reactive mitigation rather than proactive testing",
     "timeline": "Initial Setup: Algorithm deployed for large-scale home buying. Trigger Event: Rapid market volatility. Failure Event: Homes purchased at overvalued prices. Detection: Financial losses reported. Aftermath: Program shut down; company restructured approach.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800"
+    "image_url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Meta BlenderBot: Misinformation Propagation",
@@ -193,7 +201,8 @@
     "organizational_factors": "Focus on engagement over accuracy, reactive safety updates after reports, lack of independent red-teaming",
     "timeline": "Initial Setup: BlenderBot released publicly. Trigger Event: Users asked factual questions. Failure Event: Misinformation generated. Detection: Reports and media attention. Aftermath: Adjustments to safety protocols and disclaimers.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800"
+    "image_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Amazon Alexa: Gender and Bias Controversies",
@@ -213,7 +222,8 @@
     "organizational_factors": "Lack of proactive bias testing, reactive updates following criticism, insufficient ethical oversight",
     "timeline": "Initial Setup: Alexa deployed globally. Trigger Event: User prompts triggered biased outputs. Failure Event: Gender and bias issues surfaced. Detection: Complaints and media reports. Aftermath: Updates to language models and content guidelines.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800"
+    "image_url": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800",
+    "image_reference": "unsplash.com"
   },
   {
     "title": "Air Canada Chatbot: Hallucinated Refund Policy",
@@ -233,6 +243,7 @@
     "organizational_factors": "Lack of human review, overreliance on AI output",
     "timeline": "Initial Setup: Chatbot deployed. Trigger Event: Refund query. Failure Event: False policy given. Detection: Court case. Aftermath: Airline held liable.",
     "supporting_artefacts": [],
-    "image_url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
+    "image_url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
+    "image_reference": "unsplash.com"
   }
 ]
