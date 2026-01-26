@@ -1,7 +1,7 @@
 1. Privacy, GDPR and Data Minimisation
 
 Data Collection
-The AI Failures Museum system uses Django's built-in User model to handle accounts.It collects the following personal data:
+The AI Failures Museum system uses Django's built-in User model to handle accounts. It collects the following personal data:
 
 Data collected:
 - Username
@@ -13,7 +13,7 @@ Data collected:
 - Last login timestamp
 - Account status flags
 
-We dont collect any sensitive information such as health, reace, ethnicity, political opinions, religious, payment or location tracking details.
+We don’t collect any sensitive information such as health, race, ethnicity, political opinions, religious, payment or location tracking details.
 
 We are processing this data based on user consent. When an account is created the user will agree to let us store this information.
 
@@ -29,7 +29,7 @@ Users have the following rights, implementable vis Django's admin interface:
 ~NOT YET IMPLEMENTED~
 ~NEED TO ADD ONCE DONE~
 
-3. Risks of Misinformation and MIsleading Claims
+3. Risks of Misinformation and Misleading Claims
 
 In our database each exhibit includes:
 - Failure description
@@ -42,32 +42,32 @@ Since we are presenting real or realistic AI failure cases there are some risks 
 Ai failure case studies risk:
 - Oversimplification of complex technical issues
 - We could get factual details wrong
-- We could accidentally damage someone's reputation if we are not careful aboit how we present real incidents
+- We could accidentally damage someone's reputation if we are not careful about how we present real incidents
 - Users might misunderstand how AI actually works
 - We could make AI seem scarier or worse that it really is
 
 How we are dealing with this:
 Only user that have curators permissions can create or edit exhibits through Django's admin interface. With every change being logged so we can see who changed what and when.
 
-For real-world incidents that were publically reported, we name the company and prsent facts as a neutral. For more sensitive cases, we annonymise them to avoid reporting sensitive information.
+For real-world incidents that were publicly reported, we name the company and present facts as a neutral. For more sensitive cases, we anonymise them to avoid reporting sensitive information.
 
-We never name indivdual developers or engineers, never include personal information and avoid using inappropriate language. We also dont present speculation as if its fact.
+We never name individual developers or engineers, never include personal information and avoid using inappropriate language. We also don’t present speculation as if its fact.
 
 If we get something wrong, the Django admin log lets us track changes and update the exhibits.
 
 4. Accessibility and Inclusion
 
-Our project will aim to make sure everyone can use our website, including people with disabilities. We also want to make sure our content represents different contects and does't exclude certain groups.
+Our project will aim to make sure everyone can use our website, including people with disabilities. We also want to make sure our content represents different contexts and doesn’t exclude certain groups.
 
 Django's form system does some of the basics for us automatically. Form fields come with proper labels that screen readers can understand, error messages get linked to the right fields and the admin interface has basic keyboard navigation built in. 
 
 We are aiming to include AI failures from different contexts and fields, not just focusing on big tech companies as we want the content to be relevant to different industries and geographic regions.
 
-There is noo premium or pay to view features which ensures that everyone can access everything for free.
+There is no premium or pay to view features which ensures that everyone can access everything for free.
 
 5. Security Controls
 
-We are using Django's built-in authentification system. Passwords are hashed which is what Django does by default and exceeds security reconmmendations.
+We are using Django's built-in authentication system. Passwords are hashed which is what Django does by default and exceeds security recommendations.
 
 In our settings.py file, we have password validators that require:
 - Minimum 8 characters 
@@ -93,4 +93,3 @@ We conclude that formal ethics approval is not required because:
 - Its low risk as its for educational purposes with all changes being logged and monitored
 - We are using Django's built in protections that uses password hashing and role-based access control
 - All the data is also stored locally so their is no third party interactions or tracking services.
-
