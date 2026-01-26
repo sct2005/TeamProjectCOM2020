@@ -31,36 +31,29 @@ Users have the following rights, implementable vis Django's admin interface:
 
 3. Risks of Misinformation and MIsleading Claims
 
-Content in Database
-The stystem currently contains:
-- 20 exhibits
-- 40 quizzes
-
-Each exhibit includes:
-- Failure description, contributing factors, lessons learned
+In our database each exhibit includes:
+- Failure description
+- Contributing factors
+- Lessons learned
 - Supporting artefacts
 - Timeline information
 
-Risks
+Since we are presenting real or realistic AI failure cases there are some risks that are attached:
 Ai failure case studies risk:
 - Oversimplification of complex technical issues
-- Factural errors in technincal explanations
-- Reputable dama if real organisations are unfairly portrayed
-- Misunderstanding AI capabilities and limitations
+- We could get factual details wrong
+- We could accidentally damage someone's reputation if we are not careful aboit how we present real incidents
+- Users might misunderstand how AI actually works
+- We could make AI seem scarier or worse that it really is
 
-Mitigation
+How we are dealing with this:
+Only user that have curators permissions can create or edit exhibits through Django's admin interface. With every change being logged so we can see who changed what and when.
 
-Content creation:
-- Exhibits created/edited only by curators
-- Django admin logs all changes
-- Each exhibit has a timestamp it was created for tracking
+For real-world incidents that were publically reported, we name the company and prsent facts as a neutral. For more sensitive cases, we annonymise them to avoid reporting sensitive information.
 
-Naming policy:
-- Public incidents with wide reporting: name organisation correctly
-- Sensitivie incidents: anonymise
+We never name indivdual developers or engineers, never include personal information and avoid using inappropriate language. We also dont present speculation as if its fact.
 
-Red lines:
-- Never name indivdual developers, includer personal identifying information, use inflammatory language and never present speculation as fact.
+If we get something wrong, the Django admin log lets us track changes and update the exhibits.
 
-Change tracking:
-- All exhibit modifications are logged to identify which exhibits have been modified
+4. Accessibility and Inclusion
+
