@@ -24,3 +24,50 @@ Key Risks:
 
 - Content Accuracy: There is the potential for the AI failure case studies to oversimplify complex issues, get facts wrong or unintentially damage reputations. 
 - 
+
+Project description and prioritised requirements
+
+Original Problem: 
+
+AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
+
+Solution:
+
+Our AI Failures Museum addresses this gap by creating a digital repository of AI failure cases. Focusing exclusively on failures, limitations and the misuses of AI-supported systems. Each exhibit presents a structured breakdown of a specific failure, including the system's intended purpose, what went wrong, contributing factors, and actionable lessons learned.
+
+The system has 3 primary user groups:
+
+- Visitors: University students, professionals and researchers who browse exhibits, complete quizzes and learn from the documented failures.
+- Curators: Experts who create and edit exhibits throigh Django's admin interface.
+- Developers: Our team members who access the GitHub repository, run the system locally and deploy updates.
+
+Scope Boundaries
+
+Our sprint 1 prototype focuses on the core museum functionality such as:
+
+- Exhibit browsing: Users can view a list of all exhibits and click through to detailed pages showing structured failure information
+- Quizzes: Each exhibit has quiz questions
+- Content management: Curators can create and edit exhibits via Django admin, with all changes logged for audit trails
+- Role-based Access: Three user types (visitors, curators, admins) with appropriate permissions enforced by Django.
+
+Success Criteria
+
+We have 4 areas of success for our Sprint 1 success criteria
+
+1. Complete functions within the Museum
+- At least 10 exhibits covering multiple domains
+- At least 30 quiz questions
+
+2. Technical Quality
+- Database integrity
+- Security basics
+- Version control
+
+3. Content Quality
+- Exhibits cover diverse failure types
+- Exhibits cover multiple sectors and industries
+- Quiz questions test understanding
+
+4. Usability
+- Clear navigation
+- User friendly design
