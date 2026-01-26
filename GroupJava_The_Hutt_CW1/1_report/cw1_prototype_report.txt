@@ -1,0 +1,3 @@
+Executive Summary
+
+The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation abd accountability.
