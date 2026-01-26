@@ -1,6 +1,9 @@
 import json
 import os
+import hashlib
 from django.core.management.base import BaseCommand
+from django.core.files import File
+from django.conf import settings
 from exhibits.models import Exhibit, Quiz
 
 class Command(BaseCommand):
@@ -13,21 +16,90 @@ class Command(BaseCommand):
 
         exhibits_path = os.path.join(BASE_DIR, "data", "seed", "exhibits.json")
         quizzes_path = os.path.join(BASE_DIR, "data", "seed", "quizzes.json")
+        
+        # Get the media root path for images
+        # Use Django's MEDIA_ROOT setting, or fall back to default location
+        if hasattr(settings, 'MEDIA_ROOT') and settings.MEDIA_ROOT:
+            media_root = os.path.join(settings.MEDIA_ROOT, "exhibits", "images")
+        else:
+            # Fallback to default location
+            media_root = os.path.join(BASE_DIR, "backend", "media", "exhibits", "images")
 
         # Load Exhibits
         with open(exhibits_path, "r") as f:
             exhibits_data = json.load(f)
 
         for ex_data in exhibits_data:
+            # Extract image_filename if present
+            image_filename = ex_data.pop("image_filename", None)
+            # Also remove old image_url field if present
+            ex_data.pop("image_url", None)
+            
+            # Filter out image field if it exists (we'll handle it separately)
+            exhibit_data = {k: v for k, v in ex_data.items() if k != "image"}
+            
             ex, created = Exhibit.objects.get_or_create(
                 title=ex_data["title"],
-                defaults=ex_data
+                defaults=exhibit_data
             )
+            
+            # Handle image assignment if filename is provided
+            if image_filename:
+                image_path = os.path.join(media_root, image_filename)
+                if os.path.exists(image_path):
+                    # Calculate hash of source file to compare with existing image
+                    def get_file_hash(filepath):
+                        """Calculate MD5 hash of a file"""
+                        hash_md5 = hashlib.md5()
+                        with open(filepath, 'rb') as f:
+                            for chunk in iter(lambda: f.read(4096), b""):
+                                hash_md5.update(chunk)
+                        return hash_md5.hexdigest()
+                    
+                    source_hash = get_file_hash(image_path)
+                    
+                    # Check if exhibit already has this exact image assigned
+                    image_already_assigned = False
+                    if ex.image:
+                        try:
+                            current_image_path = ex.image.path
+                            if os.path.exists(current_image_path):
+                                current_hash = get_file_hash(current_image_path)
+                                if current_hash == source_hash:
+                                    image_already_assigned = True
+                        except:
+                            # If we can't access the path, check by base filename
+                            current_image_name = os.path.basename(ex.image.name)
+                            base_name = os.path.splitext(image_filename)[0]
+                            current_base = os.path.splitext(current_image_name)[0]
+                            if current_base == base_name or current_base.startswith(base_name + '_'):
+                                image_already_assigned = True
+                    
+                    if not image_already_assigned:
+                        # Delete old image file if it exists and is different
+                        if ex.image:
+                            try:
+                                old_path = ex.image.path
+                                if os.path.exists(old_path):
+                                    old_hash = get_file_hash(old_path)
+                                    if old_hash != source_hash:
+                                        os.remove(old_path)
+                            except:
+                                pass  # Ignore errors when deleting old file
+                        
+                        with open(image_path, 'rb') as img_file:
+                            ex.image.save(image_filename, File(img_file), save=True)
+                        self.stdout.write(f"  → Assigned image: {image_filename}")
+                    else:
+                        self.stdout.write(f"  ✓ Image already assigned: {image_filename}")
+                else:
+                    self.stdout.write(self.style.WARNING(f"  ⚠ Image not found: {image_filename} (skipping)"))
+            
             if created:
                 self.stdout.write(f"Created Exhibit: {ex.title}")
             else:
                 # Update existing exhibit
-                for key, value in ex_data.items():
+                for key, value in exhibit_data.items():
                     setattr(ex, key, value)
                 ex.save()
                 self.stdout.write(f"Updated Exhibit: {ex.title}")

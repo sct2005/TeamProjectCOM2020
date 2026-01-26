@@ -17,7 +17,7 @@ class Exhibit(models.Model):
 
     contributing_factors = models.TextField()
     lessons_learned = models.TextField()
-    image_url = models.URLField(blank=True, null=True, help_text="URL to an image representing this exhibit")
+    image = models.ImageField(upload_to='exhibits/images/', blank=True, null=True, help_text="Image representing this exhibit")
     image_reference = models.CharField(max_length=200, blank=True, null=True, help_text="Reference/attribution for the image")
     supporting_artefacts = models.JSONField(default=list, blank=True, help_text="List of supporting artefact links")
     data_issues = models.TextField(blank=True, help_text="Data-related issues that contributed to the failure")
