@@ -12,3 +12,15 @@ Users can view a list of all the exhibits and click through to detailed exhibit 
 
 Curators can create and edit exhibits through Django's admin interface. All the changes are logged in the admin log table which creates an audit trail for accountability. 
 
+Key Benefits:
+
+The prototype deonstrates several important benefits such as:
+
+- Learning from mistakes: Rather than soley focusing on the success of AI, the museum provides insights that aren't usually that well documented and this allows for people to learn what can go wrong. This can help people be aware of the limitations are errors that AI can make.
+- Structured Analysis: Each exhibit breaks down complex failures into understandable components which helps users develop an understanding of AI and how to evaluate it and make their own decisions.
+- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding of the rading to answer questions.
+
+Key Risks:
+
+- Content Accuracy: There is the potential for the AI failure case studies to oversimplify complex issues, get facts wrong or unintentially damage reputations. 
+- 
