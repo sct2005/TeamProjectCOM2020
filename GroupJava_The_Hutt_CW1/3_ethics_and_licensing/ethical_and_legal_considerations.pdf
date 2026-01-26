@@ -57,3 +57,31 @@ If we get something wrong, the Django admin log lets us track changes and update
 
 4. Accessibility and Inclusion
 
+5. Security Controls
+
+We are using Django's built-in authentification system. Passwords are hashed which is what Django does by default and exceeds security reconmmendations.
+
+In our settings.py file, we have password validators that require:
+- Minimum 8 characters 
+- Password can't be too similar to your username
+- Can't be a commonly used password
+- Can't be all numbers
+
+We have three user types:
+
+- Regular visitors - can browse exhibits and view quizzes
+- Curators - can create and edit exhibits through Django admin
+- Admins - full access to everything 
+
+Django admin automatically enforces these permissions, so visitors can't access curator tools even if they try to go to those URLs directly.
+
+Django's admin log records all admin actions - creating exhibits, editing them, deleting things and changing user permissions. Each entry includes who did it, what they did and when. Only superusers can see these logs. Passwords are never logged.
+
+6. Conclusion: Ethics Approval Decision
+
+We conclude that formal ethics approval is not required because:
+
+- Only basic account data is collected
+- Its low risk as its for educational purposes with all changes being logged and monitored
+- We are using Django's built in protections that uses password hashing and role-based access control
+- All the data is also stored locally so their is no third party interactions or tracking services.
