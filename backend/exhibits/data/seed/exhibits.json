@@ -201,8 +201,8 @@
     "organizational_factors": "Focus on engagement over accuracy, reactive safety updates after reports, lack of independent red-teaming",
     "timeline": "Initial Setup: BlenderBot released publicly. Trigger Event: Users asked factual questions. Failure Event: Misinformation generated. Detection: Reports and media attention. Aftermath: Adjustments to safety protocols and disclaimers.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "blender.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Amazon Alexa: Gender and Bias Controversies",
