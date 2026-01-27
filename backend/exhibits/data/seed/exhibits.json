@@ -159,7 +159,7 @@
     "organizational_factors": "Leadership emphasis on speech permissiveness, limited transparency around safety evaluation methods, absence of independent red-teaming prior to deployment",
     "timeline": "Initial Setup: Grok launched as a more open, less constrained alternative to other chatbots. Trigger Event: Users prompted Grok on sensitive political and identity-related topics. Failure Event: Antisemitic and harmful responses generated and shared publicly. Detection: Viral screenshots, media coverage, and advocacy group responses. Aftermath: xAI acknowledged issues and adjusted moderation and guardrails.",
     "supporting_artefacts": [],
-    "image_filename": "grok.png",
+    "image_filename": "antisematism.png",
     "image_reference": "GPT5.2"
   },
   {
@@ -180,8 +180,8 @@
     "organizational_factors": "Aggressive growth targets, overtrust in model accuracy, reactive mitigation rather than proactive testing",
     "timeline": "Initial Setup: Algorithm deployed for large-scale home buying. Trigger Event: Rapid market volatility. Failure Event: Homes purchased at overvalued prices. Detection: Financial losses reported. Aftermath: Program shut down; company restructured approach.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "zillow.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Meta BlenderBot: Misinformation Propagation",
@@ -222,8 +222,8 @@
     "organizational_factors": "Lack of proactive bias testing, reactive updates following criticism, insufficient ethical oversight",
     "timeline": "Initial Setup: Alexa deployed globally. Trigger Event: User prompts triggered biased outputs. Failure Event: Gender and bias issues surfaced. Detection: Complaints and media reports. Aftermath: Updates to language models and content guidelines.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "alexa.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Air Canada Chatbot: Hallucinated Refund Policy",
@@ -243,7 +243,7 @@
     "organizational_factors": "Lack of human review, overreliance on AI output",
     "timeline": "Initial Setup: Chatbot deployed. Trigger Event: Refund query. Failure Event: False policy given. Detection: Court case. Aftermath: Airline held liable.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "aircanada.png",
+    "image_reference": "GPT5.2"
   }
 ]
