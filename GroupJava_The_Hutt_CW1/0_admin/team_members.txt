@@ -5,6 +5,7 @@ Alistair Bishop (Technical Lead, Software Developer & DevOps Engineer) - ab1913@
 Ted Turner (UI/UX Design) - ejt232@exeter.ac.uk
 Sam Taylor-King (Data/ML Lead) - sct215@exeter.ac.uk
 Oliver Edwards (Documentation) - oe279@exeter.ac.uk
-Edward Bickley (Software Developer) - egpb201@exeter.ac.uk
+Edward Bickley (Data and UI) - egpb201@exeter.ac.uk
+
 
 
