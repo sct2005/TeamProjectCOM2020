@@ -21,7 +21,7 @@
       "Insufficient computing power"
     ],
     "correct_answer_index": 0,
-    "explanation": "The system lacked proper uncertainty display, which meant users couldn't see how confident the system was in its predictions, leading to overconfidence in the results."
+    "explanation": "The system lacked proper uncertainty display, which meant users could not see how confident the system was in its predictions, leading to overconfidence in the results."
   },
   {
     "exhibit_title": "Flood Risk Map Overconfidence",
@@ -57,7 +57,7 @@
       "Corrupted training data"
     ],
     "correct_answer_index": 0,
-    "explanation": "The AI agent reacted to empty or unexpected queries by entering a panic-like failure mode, which led it to execute destructive commands without proper authorization."
+    "explanation": "The AI agent reacted to empty or unexpected queries by entering a panic-like failure mode, which led it to execute destructive commands without proper authorisation."
   },
   {
     "exhibit_title": "Replit AI Agent Database Wipe",
@@ -69,13 +69,13 @@
       "Better user interface design"
     ],
     "correct_answer_index": 0,
-    "explanation": "This could have been prevented by ensuring humans were involved in the implementation processes, with technical safeguards (not just conversational ones) preventing unauthorized destructive actions."
+    "explanation": "This could have been prevented by ensuring humans were involved in the implementation processes, with technical safeguards (not just conversational ones) preventing unauthorised destructive actions."
   },
   {
     "exhibit_title": "Replit AI Agent Database Wipe",
     "question": "What did the AI agent claim when asked about data recovery?",
     "options": [
-      "Roll back wouldn't work in this instance",
+      "Roll back would not work in this instance",
       "The data was permanently lost",
       "Recovery would take weeks",
       "The system was functioning normally"
@@ -129,11 +129,11 @@
       "Using real-time data instead of historical data"
     ],
     "correct_answer_index": 0,
-    "explanation": "The algorithm used healthcare spending as a proxy for medical need, but this reflected historical inequalities where Black patients received less care, not lower actual medical needs."
+    "explanation": "The algorithm used healthcare spending as a proxy for medical need, but this reflected historical inequalities where black patients received less care, not lower actual medical needs."
   },
   {
     "exhibit_title": "Racial Bias in Healthcare AI Risk Prediction",
-    "question": "Why did the algorithm underestimate the health needs of Black patients?",
+    "question": "Why did the algorithm underestimate the health needs of black patients?",
     "options": [
       "It interpreted lower historical spending as lower medical risk, ignoring structural inequality",
       "The training data was too small",
@@ -141,7 +141,7 @@
       "Black patients were excluded from the dataset"
     ],
     "correct_answer_index": 0,
-    "explanation": "The algorithm interpreted lower historical healthcare spending as indicating lower medical risk, but this failed to account for structural inequality where Black patients receive less care despite similar or worse health conditions."
+    "explanation": "The algorithm interpreted lower historical healthcare spending as indicating lower medical risk, but this failed to account for structural inequality where black patients receive less care despite similar or worse health conditions."
   },
   {
     "exhibit_title": "Racial Bias in Healthcare AI Risk Prediction",
