@@ -50,3 +50,29 @@ class Quiz(models.Model):
         if self.options and 0 <= self.correct_answer_index < len(self.options):
             return self.options[self.correct_answer_index]
         return ""
+
+
+class Comment(models.Model):
+    exhibit = models.ForeignKey(
+        Exhibit,
+        on_delete=models.CASCADE,
+        related_name="comments",
+    )
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="replies",
+        blank=True,
+        null=True,
+    )
+    author_name = models.CharField(max_length=80)
+    body = models.TextField(max_length=2000)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_at"]
+
+    def __str__(self):
+        if self.parent_id:
+            return f"Reply by {self.author_name} on {self.exhibit.title}"
+        return f"Comment by {self.author_name} on {self.exhibit.title}"

@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from django.views.decorators.http import require_POST
 import json
 import random
-from .models import Exhibit, Quiz
+from .models import Exhibit, Quiz, Comment
 
 def exhibit_list(request):
     exhibits = Exhibit.objects.all()
@@ -11,9 +14,42 @@ def exhibit_list(request):
 
 def exhibit_detail(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
+    comments = (
+        Comment.objects.filter(exhibit=exhibit, parent__isnull=True)
+        .prefetch_related("replies__replies__replies")
+    )
     return render(request, "exhibits/exhibit_detail.html", {
         "exhibit": exhibit,
+        "comments": comments,
     })
+
+@require_POST
+def post_comment(request, pk):
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+
+    author_name = (request.POST.get("author_name") or "").strip()
+    body = (request.POST.get("body") or "").strip()
+    parent_id_raw = (request.POST.get("parent_id") or "").strip()
+
+    if not author_name or not body:
+        return HttpResponseBadRequest("author_name and body are required")
+
+    parent = None
+    if parent_id_raw:
+        try:
+            parent_id = int(parent_id_raw)
+        except ValueError:
+            return HttpResponseBadRequest("parent_id must be an integer")
+        parent = get_object_or_404(Comment, pk=parent_id, exhibit=exhibit)
+
+    Comment.objects.create(
+        exhibit=exhibit,
+        parent=parent,
+        author_name=author_name[:80],
+        body=body[:2000],
+    )
+
+    return redirect(reverse("exhibits:detail", args=[exhibit.id]) + "#comments")
 
 def quiz_view(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
