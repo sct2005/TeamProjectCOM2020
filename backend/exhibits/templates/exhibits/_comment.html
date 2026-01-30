@@ -1,0 +1,35 @@
+<div class="comment" id="comment-{{ comment.id }}" style="margin-left: {{ depth|default:0 }}em;">
+  <div style="display: flex; justify-content: space-between; gap: 12px;">
+    <strong>{{ comment.author_name }}</strong>
+    <span style="color: #666; font-size: 12px;">{{ comment.created_at }}</span>
+  </div>
+
+  <div style="white-space: pre-wrap; margin-top: 6px;">{{ comment.body }}</div>
+
+  <details style="margin-top: 10px;">
+    <summary style="cursor: pointer; color: #0066cc;">Reply</summary>
+    <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" style="margin-top: 10px;">
+      {% csrf_token %}
+      <input type="hidden" name="parent_id" value="{{ comment.id }}">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" name="author_name" maxlength="80" required placeholder="Your name" style="flex: 1; min-width: 200px; padding: 8px;">
+      </div>
+      <div style="margin-top: 8px;">
+        <textarea name="body" maxlength="2000" required placeholder="Write a reply..." rows="3" style="width: 100%; padding: 8px;"></textarea>
+      </div>
+      <button type="submit" style="margin-top: 8px; padding: 8px 14px; background: #0066cc; color: white; border: 0; border-radius: 4px;">
+        Post reply
+      </button>
+    </form>
+  </details>
+
+  {% with replies=comment.replies.all %}
+    {% if replies %}
+      <div style="margin-top: 12px;">
+        {% for reply in replies %}
+          {% include "exhibits/_comment.html" with comment=reply depth=depth|add:"2" %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+</div>

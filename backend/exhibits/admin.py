@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Exhibit, Quiz
+from .models import Exhibit, Quiz, Comment
 
 @admin.register(Exhibit)
 class ExhibitAdmin(admin.ModelAdmin):
@@ -13,3 +13,11 @@ class QuizAdmin(admin.ModelAdmin):
     list_display = ['exhibit', 'question', 'correct_answer_index']
     list_filter = ['exhibit']
     search_fields = ['question', 'exhibit__title']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ["exhibit", "author_name", "parent", "created_at"]
+    list_filter = ["exhibit", "created_at"]
+    search_fields = ["author_name", "body", "exhibit__title"]
+    readonly_fields = ["created_at"]

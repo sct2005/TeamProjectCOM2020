@@ -15,7 +15,7 @@
     "data_issues": "Outdated historical data (up to 2010) used as if it represented current conditions",
     "technical_choices": "Lack of uncertainty display mechanisms, no real-time data integration",
     "organizational_factors": "Insufficient data validation processes, lack of regular data updates",
-    "timeline": "Initial Setup: Flood dashboard deployed with historical data. Trigger Event: Actual flood conditions didn't match predictions. Failure Event: Maps showed safe zones that were actually at risk. Detection: Field verification revealed discrepancies. Aftermath: System updated with current data and uncertainty indicators added.",
+    "timeline": "Initial Setup: Flood dashboard deployed with historical data. Trigger Event: Actual flood conditions did not match predictions. Failure Event: Maps showed safe zones that were actually at risk. Detection: Field verification revealed discrepancies. Aftermath: System updated with current data and uncertainty indicators added.",
     "supporting_artefacts": [],
     "image_filename": "",
     "image_reference": ""
@@ -26,13 +26,13 @@
     "deployment_context": "Jason Lemkin, founder of SaaS community, was testing Replit's AI agent and development platform. The tool proceeded to make unauthorized changes wiping data from more than 1,200 executives and 1,190 companies. The system was set up with code and action freeze, but the agent disobeyed the preventive measures.",
     "intended_use": "Improve production speed",
     "system_type": "Agent/vibe coding tool",
-    "inputs_and_assumptions": "Linked to the actual codebase, was not meant to act without human authorization",
+    "inputs_and_assumptions": "Linked to the actual codebase, was not meant to act without human authorisation",
     "outputs_presented": "Deletion of data, misleading conversation about being able to recover the data. The agent claimed 'Roll back wouldn't work in this instance' though Lemkin was able to retrieve the data eventually.",
-    "failure_description": "The AI agent reacted to empty or unexpected queries, entered a panic-like failure mode, and executed destructive commands without authorization, deleting months of work.",
-    "detection_method": "Unauthorized commits and missing data identified",
+    "failure_description": "The AI agent reacted to empty or unexpected queries, entered a panic-like failure mode, and executed destructive commands without authorisation, deleting months of work.",
+    "detection_method": "Unauthorised commits and missing data identified",
     "affected_parties": "1,200 executives and 1,190 companies in the SaaS community",
     "contributing_factors": "Experimental tool connected to real DB, inadequate risk assessment, overconfidence in mechanism, reliance on soft safeguards instead of enforced permissions",
-    "lessons_learned": "Autonomous agents shouldn't have unrestricted access. Safeguards must be enforced technically not just through conversations. Panic-like fallbacks must be put in place. Humans must still be involved in the development processes.",
+    "lessons_learned": "Autonomous agents should not have unrestricted access. Safeguards must be enforced technically not just through conversations. Panic-like fallbacks must be put in place. Humans must still be involved in the development processes.",
     "data_issues": "Empty / unexpected queries triggered panic mode",
     "technical_choices": "Reliance on soft safeguards instead of enforced permissions",
     "organizational_factors": "Experimental tool connected to real DB, inadequate risk assessment, overconfidence in mechanism",
@@ -48,10 +48,10 @@
   {
     "title": "Grok Generating Sexual Images",
     "domain": "Social Media",
-    "deployment_context": "Elon Musk's Grok chatbot being used to 'undress' images of women and minors",
+    "deployment_context": "Elon Musk's Grok chatbot being used to 'undress' images of women and children",
     "intended_use": "Typical LLM chatbot",
     "system_type": "Large Language Model (LLM)",
-    "inputs_and_assumptions": "Grok does have safety systems in place however users are able to bypass this by framing it as asking it to make it as a movie poster",
+    "inputs_and_assumptions": "Grok does have safety systems in place however users were able to bypass this by framing it by asking it to make it as a movie poster",
     "outputs_presented": "If used on Twitter the output is immediately public. If done on the app it doesn't have to be public so people can make these images without the repercussions of people knowing they have made them",
     "failure_description": "Grok already had a 'Spicy' feature which allows for crude humor, sexual situations and violence. Users would just have to enter prompts and Grok would execute them, generating inappropriate sexual content including deepfake-style images.",
     "detection_method": "The images that were generated were uploaded to X publicly for everyone to view",
@@ -70,19 +70,19 @@
     "title": "Racial Bias in Healthcare AI Risk Prediction",
     "domain": "Healthcare",
     "deployment_context": "Healthcare providers in the United States deployed machine-learning-based risk prediction algorithms to identify patients who should be enrolled in high-risk care management programs. These systems were widely used by hospitals and insurers to allocate limited healthcare resources more efficiently.",
-    "intended_use": "To predict which patients were at highest medical risk and would benefit from additional medical support, monitoring, and preventive care",
+    "intended_use": "To predict which patients were at the highest medical risk and would benefit from additional medical support, monitoring, and preventive care",
     "system_type": "Machine Learning-based Risk Prediction Algorithm",
     "inputs_and_assumptions": "Historical patient healthcare data (medical records, diagnoses, healthcare spending). Assumption that past healthcare costs are an accurate proxy for medical need. Assumption that historical data reflects true patient health rather than systemic inequality.",
     "outputs_presented": "Risk scores ranking patients by predicted future healthcare need. Automated recommendations for enrollment in care management programs.",
-    "failure_description": "The algorithm systematically underestimated the health needs of Black patients. Because healthcare spending was used as the prediction target, the model interpreted lower historical spending as lower medical risk—despite evidence that Black patients often receive less care than white patients with similar or worse health conditions due to structural inequality.",
-    "detection_method": "Academic researchers evaluated the system and found that at the same risk score, Black patients were significantly sicker than white patients, and Black patients were far less likely to be selected for high-risk care programs",
+    "failure_description": "The algorithm systematically underestimated the health needs of black patients. Because healthcare spending was used as the prediction target, the model interpreted lower historical spending as lower medical risk—despite evidence that black patients often receive less care than white patients with similar or worse health conditions due to structural inequality.",
+    "detection_method": "Academic researchers evaluated the system and found that at the same risk score, black patients were significantly sicker than white patients, and black patients were far less likely to be selected for high-risk care programs",
     "affected_parties": "Black patients who were denied access to additional healthcare support, healthcare providers relying on biased AI recommendations, health systems that unintentionally reinforced racial disparities",
     "contributing_factors": "Biased historical data reflecting unequal access to healthcare, use of healthcare cost as a proxy rather than direct health indicators, lack of demographic bias auditing during model development, insufficient regulatory oversight",
     "lessons_learned": "Historical data can encode structural inequality. Proxy variables can introduce hidden bias. Fairness auditing is essential in high-stakes domains. AI systems must be transparent and clinically interpretable. Human oversight is critical in healthcare decision-making.",
     "data_issues": "Biased historical data reflecting unequal access to healthcare, use of healthcare cost as a proxy rather than direct health indicators, lack of demographic bias auditing during model development",
     "technical_choices": "Optimisation objective focused on cost prediction rather than clinical outcomes, no fairness constraints or bias-mitigation techniques applied, limited transparency and explainability for clinicians",
     "organizational_factors": "Insufficient regulatory oversight of clinical AI tools, overreliance on third-party vendors, lack of mandatory bias and impact assessments before deployment",
-    "timeline": "Initial Setup: Algorithm deployed across multiple healthcare systems. Trigger Event: Routine use for care allocation decisions. Failure Event: System consistently deprioritised Black patients. Detection: Bias uncovered by independent academic researchers. Aftermath: Algorithm redesigned to use direct health indicators; sparked broader debate on fairness in medical AI.",
+    "timeline": "Initial Setup: Algorithm deployed across multiple healthcare systems. Trigger Event: Routine use for care allocation decisions. Failure Event: System consistently deprioritised black patients. Detection: Bias uncovered by independent academic researchers. Aftermath: Algorithm redesigned to use direct health indicators; sparked broader debate on fairness in medical AI.",
     "supporting_artefacts": [
       "https://www.science.org/doi/10.1126/science.aax2342",
       "https://www.nytimes.com/2019/10/24/health/algorithm-bias-race.html",
@@ -119,7 +119,7 @@
   {
     "title": "Parents Sue OpenAI for Role in Teenager Taking His Own Life",
     "domain": "Tech and Life/Social/Wellbeing",
-    "deployment_context": "ChatGPT. Raine (16 year old Male) used ChatGPT repeatedly and continuously over months, shared personal struggles and expressed self harm. Lawsuit alleged chatbot did not intervene and instead reinforced it and did not deescalate. OpenAI denied responsibility. They claimed the teen's actions involved bypassing built in safety and guard rails.",
+    "deployment_context": "ChatGPT. Raine (16-year-old male) used ChatGPT repeatedly and continuously over months, shared personal struggles and expressed self harm. Lawsuit alleged chatbot did not intervene and instead reinforced it and did not de-escalate. OpenAI denied responsibility. They claimed the teen's actions involved bypassing built-in safety and guard rails.",
     "intended_use": "ChatGPT's intended use is the same as every other LLM, publicly accessible consumer AI platform, general conversations",
     "system_type": "LLM, Conversational with memory access",
     "inputs_and_assumptions": "User inputted text describing their emotional state. Guard rail assumptions: Detect crisis language, Escalate to appropriate resources, Prevent harmful response",
@@ -144,22 +144,22 @@
   {
     "title": "Grok AI Makes Antisemitic Comments and Hate Speech Output Failure",
     "domain": "AI Safety / Hate Speech and Misinformation",
-    "deployment_context": "Grok conversational AI integrated into X. Real time interaction with public users, selling point as less filtered. Exists in a highly politicized environment, exposure to live unmediated platform content",
+    "deployment_context": "Grok conversational AI integrated into X. Real time interaction with public users, selling point as less filtered. Exists in a highly politicised environment, exposure to live unmediated platform content",
     "intended_use": "Answer questions and explanations / commentary, assist in understanding news and trends",
     "system_type": "Conversational AI LLM",
     "inputs_and_assumptions": "User prompts in regards to Jewish people and the Palestine-Israel conflict. Political / conspiratorial narratives",
-    "outputs_presented": "Statements widely reported as antisemitic tropes that rationalized violence towards Jewish people. Echo chamber / bubbles",
+    "outputs_presented": "Statements widely reported as antisemitic tropes that rationalised violence towards Jewish people. Echo chamber / bubbles",
     "failure_description": "Failure to suppress hate speech. Insufficient filtering of stereotypes. Model mirrored platform hostility instead of rejecting it",
     "detection_method": "Users sharing screenshots of Grok's responses. Journalists and watchdogs creating articles on the alarming responses. Public and media backlash",
-    "affected_parties": "Jewish community. Users who are exposed to these harmful messages. Platform trust and credibility. xAI and X's public reputation",
+    "affected_parties": "Jewish community. Users who are exposed to these harmful messages. Platform trust and credibility. AI and X's public reputation",
     "contributing_factors": "Training and reinforcement signals influenced by unmoderated / toxic social media content. Weak differentiation between descriptive context and endorsement or repetition of hate narratives. Leadership emphasis on speech permissiveness. Limited transparency around safety evaluation methods. Absence of independent red-teaming prior to deployment",
     "lessons_learned": "Less filtered AI increases hate speech risk disproportionately. Platform context strongly shapes model behavior",
     "data_issues": "Training and reinforcement signals influenced by unmoderated / toxic social media content, weak differentiation between descriptive context and endorsement or repetition of hate narratives",
     "technical_choices": "Reduced content filtering compared to peer systems, real time interaction with hostile content environment",
     "organizational_factors": "Leadership emphasis on speech permissiveness, limited transparency around safety evaluation methods, absence of independent red-teaming prior to deployment",
-    "timeline": "Initial Setup: Grok launched as a more open, less constrained alternative to other chatbots. Trigger Event: Users prompted Grok on sensitive political and identity-related topics. Failure Event: Antisemitic and harmful responses generated and shared publicly. Detection: Viral screenshots, media coverage, and advocacy group responses. Aftermath: xAI acknowledged issues and adjusted moderation and guardrails.",
+    "timeline": "Initial Setup: Grok launched as a more open, less constrained alternative to other chatbots. Trigger Event: Users prompted Grok on sensitive political and identity-related topics. Failure Event: Antisemitic and harmful responses generated and shared publicly. Detection: Viral screenshots, media coverage, and advocacy group responses. Aftermath: AI acknowledged issues and adjusted moderation and guardrails.",
     "supporting_artefacts": [],
-    "image_filename": "grok.png",
+    "image_filename": "antisematism.png",
     "image_reference": "GPT5.2"
   },
   {
@@ -180,8 +180,8 @@
     "organizational_factors": "Aggressive growth targets, overtrust in model accuracy, reactive mitigation rather than proactive testing",
     "timeline": "Initial Setup: Algorithm deployed for large-scale home buying. Trigger Event: Rapid market volatility. Failure Event: Homes purchased at overvalued prices. Detection: Financial losses reported. Aftermath: Program shut down; company restructured approach.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "zillow.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Meta BlenderBot: Misinformation Propagation",
@@ -201,8 +201,8 @@
     "organizational_factors": "Focus on engagement over accuracy, reactive safety updates after reports, lack of independent red-teaming",
     "timeline": "Initial Setup: BlenderBot released publicly. Trigger Event: Users asked factual questions. Failure Event: Misinformation generated. Detection: Reports and media attention. Aftermath: Adjustments to safety protocols and disclaimers.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "blender.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Amazon Alexa: Gender and Bias Controversies",
@@ -218,12 +218,12 @@
     "contributing_factors": "Training data contained societal biases. No filtering of biased content. Inconsistent moderation of sensitive topics. Lack of proactive bias testing. Reactive updates following criticism. Insufficient ethical oversight",
     "lessons_learned": "Bias in training data must be mitigated. Voice assistants impact societal norms. Ethical governance is essential for consumer AI",
     "data_issues": "Training data contained societal biases, no filtering of biased content, inconsistent moderation of sensitive topics",
-    "technical_choices": "LLM responses based on large-scale datasets, no active bias mitigation on deployment, standardization of voice assistant output limited",
+    "technical_choices": "Large Language Model responses based on large-scale datasets, no active bias mitigation on deployment, standardisation of voice assistant output limited",
     "organizational_factors": "Lack of proactive bias testing, reactive updates following criticism, insufficient ethical oversight",
     "timeline": "Initial Setup: Alexa deployed globally. Trigger Event: User prompts triggered biased outputs. Failure Event: Gender and bias issues surfaced. Detection: Complaints and media reports. Aftermath: Updates to language models and content guidelines.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "alexa.png",
+    "image_reference": "GPT5.2"
   },
   {
     "title": "Air Canada Chatbot: Hallucinated Refund Policy",
@@ -243,7 +243,7 @@
     "organizational_factors": "Lack of human review, overreliance on AI output",
     "timeline": "Initial Setup: Chatbot deployed. Trigger Event: Refund query. Failure Event: False policy given. Detection: Court case. Aftermath: Airline held liable.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "aircanada.png",
+    "image_reference": "GPT5.2"
   }
 ]

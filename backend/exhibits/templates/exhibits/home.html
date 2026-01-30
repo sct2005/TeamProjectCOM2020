@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Ethics & Failures Case Studies</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f9fafb;
+            color: #030213;
+            font-size: 16px;
+        }
+        .wrap {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        @media (min-width: 640px) { .wrap { padding-left: 1.5rem; padding-right: 1.5rem; } }
+        @media (min-width: 1024px) { .wrap { padding-left: 2rem; padding-right: 2rem; } }
+
+        .header { margin-bottom: 2rem; }
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 0 0 0.5rem 0;
+        }
+        .header p {
+            color: #717182;
+            margin: 0;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .tabs a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.75rem;
+            border: 1px solid transparent;
+            background: #ececf0;
+            color: #717182;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .tabs a:hover {
+            color: #030213;
+            background: #e9ebef;
+        }
+        .tabs a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Card grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .card {
+            background: #fff;
+            color: #030213;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            border-color: #93c5fd;
+        }
+
+        .card-header {
+            padding: 1.5rem 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #dbeafe;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem;
+            border: 1px solid;
+            padding: 0.125rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-critical { background: rgba(239,68,68,0.1); color: #b91c1c; border-color: #fecaca; }
+        .badge-high { background: rgba(249,115,22,0.1); color: #c2410c; border-color: #fed7aa; }
+        .badge-medium { background: rgba(234,179,8,0.1); color: #a16207; border-color: #fef08a; }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            line-height: 1.4;
+            margin: 0 0 0.5rem 0;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            margin-top: 0.5rem;
+        }
+        .card-tags .tag {
+            font-size: 0.75rem;
+            padding: 0.125rem 0.5rem;
+            background: #ececf0;
+            color: #717182;
+            border-radius: 0.375rem;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #717182;
+        }
+
+        /* Footer stats */
+        .footer-stats {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+        .footer-stat .num {
+            font-size: 1.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .footer-stat .label {
+            font-size: 0.875rem;
+            color: #717182;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <h1>AI Ethics & Failures Case Studies</h1>
+            <p>Explore real-world examples of AI systems gone wrong, ethical concerns, and lessons learned</p>
+        </div>
+
+        <div class="tabs" role="tablist">
+            {% for cat in categories %}
+                <a href="?category={{ cat|urlencode }}"
+                   class="{% if selected_category == cat %}active{% endif %}"
+                   role="tab">
+                    {% if cat == "all" %}All Cases{% else %}{{ cat }}{% endif %}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="grid">
+            {% for exhibit in exhibits %}
+                <a href="{% url 'exhibits:detail' exhibit.id %}" class="card">
+                    <div class="card-header">
+                        <div class="card-top">
+                            <div class="card-icon" aria-hidden="true">◉</div>
+                            <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
+                        </div>
+                        <h2 class="card-title">{{ exhibit.title }}</h2>
+                        <div class="card-tags">
+                            {% for tag in exhibit.menu_categories %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="empty" style="grid-column: 1 / -1;">
+                    <p>No case studies found in this category.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer-stats">
+            <div class="footer-grid">
+                <div class="footer-stat">
+                    <div class="num">{{ total_count }}</div>
+                    <div class="label">Total Cases</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="num">{{ critical_count }}</div>
+                    <div class="label">Critical Issues</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="num">{{ category_count }}</div>
+                    <div class="label">Categories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

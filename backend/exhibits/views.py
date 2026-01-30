@@ -1,7 +1,64 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from django.views.decorators.http import require_POST
 import json
 import random
-from .models import Exhibit, Quiz
+from .models import Exhibit, Quiz, Comment
+
+
+# Menu page design: map exhibit title -> category, severity, categories (tags)
+# Matches "Menu Page for Topics" design. Fallback: domain as category, severity 'medium'
+EXHIBIT_MENU_META = {
+    "Flood Risk Map Overconfidence": {"category": "Environmental", "severity": "high", "categories": ["Flooding", "Risk Assessment"]},
+    "Replit AI Agent Database Wipe": {"category": "Tech", "severity": "critical", "categories": ["Tech", "Data Loss"]},
+    "Grok Generating Sexual Images": {"category": "Social Media", "severity": "high", "categories": ["Social Media", "Content Moderation"]},
+    "Racial Bias in Healthcare AI Risk Prediction": {"category": "Healthcare", "severity": "critical", "categories": ["Healthcare", "Bias & Ethics"]},
+    "DeepSeek Taiwan Censorship Case Study": {"category": "International", "severity": "medium", "categories": ["Tech", "International Relations"]},
+    "Parents Sue OpenAI for Role in Teenager Taking His Own Life": {"category": "Social Impact", "severity": "critical", "categories": ["Tech", "Life/Social/Wellbeing"]},
+    "Grok AI Makes Antisemitic Comments and Hate Speech Output Failure": {"category": "AI Safety", "severity": "critical", "categories": ["AI Safety", "Hate Speech", "Misinformation"]},
+    "Zillow Offers: Algorithmic Home Pricing Collapse": {"category": "Finance", "severity": "high", "categories": ["AI in Finance", "Real Estate", "Predictive Modeling"]},
+    "Meta BlenderBot: Misinformation Propagation": {"category": "Social Media", "severity": "high", "categories": ["Conversational AI", "LLM Moderation", "Social Media"]},
+    "Amazon Alexa: Gender and Bias Controversies": {"category": "Consumer Tech", "severity": "medium", "categories": ["Voice Assistants", "AI Ethics", "Consumer Devices"]},
+    "Air Canada Chatbot: Hallucinated Refund Policy": {"category": "Consumer Tech", "severity": "medium", "categories": ["Consumer AI", "Customer Service"]},
+}
+
+
+def home(request):
+    """Homepage: Menu Page for Topics design — case study cards with category filter."""
+    exhibits = list(Exhibit.objects.all().order_by("title"))
+    selected_category = (request.GET.get("category") or "all").strip()
+
+    # Attach menu metadata (category, severity, categories) to each exhibit
+    for ex in exhibits:
+        meta = EXHIBIT_MENU_META.get(ex.title)
+        if meta:
+            ex.menu_category = meta["category"]
+            ex.menu_severity = meta["severity"]
+            ex.menu_categories = meta["categories"]
+        else:
+            ex.menu_category = ex.domain or "Other"
+            ex.menu_severity = "medium"
+            ex.menu_categories = [ex.domain] if ex.domain else []
+
+    # Unique categories for tabs (from exhibits)
+    categories = ["all"] + sorted({ex.menu_category for ex in exhibits if ex.menu_category}, key=str.lower)
+    total_count = len(exhibits)
+    critical_count = sum(1 for ex in exhibits if ex.menu_severity == "critical")
+    category_count = len(categories) - 1  # exclude 'all'
+
+    if selected_category != "all":
+        exhibits = [ex for ex in exhibits if ex.menu_category == selected_category]
+
+    return render(request, "exhibits/home.html", {
+        "exhibits": exhibits,
+        "categories": categories,
+        "selected_category": selected_category,
+        "total_count": total_count,
+        "critical_count": critical_count,
+        "category_count": category_count,
+    })
+
 
 def exhibit_list(request):
     exhibits = Exhibit.objects.all()
@@ -11,9 +68,42 @@ def exhibit_list(request):
 
 def exhibit_detail(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
+    comments = (
+        Comment.objects.filter(exhibit=exhibit, parent__isnull=True)
+        .prefetch_related("replies__replies__replies")
+    )
     return render(request, "exhibits/exhibit_detail.html", {
         "exhibit": exhibit,
+        "comments": comments,
     })
+
+@require_POST
+def post_comment(request, pk):
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+
+    author_name = (request.POST.get("author_name") or "").strip()
+    body = (request.POST.get("body") or "").strip()
+    parent_id_raw = (request.POST.get("parent_id") or "").strip()
+
+    if not author_name or not body:
+        return HttpResponseBadRequest("author_name and body are required")
+
+    parent = None
+    if parent_id_raw:
+        try:
+            parent_id = int(parent_id_raw)
+        except ValueError:
+            return HttpResponseBadRequest("parent_id must be an integer")
+        parent = get_object_or_404(Comment, pk=parent_id, exhibit=exhibit)
+
+    Comment.objects.create(
+        exhibit=exhibit,
+        parent=parent,
+        author_name=author_name[:80],
+        body=body[:2000],
+    )
+
+    return redirect(reverse("exhibits:detail", args=[exhibit.id]) + "#comments")
 
 def quiz_view(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
