@@ -109,11 +109,6 @@
         .comments-section {
             margin-top: 50px;
         }
-        .comment-note {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
         .comment-box {
             width: 90%;
             min-height: 100px;
@@ -361,9 +356,6 @@
     <!-- Comments section for exhibits -->
     <div class="comments-section"></div>
         <h2>Comments</h2>
-        <p class="comment-note">
-            Comments will be be deleted when browser session ends.
-        </p>
         <textarea id="commentInput" class="comment-box" placeholder="Share your thoughts on this AI failure..." onkeydown="handleCommentKey(event)"></textarea>
         <button class="comment-button" onclick="addComment()">Post comment</button>
         <ul id="commentList" class="comment-list"></ul>
