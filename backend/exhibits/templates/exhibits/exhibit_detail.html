@@ -106,8 +106,114 @@
             font-weight: bold;
             margin-bottom: 15px;
         }
+        .comments-section {
+            margin-top: 50px;
+        }
+        .comment-note {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .comment-box {
+            width: 90%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 14px;
+        }
+        .comment-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .comment-button:hover {
+            background-color: #0052a3;
+        }
+        .comment-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+        .comment-item {
+            background-color: #f9f9f9;
+            border-left: 4px solid #0066cc;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+        .comment-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
+<!-- JavaScript for comments -->
+<script>
+    const exhibitId = "{{ exhibit.id }}";
+    const storageKey = `comments-exhibit-${exhibitId}`;
+
+    function loadComments() {
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+    }
+
+    function saveComments(comments) {
+        localStorage.setItem(storageKey, JSON.stringify(comments));
+    }
+
+    function addComment() {
+        const input = document.getElementById("commentInput");
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        const comments = loadComments();
+        comments.push({
+            text: text,
+            time: new Date().toLocaleString()
+        });
+
+        saveComments(comments);
+        input.value = "";
+        renderComments();
+    }
+
+    function renderComments() {
+        const list = document.getElementById("commentList");
+        const comments = loadComments();
+        list.innerHTML = "";
+
+        comments.forEach(comment => {
+            const li = document.createElement("li");
+            li.className = "comment-item";
+
+            const meta = document.createElement("div");
+            meta.className = "comment-meta";
+            meta.textContent = `UserName • ${comment.time}`;
+
+            const content = document.createElement("div");
+            content.textContent = comment.text;
+
+            li.appendChild(meta);
+            li.appendChild(content);
+            list.appendChild(li);
+        });
+    }
+    function handleCommentKey(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            addComment();
+        }
+    }
+    renderComments();
+</script>
+
 <body>
     <div class="container">
         <a href="{% url 'exhibits:list' %}" class="back-link">← Back to exhibits</a>
@@ -222,6 +328,17 @@
         <a href="{% url 'exhibits:quiz' exhibit.id %}" class="quiz-button">
             Start Quiz
         </a>
+    </div>
+    <!-- Comments section for exhibits -->
+    <div class="comments-section"></div>
+        <h2>Comments</h2>
+        <p class="comment-note">
+            Comments will be be deleted when browser session ends.
+        </p>
+        <textarea id="commentInput" class="comment-box" placeholder="Share your thoughts on this AI failure..." onkeydown="handleCommentKey(event)"></textarea>
+        <button class="comment-button" onclick="addComment()">Post comment</button>
+        <ul id="commentList" class="comment-list"></ul>
+        <script>renderComments();</script>
     </div>
 </body>
 </html>
