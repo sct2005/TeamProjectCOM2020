@@ -9,7 +9,8 @@
 8. Meta BlenderBot: Misinformation Propagation
 9. Amazon Alexa: Gender and Bias Controversies
 10. Air Canada Chatbot: Hallucinated Refund Policy
-11. Case Study Title (empty template)
+11. clawdBot the future or terminator 
+12. Case Study Title (empty template)
 
 
 
