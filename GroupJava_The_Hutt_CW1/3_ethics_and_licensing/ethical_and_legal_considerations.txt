@@ -1,9 +1,9 @@
 1. Privacy, GDPR and Data Minimisation
 
 Data Collection
-The AI Failures Museum system uses Django's built-in User model to handle accounts. It collects the following personal data:
+The AI Failures Museum system uses Django's built-in User model to handle accounts. Our system collects the following data:
 
-Data collected:
+User Account Data collected:
 - Username
 - Email address
 - Password
@@ -13,21 +13,48 @@ Data collected:
 - Last login timestamp
 - Account status flags
 
+When visitors post comments on exhibits, the system collects:
+- Author Name
+- Comment text
+- Timestamp when posted
+- Which exhibit they commented on
+- If the comment was in reply to another comment
+
 We don’t collect any sensitive information such as health, race, ethnicity, political opinions, religious, payment or location tracking details.
 
 We are processing this data based on user consent. When an account is created the user will agree to let us store this information.
 
-Passwords are hashed using Django's hashing algorithm and is a lot more of a secure way than trying to encrypt them. Even if somebody was able to get access to our database, they wouldn't be able to read the passwords.
+Data Storage and Security
 
-Users have the following rights, implementable vis Django's admin interface:
+Database: All data is stored in a SQLite3 database file which has restricted file permissions so only the application can access the file.
+
+Password Security: Passwords are hashed using Django's hashing algorithm and is a lot more of a secure way than trying to encrypt them. Even if somebody was able to get access to our database, they wouldn't be able to read the passwords as they couldn't reverse the hash to get the actual passwords.
+
+Users have the following rights, implementable via Django's admin interface:
 - Access: View their data through Django admin
 - Rectification: Edit username, email, first name and last name
 - Erasure: Delete account via Django admin
 
 2. Acceptable Use and safety of Gamification
 
-~NOT YET IMPLEMENTED~
-~NEED TO ADD ONCE DONE~
+Our system has immediate feedback gamification for our quizzes. Our database has 37 quiz questions * subject to change * across 11 exhibits.
+
+Quiz Scoring and Feedback
+
+When users complete a quiz they recieve:
+- Overall score displaying how many questions they got right out of the attempted questions while showing a percentage score too
+- Colour coded feedback (Green for correct and red for incorrect)
+- Question by question breakdown 
+- Explanations for each question to help aid learning and understanding
+- Option to retake quizzes
+- A link back to the exhibit to review content
+
+Quiz Design Principles
+
+The quiz feedback has been designed so that it is supposed to be educational rather than competitive:
+
+
+
 
 3. Risks of Misinformation and Misleading Claims
 
@@ -93,3 +120,4 @@ We conclude that formal ethics approval is not required because:
 - Its low risk as its for educational purposes with all changes being logged and monitored
 - We are using Django's built in protections that uses password hashing and role-based access control
 - All the data is also stored locally so their is no third party interactions or tracking services.
+
