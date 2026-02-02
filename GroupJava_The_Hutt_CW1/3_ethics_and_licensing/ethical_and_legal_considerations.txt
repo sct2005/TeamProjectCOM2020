@@ -166,4 +166,5 @@ If our project evolved to include the following:
 - External data sharing
 - Commercial use
 
+Given that our project doesn't currently implement any of the above we belive that a formal ethics approval is not required
 
