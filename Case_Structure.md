@@ -1015,6 +1015,123 @@ Air Canada Chatbot: Hallucinated Refund Policy
 
 
 
+## ClawdBot Future or terminator 
+
+### Domain
+pesonal agent
+
+---
+
+### Deployment Context
+an agent that "actually dose things" that dosnt need to be told what to do 
+
+---
+
+### Intended Use
+to interact with difrent apps such as gmail , run commands all through one chat interface 
+
+---
+
+### System Type
+ a combination of LLM and agent 
+
+---
+
+### Inputs and Assumptions
+- acess to your info
+- running commands for you 
+- assume it will be secure and do what its told exactlyt and just that 
+
+---
+
+### Outputs Presented to Users
+- to users it works as inteneded 
+- and the tech world went crazy beliving it was the future
+- "closest thing to jarvis" 
+
+---
+
+### What Went Wrong
+-the core issue is combinning automation and real systems access in a single agent
+-full system acess breaks saftey boundries
+-giving an agent acces to file system , terminal execution
+-claude bot reads emails documents and webpages leaving it open to prompt injections 
+-centralized aceses to sensitive data , such as email and calander OAuth tokens , API keys for AI and cloud services
+-remote cointrol ssystem where chat logs are stored in plain text 
+
+---
+
+### How the Failure Was Detected
+- unexpected actions commited without user aproval
+- this then led to people dicing into the working , where they uncovered teh failures 
+---
+
+### Who Was Affected
+- end users 
+- developer using for development
+- distrust in broder AI eco system 
+
+
+---
+
+### Data Issues
+- Ober collection of user data  
+- Long term storage of sensitve info
+- lack of clear isolation between tasks 
+
+---
+
+### Technical Choices
+- singel agaent with not much oversight and lots of permissions 
+- traeting all inputs as trusted
+- tight coupling betwween reasoning and action 
+
+---
+
+### Organisational / Governance Factors
+- overconfidance in LLM aligment
+- prioritise of speed and cababnilty over saftey
+- weak seperation betweem research prototype and production system 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  agent launch 
+- **Trigger Event:**  malicous prompt injection 
+- **Failure Event:**  unautharized commands 
+- **Detection:**      discovered by users
+- **Aftermath:**      public backlash 
+
+---
+
+### Supporting Artefacts
+- https://medium.com/data-science-in-your-pocket/why-clawdbot-is-dangerous-ee9ea5370603
+- https://snyk.io/articles/clawdbot-ai-assistant/
+
+---
+
+### Lessons Learned
+- autonamy must not eual unrestricted acses 
+- all external inputs will have toi be treated as untrusted 
+- 
+
+---
+
+### Quiz
+- **Q:**  What was the core design flaw 
+  **A:**  combining autonamous descion making with unrestricted aceses 
+- **Q:**  why prompt injections dangerous in this case?
+  **A:**  as it reads web documnets and emails, so SQL injections could be disquised as genuine documnets  
+
+
+
+
+
+
+
+
+
+
 ## Case Study Title
 
 ### Domain
