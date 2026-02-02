@@ -1,4 +1,4 @@
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
@@ -195,3 +195,6 @@ def quiz_view(request, pk):
         "exhibit": exhibit,
         "quizzes": quizzes_with_shuffled,
     })
+
+def health(request):
+    return JsonResponse({"status": "ok"})

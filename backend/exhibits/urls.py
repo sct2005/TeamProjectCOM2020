@@ -9,3 +9,5 @@ urlpatterns = [
     path("<int:pk>/comments/post/", views.post_comment, name="post_comment"),
     path("<int:pk>/quiz/", views.quiz_view, name="quiz"),
 ]
+
+path("health/", views.health, name="health")
