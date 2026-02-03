@@ -1198,39 +1198,39 @@ googles photos app,using artifical intelligence, would give titles to diffrfent 
 ---
 
 ### Organisational / Governance Factors
-- 
-- 
+- overconfidance in LLM predictions 
+- prioritise of pushing production than perfecting 
+- low amount / indadquet variet y of trainning data 
 
 ---
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:**  
-- **Trigger Event:**  
-- **Failure Event:**  
-- **Detection:**  
-- **Aftermath:**  
+- **Initial Setup:**  launch of google photos integrated with AI 
+- **Trigger Event:**  uploading the photos to google photos 
+- **Failure Event:**  the catagorising of the photo as gorillas
+- **Detection:**   the user realising thw wrongfull classifiction 
+- **Aftermath:**   was uploaded to social media and there was public outrage and backlash 
 
 ---
 
 ### Supporting Artefacts
-- 
+- https://www.bbc.co.uk/news/technology-33347866
+- https://www.congress.gov/119/meeting/house/118424/documents/HHRG-119-GO27-20250625-SD013.pdf
 
 ---
 
 ### Lessons Learned
-- 
-- 
-- 
+- need a varied acurate trainning set
+- Ai is only as good as the data its trained on 
+- racial steryotypes if present in trainning data can infucen the AI 
 
 ---
 
 ### Quiz
-- **Q:**  
-  **A:**  
-- **Q:**  
-  **A:**  
-- **Q:**  
-  **A:**
+- **Q:**  what is the failure event 
+  **A:**  the catagorising of the photo as gorillas
+- **Q:**  name the key data issue 
+  **A:**  inadequte data set 
 
 
 
