@@ -4,32 +4,34 @@ The AI Failures Museum is an education web application that we have designed to 
 
 What the prototype currently achieves:
 
-~NEED TO HAVE FULL NUMBER OF EXHIBITS~
+- Content library: The system contains 11 curated exhibits covering diverse domains including technology failures, healthcare AI bias, social media content moderation, flooding risk mapping, finance and real estate automation, voice assistant ethics, consumer AI customer service and international relations. Each exhibit presents structured information about the failure context, system description, what went wrong, contributing factors and lessons learned from it.
 
-Users can view a list of all the exhibits and click through to detailed exhibit pages. With each exhibit page displaying the domain, deployment context, system type, inputs and assumptions, outputs presented to users, failure description, detection method, affected parties, contributing factors and lessons learned in a structured format.
+- Browse functionality: Users can view a list of all exhibits through our home page, which includes category filtering tabs (All Cases, Healthcare, Tech, Social Media, etc.) and severity badges (critical, high, medium) for each case. Clicking on any exhibit card takes users to a detailed page about the exhibit.
 
-~NEED TO HAVE ALL INTERACTIVE QUIZZES DONE~
+-Interactive quizzes: The system includes 37 reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect), and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
 
-Curators can create and edit exhibits through Django's admin interface. All the changes are logged in the admin log table which creates an audit trail for accountability. 
+- Comments and discussion: Visitors can post comments on exhibits to discuss failure cases with others. The commenting system supports nested replies, allowing for threaded discussions. 
+
+- Content management: Curators can create and edit exhibits through Django's admin interface. All changes are logged in the admin log table, creating an audit trail for accountability. The curator workflow supports adding structured failure information, uploading images with attribution, linking supporting artefacts and documenting timeline information.
 
 Key Benefits:
 
-The prototype deonstrates several important benefits such as:
+The prototype demonstrates several important benefits such as:
 
 - Learning from mistakes: Rather than soley focusing on the success of AI, the museum provides insights that aren't usually that well documented and this allows for people to learn what can go wrong. This can help people be aware of the limitations are errors that AI can make.
 - Structured Analysis: Each exhibit breaks down complex failures into understandable components which helps users develop an understanding of AI and how to evaluate it and make their own decisions.
-- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding of the rading to answer questions.
+- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding to answer the questions with imediate feedback with explanations that reinforces learning.
 
 Key Risks:
 
-- Content Accuracy: There is the potential for the AI failure case studies to oversimplify complex issues, get facts wrong or unintentially damage reputations. 
-- 
+- Content Accuracy: There's potential for AI failure case studies to oversimplify complex technical issues, get facts wrong or unintentionally damage reputations. 
+- Unmoderated comments: The commenting system currently has no moderation - which means that anyone can post anything.
 
 Project description and prioritised requirements
 
 Original Problem: 
 
-AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
+AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise as a result. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
 
 Solution:
 
@@ -71,3 +73,4 @@ We have 4 areas of success for our Sprint 1 success criteria
 4. Usability
 - Clear navigation
 - User friendly design
+
