@@ -1472,6 +1472,130 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
 
 
 ## Case Study Title
+ - Amazons AI Recruiting engine shows gender bias 
+### Domain
+
+- human reasources , automation
+
+---
+
+### Deployment Context
+- Amazon deployed an AI recuritting tool within its HR departemts   
+
+---
+
+### Intended Use
+- automaet and accelerate job screenings Processes 
+- review resumes and rate them
+- crawl the internet to identify potenial candidates
+- reduce realience on recurters 
+
+---
+
+### System Type
+ML Resume screening system 
+
+---
+
+### Inputs and Assumptions
+- Resumes subbitted to amazon over a 10-year period 
+- past hiring descions = sucsefull outcomes 
+- candidates simmialer to previously hired ones would be aceppted 
+
+---
+
+### Outputs Presented to Users
+- star raitting
+- ranked candidate lits 
+- recommneded candidates 
+
+---
+
+### What Went Wrong
+- system developed systematic gender bias against female candidates
+- penilizeed resumaes with the word "womens" e.g "womens chess club"
+- downgraded candidates from all women collages
+- The system was trained on 10 years of resumes submitted to Amazon, predominantly from male candidates
+- Amazon's existing software engineering workforce was overwhelmingly male (63% male company-wide in 2018)
+
+---
+
+### How the Failure Was Detected
+- it was discoverd that the system was not raitting in a gender neutral way 
+- internal test and monitoring
+- Pattern analysis showing systematic downgrading of female-associated terms
+
+---
+
+### Who Was Affected
+- Female Job Applicants
+- Graduates of Women's Colleges
+- Women in Tech
+- Amazon's Diversity Goals
+- Trust in AI Hiring Systems
+
+---
+
+### Data Issues
+- 
+- 
+
+---
+
+### Technical Choices
+- Imbalance in trainng data 
+- Historical Bias Embedded in Data
+- Lack of Demographic Diversity
+- Missing Context
+
+---
+
+### Organisational / Governance Factors
+- Algorithm Design Flaw , pattern matching form when there were less women in workforce let alone tech
+- black box nature
+- insufficent bias testing
+- lack of fairness constraints 
+
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  2014 - the system was developed  -> 2015 500 computer modles focusing on specific job funcions and locations  
+- **Trigger Event:**  2015 - internal system revealed was not raitting candidates in an neutral manner 
+- **Failure Event:**  2015 - bias was discovered by the reasearches 
+- **Detection:**  ai had taught itself "Male candidates are favourable"
+- **Aftermath:**  project scrapped and there was distrust placed in AI hirring systems 
+
+---
+
+### Supporting Artefacts
+- https://www.reuters.com/article/world/insight-amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK0AG/
+- https://www.bbc.co.uk/news/technology-45809919
+
+---
+
+### Lessons Learned
+- Trainning data quality is extremly important
+- pattern recognition without causeation isnt understanding an d it can lead to bias 
+- black box algorithms  make bias corection and detction hard 
+
+
+---
+
+### Quiz
+- **Q:**  Why did Amazon's AI recruiting tool penalize resumes that included the word "women's"?
+  **A:**  the ai ws traind on past hirirng histroy which is predominatley male 
+- **Q:**  What year was the bias detected 
+  **A:**  2015
+ 
+
+
+
+
+
+
+
+## Case Study Title
 
 ### Domain
 
@@ -1563,7 +1687,6 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
   **A:**  
 - **Q:**  
   **A:**  
-
 
 
 
