@@ -1320,16 +1320,18 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
 ---
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:**  
-- **Trigger Event:**  
-- **Failure Event:**  
-- **Detection:**  
-- **Aftermath:**  
+- **Initial Setup:**  Watson for Oncology developed
+- **Trigger Event:**  Internal testing revealed unsafe and incorrect treatment
+- **Failure Event:**  Discrepancies between marketing claims and system reliability
+- **Detection:**   Investigative journalism and academic studies exposed limitations
+- **Aftermath:** Loss of trust, scaled-back deployments  
 
 ---
 
 ### Supporting Artefacts
-- 
+- https://www.statnews.com/2018/07/25/ibm-watson-recommended-unsafe-incorrect-treatments/
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC6656482/
+
 
 ---
 
@@ -1341,12 +1343,11 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
 ---
 
 ### Quiz
-- **Q:**  
-  **A:**  
-- **Q:**  
-  **A:**  
-- **Q:**  
-  **A:**
+- **Q:**  What was the primary technical weakness of Watson for Oncology?  
+  **A:**  Reliance on synthetic training data and limited expert curation
+- **Q:**  Did Watson for Oncology directly harm patients? 
+  **A:**  No
+
 
 
 
