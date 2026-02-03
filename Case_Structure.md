@@ -12,8 +12,9 @@
 11. clawdBot the future or terminator
 12. google photos wrongfull classifciation
 13. IBM watson for oncology
-14. apple card gender bias 
-15. Case Study Title (empty template)
+14. apple card gender bias
+15. amazons gender bias recruitting system 
+16. Case Study Title (empty template)
 
 
 
