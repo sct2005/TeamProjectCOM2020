@@ -27,6 +27,11 @@ Key Risks:
 - Content Accuracy: There's potential for AI failure case studies to oversimplify complex technical issues, get facts wrong or unintentionally damage reputations. 
 - Unmoderated comments: The commenting system currently has no moderation - which means that anyone can post anything.
 
+
+
+
+
+
 Project description and prioritised requirements
 
 Original Problem: 
@@ -45,12 +50,25 @@ The system has 3 primary user groups:
 
 Scope Boundaries
 
-Our sprint 1 prototype focuses on the core museum functionality such as:
+In scope for Sprint 1 (Currently implemented)
 
 - Exhibit browsing: Users can view a list of all exhibits and click through to detailed pages showing structured failure information
-- Quizzes: Each exhibit has quiz questions
+- Interactive quizzes: Each exhibit has multiple-choice quiz questions. The system randomises answer order, processes submissions, calculates scores with percentages and displays immediate feedback with colour-coded results and explanations for every question.
 - Content management: Curators can create and edit exhibits via Django admin, with all changes logged for audit trails
 - Role-based Access: Three user types (visitors, curators, admins) with appropriate permissions enforced by Django.
+- Comment system: Visitors can post comments on exhibits to discuss failure cases.
+
+Out of scope for Sprint 1 (Not implemented)
+
+- Quiz score tracking: Quiz scores are displayed immediately but not stored in the database. There's no record of which users completed which quizzes or their performance over time.
+- Points and badges: No gamification beyond immediate quiz feedback. No achievement system or progress tracking.
+- Comment moderation: Comments post immediately without approval. No flagging system for users to report inappropriate content.
+- Analytics: No tracking of which exhibits are most viewed, which quizzes have lowest accuracy or other usage metrics for curators.
+
+Permanent Out of Scope:
+
+- User-generated exhibits: Only curators can create exhibits. Visitors cannot submit their own failure stories to prevent misinformation.
+- Social features: No user profiles, friend connections, or social sharing buttons to maintain focus on education rather than social engagement.
 
 Success Criteria
 
@@ -74,3 +92,69 @@ We have 4 areas of success for our Sprint 1 success criteria
 - Clear navigation
 - User friendly design
 
+Requirements as GitHub Issues
+
+Must-Have Features (Sprint 1 - All Implemented):
+
+Should-Have Features (Sprint 2 - Planned):
+
+Could-Have Features (Future Enhancements):
+
+Won't Have:
+- User-generated content without curator review
+- Social networking features
+- Commercial monetisation 
+
+
+
+
+
+Architecture (v1)
+High-Level Component Diagram
+
+Component Explanations:
+
+
+
+
+Data Model and Dataset Description
+
+Database Schema: Our database uses a relational structure with three main content tables also Django's built in authentification and logging tables. All data is stored in a single SQLite3 file.
+
+Core Entities
+
+Exhibit Table (exhibits_exhibit):
+This is our primrary entity representing an AI failure case study. Each exhibit has 21 fields:
+
+Basic Information:
+- id: Primary Key
+- title: case study name
+- domain: Sector category
+- created_at: timestamp
+
+System Context:
+- deployment_context: Where and why the system was deployed
+- intended_use: What the system was supposed to accomplish
+- system_type: Type of AI/ML system in the case study
+
+Technical Details:
+inputs_and_assumptions: Data inputs and underlying assumptions
+outputs_presented: What the system produced
+
+Failure Documentation:
+failure_description: What went wrong
+detection_method: How the failure was discovered 
+affected_parties: Who was impacted 
+
+Analysis:
+contributing_factors: General factors 
+data_issues: Data-related problems
+technical_choices: Technical decisions 
+organizational_factors: Governance issues 
+lessons_learned: What can be learned
+timeline: Chronology of events
+
+Supporting Materials:
+image: Visual representation
+image_reference: Attribution
+supporting_artefacts: Source links
