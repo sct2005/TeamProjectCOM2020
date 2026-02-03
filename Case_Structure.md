@@ -9,8 +9,9 @@
 8. Meta BlenderBot: Misinformation Propagation
 9. Amazon Alexa: Gender and Bias Controversies
 10. Air Canada Chatbot: Hallucinated Refund Policy
-11. clawdBot the future or terminator 
-12. Case Study Title (empty template)
+11. clawdBot the future or terminator
+12. google photos wrongfull classifciation 
+13. Case Study Title (empty template)
 
 
 
@@ -1243,6 +1244,116 @@ googles photos app,using artifical intelligence, would give titles to diffrfent 
 
 
 
+## Case Study Title
+- unsafe / incorect treatment recomdtions from IBMs Watson 
+
+### Domain
+- AI,Health , oncology 
+
+---
+
+### Deployment Context
+IBM watson for onmcolgy was used to give treatment recomndtion based on cancer cases , and was used by hosptial and physician s
+
+---
+
+### Intended Use
+
+- to give treatment recomndtion based on cancer cases and to be used by hosptial and physicians
+
+---
+
+### System Type
+
+- AI predictive model 
+
+---
+
+### Inputs and Assumptions
+- cancer cases 
+- act as an specialist physican 
+- 
+
+---
+
+### Outputs Presented to Users
+- gave treatment recomedtions 
+- howveer thses were deemed unsafe and or incorect 
+
+---
+
+### What Went Wrong
+- poor trainning data was trained on a small set of sythetic cancer cases - rather than real world patient data
+- recomedtions were based on few specialist prefrences 
+
+---
+
+### How the Failure Was Detected
+- checked by actuall doctors 
+
+---
+
+### Who Was Affected
+- Trust in AI to be used in medical systems 
+- No confirmed case sof actual harm 
+- Hurt IBMs reputation
+- frustation amoung doctors 
+
+---
+
+### Data Issues
+- trainning set ws based in hypothetical scenarios not real ones 
+- real clincal outcomes differ widley by region and cancer type , highlighting gaps in watsons decisions 
+
+---
+
+### Technical Choices
+- uses hypothetical cases over real ones 
+- outputs werent benchmarked against real clinical practice across a broad range of conditions 
+
+---
+
+### Organisational / Governance Factors
+- insufficent clinical governace and oversight during deployment 
+- lack of clear acountability for saftey , validation an post deployment monitoring 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  
+- **Trigger Event:**  
+- **Failure Event:**  
+- **Detection:**  
+- **Aftermath:**  
+
+---
+
+### Supporting Artefacts
+- 
+
+---
+
+### Lessons Learned
+- 
+- 
+- 
+
+---
+
+### Quiz
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**
+
+
+
+
+
+
+
 
 
 
@@ -1338,4 +1449,6 @@ googles photos app,using artifical intelligence, would give titles to diffrfent 
   **A:**  
 - **Q:**  
   **A:**  
+
+
 
