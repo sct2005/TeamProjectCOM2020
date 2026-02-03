@@ -10,8 +10,9 @@
 9. Amazon Alexa: Gender and Bias Controversies
 10. Air Canada Chatbot: Hallucinated Refund Policy
 11. clawdBot the future or terminator
-12. google photos wrongfull classifciation 
-13. Case Study Title (empty template)
+12. google photos wrongfull classifciation
+13. IBM watson for oncology 
+14. Case Study Title (empty template)
 
 
 
