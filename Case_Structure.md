@@ -1360,6 +1360,117 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
 
 
 ## Case Study Title
+- apple card gender bias 
+
+### Domain
+- fintech
+---
+
+### Deployment Context
+- apples card automated systed gave gredit card limits 
+
+---
+
+### Intended Use
+- automate consumer credit decisions for apple card users
+  
+
+---
+
+### System Type
+- algorithmic credit scoring / limit setting system 
+
+---
+
+### Inputs and Assumptions
+- users finacl data  
+- assumption gender is not explictly used 
+- 
+
+---
+
+### Outputs Presented to Users
+- credit aproval or rejction 
+- assign credit limit 
+
+---
+
+### What Went Wrong
+- system woul dlower credit limit for soem women compared to men with simialer identical finacial profiles  - creates apperance of gender based descrimination 
+
+---
+
+### How the Failure Was Detected
+- public complaints on social media - high profile individuals sharing concrete examples 
+
+---
+
+### Who Was Affected
+- female apple card applicant
+- couple with shared finaces 
+- apple / goldmen sacs - loss of trust 
+
+---
+
+### Data Issues
+- historical creit data liley reflected structural gender inaqualities
+- 
+
+---
+
+### Technical Choices
+- heavy reliance on black box modles 
+- limited explainabilty provided to users about credit descienosn 
+
+---
+
+### Organisational / Governance Factors
+- seperation between apple and goldman sacs blurred acountabilty 
+- Insufficent reglatory - grade transparacey and fairness auditting before launch 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  apple card laucnh - 2019
+- **Trigger Event:**  public tweets about credit disparities 
+- **Failure Event:**  widespread though that the algorithmn disadvanteged women 
+- **Detection:**      New York departemnt of finacial services opended an investigation 
+- **Aftermath:**      regualterors foud they did not discriminate on purpose  - but highlighted transparcy and trust issues 
+
+---
+
+### Supporting Artefacts
+- https://www.bbc.co.uk/news/business-50365609
+- https://www.library.hbs.edu/working-knowledge/gender-bias-complaints-against-apple-card-signal-a-dark-side-to-fintech
+
+---
+
+### Lessons Learned
+-  explainabilty for descions that heavily imapc people are needed - should you use a blkack box modle in these scenarios  
+- algortith system need ongoing bias audits 
+  
+
+---
+
+### Quiz
+- **Q:**  Why did Apple Card’s algorithm raise concerns despite not using gender explicitly?
+  **A:**  Because proxy variables and biased historical data can still produce discriminatory outcomes
+- **Q:**  How was the issue first identified?
+  **A:**  Through public social-media complaints, not internal detection systems
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
 
 ### Domain
 
@@ -1451,6 +1562,7 @@ IBM watson for onmcolgy was used to give treatment recomndtion based on cancer c
   **A:**  
 - **Q:**  
   **A:**  
+
 
 
 
