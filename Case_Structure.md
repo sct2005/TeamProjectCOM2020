@@ -1,4 +1,4 @@
-
+ 
 1. Replit went rogue and wiped a database
 2. Gronk Generating sexual images
 3. Racial Bias in Healthcare AI Risk Prediction
@@ -1134,6 +1134,119 @@ to interact with difrent apps such as gmail , run commands all through one chat 
 
 
 ## Case Study Title
+- google photos mislablles photos missables people of colour as "gorillas"
+
+### Domain
+-tech,automation,digital media 
+---
+
+### Deployment Context
+googles photos app,using artifical intelligence, would give titles to diffrfent photos , and a picture of a black couple was uploaded and google mislables the couple as "Gorillas"
+
+---
+
+### Intended Use
+- give titles for photos for eaier traversal 
+
+---
+
+### System Type
+- app, integrated artifical intelligence 
+
+---
+
+### Inputs and Assumptions
+- user would upload there photos 
+- the app would store and label them - corectly 
+- 
+
+---
+
+### Outputs Presented to Users
+- stored , but were incorectly labbled 
+- black couple was labbled as "gorillas"
+
+---
+
+### What Went Wrong
+- black people under repesesnted intrainning data lead to the ai system mistakling labeling balck people as gorillas
+
+---
+
+### How the Failure Was Detected
+- the user saw the label and uploaded a screenshot to social media 
+
+---
+
+### Who Was Affected
+- the user , and wider black community - rasicm  
+- the industry causes distrust in ai and backrolls progress made 
+- 
+
+---
+
+### Data Issues
+- not enough variety / repesention of diffrent skin tonnes in trainning data 
+- 
+
+---
+
+### Technical Choices
+- took short term fixes , such as removing the ais abilty to label tthings as a gorilla befor edoing a full fix 
+- 
+
+---
+
+### Organisational / Governance Factors
+- 
+- 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  
+- **Trigger Event:**  
+- **Failure Event:**  
+- **Detection:**  
+- **Aftermath:**  
+
+---
+
+### Supporting Artefacts
+- 
+
+---
+
+### Lessons Learned
+- 
+- 
+- 
+
+---
+
+### Quiz
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**  
+- **Q:**  
+  **A:**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
 
 ### Domain
 
@@ -1225,3 +1338,4 @@ to interact with difrent apps such as gmail , run commands all through one chat 
   **A:**  
 - **Q:**  
   **A:**  
+
