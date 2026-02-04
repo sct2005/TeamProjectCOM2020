@@ -1,8 +1,8 @@
+import pytest
 from django.test import TestCase
 from django.urls import reverse
 
 from exhibits.models import Exhibit, Comment
-
 
 class CommentTests(TestCase):
     def setUp(self):

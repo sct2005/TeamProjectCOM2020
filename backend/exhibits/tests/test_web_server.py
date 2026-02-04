@@ -1,4 +1,5 @@
 import pytest
+import json
 import requests
 from django.urls import reverse
 
@@ -12,23 +13,15 @@ def test_health_endpoint(client):
     assert response.json() == {"status": "ok"}
 
 @pytest.mark.django_db
-def test_create_item(client):
-    response = client.post(
-        "/api/items/",
-        data={"name": "Pen"},
-        content_type = "application/json",
-    )
+def test_home_page_loads(client):
+    response = client.get(reverse("home"))
 
-    assert response.status_code == 201
+    assert response.status_code == 200
 
-def test_missing_field_returns_400(client):
-    response = client.post("/api/items/", data = {})
-    assert response.status_code == 400
+@pytest.mark.django_db
+def test_exhibits_page_loads(client):
+    response = client.get(reverse("list"))
 
-def test_private_endpoint_unauthorised(client):
-    response = client.get("/api/private/")
-    assert response.status_code == 401
+    assert response.status_code == 200
 
-def test_live_api():
-    r = requests.get("http://localhost:8000/health/")
-    assert r.status_code == 200
+

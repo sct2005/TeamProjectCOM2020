@@ -10,4 +10,3 @@ urlpatterns = [
     path("<int:pk>/quiz/", views.quiz_view, name="quiz"),
 ]
 
-path("health/", views.health, name="health")
