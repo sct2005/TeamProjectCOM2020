@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import json
 
 class Exhibit(models.Model):
@@ -65,6 +66,13 @@ class Comment(models.Model):
         blank=True,
         null=True,
     )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        null=True,
+        blank=True,
+    )
     author_name = models.CharField(max_length=80)
     body = models.TextField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -76,3 +84,28 @@ class Comment(models.Model):
         if self.parent_id:
             return f"Reply by {self.author_name} on {self.exhibit.title}"
         return f"Comment by {self.author_name} on {self.exhibit.title}"
+
+
+class QuizScore(models.Model):
+    """Per-user quiz performance for an exhibit (stores the best score)."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="quiz_scores",
+    )
+    exhibit = models.ForeignKey(
+        Exhibit,
+        on_delete=models.CASCADE,
+        related_name="quiz_scores",
+    )
+    total_questions = models.PositiveIntegerField()
+    correct_answers = models.PositiveIntegerField()
+    score_percentage = models.FloatField()
+    taken_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "exhibit")
+
+    def __str__(self):
+        return f"{self.user} – {self.exhibit} – {self.score_percentage:.1f}%"

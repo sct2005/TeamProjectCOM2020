@@ -19,15 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from exhibits.views import health
-
-from exhibits.views import home
+from exhibits import views as exhibit_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", home, name="home"),
+    path("", exhibit_views.home, name="home"),
     path("exhibits/", include("exhibits.urls")),
-    path("health/", health, name="health")
+    path("health/", exhibit_views.health, name="health"),
+    path("accounts/signup/", exhibit_views.signup, name="signup"),
+    path("accounts/login/", exhibit_views.login_view, name="login"),
+    path("accounts/logout/", exhibit_views.logout_view, name="logout"),
 ]
 
 # Serve media files in development

@@ -127,6 +127,10 @@
         .badge-critical { background: rgba(239,68,68,0.1); color: #b91c1c; border-color: #fecaca; }
         .badge-high { background: rgba(249,115,22,0.1); color: #c2410c; border-color: #fed7aa; }
         .badge-medium { background: rgba(234,179,8,0.1); color: #a16207; border-color: #fef08a; }
+        .badge-quiz { margin-top: 0.125rem; }
+        .badge-quiz-gold { background: linear-gradient(135deg, #facc15, #eab308); color: #78350f; border-color: #facc15; }
+        .badge-quiz-silver { background: linear-gradient(135deg, #e5e7eb, #d1d5db); color: #374151; border-color: #e5e7eb; }
+        .badge-quiz-bronze { background: linear-gradient(135deg, #f97316, #ea580c); color: #7c2d12; border-color: #fed7aa; }
 
         .card-title {
             font-size: 1.125rem;
@@ -180,8 +184,23 @@
 <body>
     <div class="wrap">
         <div class="header">
-            <h1>AI Ethics & Failures Case Studies</h1>
-            <p>Explore real-world examples of AI systems gone wrong, ethical concerns, and lessons learned</p>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem;">
+                <div>
+                    <h1>AI Ethics & Failures Case Studies</h1>
+                    <p>Explore real-world examples of AI systems gone wrong, ethical concerns, and lessons learned</p>
+                </div>
+                <div style="text-align: right; font-size: 0.875rem;">
+                    {% if request.user.is_authenticated %}
+                        <div style="margin-bottom: 0.25rem;">
+                            Signed in as <strong>{{ request.user.username }}</strong>
+                        </div>
+                        <a href="{% url 'logout' %}" style="color: #2563eb; text-decoration: none;">Log out</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" style="color: #2563eb; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
+                        <a href="{% url 'signup' %}" style="color: #2563eb; text-decoration: none;">Create account</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
 
         <div class="tabs" role="tablist">
@@ -200,7 +219,17 @@
                     <div class="card-header">
                         <div class="card-top">
                             <div class="card-icon" aria-hidden="true">◉</div>
-                            <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem;">
+                                <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
+                                {% if request.user.is_authenticated and exhibit.user_quiz_badge %}
+                                    <span class="badge badge-quiz badge-quiz-{{ exhibit.user_quiz_badge_level }}">
+                                        {{ exhibit.user_quiz_badge }}
+                                        {% if exhibit.user_quiz_score is not None %}
+                                            · {{ exhibit.user_quiz_score|floatformat:0 }}%
+                                        {% endif %}
+                                    </span>
+                                {% endif %}
+                            </div>
                         </div>
                         <h2 class="card-title">{{ exhibit.title }}</h2>
                         <div class="card-tags">

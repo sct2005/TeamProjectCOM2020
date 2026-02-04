@@ -90,7 +90,18 @@
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'exhibits:detail' exhibit.id %}" class="back-link">← Back to exhibit</a>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="{% url 'exhibits:detail' exhibit.id %}" class="back-link">← Back to exhibit</a>
+            <div style="font-size: 0.875rem;">
+                {% if request.user.is_authenticated %}
+                    Signed in as <strong>{{ request.user.username }}</strong>
+                    · <a href="{% url 'logout' %}" style="color: #0066cc; text-decoration: none;">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}?next={% url 'exhibits:quiz' exhibit.id %}" style="color: #0066cc; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
+                    <a href="{% url 'signup' %}?next={% url 'exhibits:quiz' exhibit.id %}" style="color: #0066cc; text-decoration: none;">Create account</a>
+                {% endif %}
+            </div>
+        </div>
         
         <h1>Quiz: {{ exhibit.title }}</h1>
         

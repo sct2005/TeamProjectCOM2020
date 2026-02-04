@@ -1,10 +1,12 @@
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 import json
 import random
-from .models import Exhibit, Quiz, Comment
+from .models import Exhibit, Quiz, Comment, QuizScore
 
 
 # Menu page design: map exhibit title -> category, severity, categories (tags)
@@ -29,7 +31,13 @@ def home(request):
     exhibits = list(Exhibit.objects.all().order_by("title"))
     selected_category = (request.GET.get("category") or "all").strip()
 
-    # Attach menu metadata (category, severity, categories) to each exhibit
+    # Preload quiz scores for the authenticated user (for badge display)
+    user_scores_by_exhibit_id = {}
+    if request.user.is_authenticated:
+        user_scores = QuizScore.objects.filter(user=request.user)
+        user_scores_by_exhibit_id = {qs.exhibit_id: qs for qs in user_scores}
+
+    # Attach menu metadata (category, severity, categories) and user quiz badge to each exhibit
     for ex in exhibits:
         meta = EXHIBIT_MENU_META.get(ex.title)
         if meta:
@@ -40,6 +48,23 @@ def home(request):
             ex.menu_category = ex.domain or "Other"
             ex.menu_severity = "medium"
             ex.menu_categories = [ex.domain] if ex.domain else []
+
+        # Attach user-specific quiz badge metadata, if a score exists
+        quiz_score = user_scores_by_exhibit_id.get(ex.id)
+        ex.user_quiz_score = None
+        ex.user_quiz_badge = None
+        ex.user_quiz_badge_level = None
+        if quiz_score:
+            ex.user_quiz_score = quiz_score.score_percentage
+            if quiz_score.score_percentage >= 80:
+                ex.user_quiz_badge = "Mastered"
+                ex.user_quiz_badge_level = "gold"
+            elif quiz_score.score_percentage >= 50:
+                ex.user_quiz_badge = "In Progress"
+                ex.user_quiz_badge_level = "silver"
+            elif quiz_score.score_percentage > 0:
+                ex.user_quiz_badge = "Started"
+                ex.user_quiz_badge_level = "bronze"
 
     # Unique categories for tabs (from exhibits)
     categories = ["all"] + sorted({ex.menu_category for ex in exhibits if ex.menu_category}, key=str.lower)
@@ -81,12 +106,16 @@ def exhibit_detail(request, pk):
 def post_comment(request, pk):
     exhibit = get_object_or_404(Exhibit, pk=pk)
 
-    author_name = (request.POST.get("author_name") or "").strip()
+    if not request.user.is_authenticated:
+        login_url = reverse("login")
+        next_url = reverse("exhibits:detail", args=[exhibit.id]) + "#comments"
+        return redirect(f"{login_url}?next={next_url}")
+
     body = (request.POST.get("body") or "").strip()
     parent_id_raw = (request.POST.get("parent_id") or "").strip()
 
-    if not author_name or not body:
-        return HttpResponseBadRequest("author_name and body are required")
+    if not body:
+        return HttpResponseBadRequest("body is required")
 
     parent = None
     if parent_id_raw:
@@ -96,13 +125,38 @@ def post_comment(request, pk):
             return HttpResponseBadRequest("parent_id must be an integer")
         parent = get_object_or_404(Comment, pk=parent_id, exhibit=exhibit)
 
+    display_name = (
+        request.user.get_full_name()
+        or request.user.get_username()
+        or "Anonymous"
+    )
+
     Comment.objects.create(
         exhibit=exhibit,
         parent=parent,
-        author_name=author_name[:80],
+        user=request.user,
+        author_name=display_name[:80],
         body=body[:2000],
     )
 
+    return redirect(reverse("exhibits:detail", args=[exhibit.id]) + "#comments")
+
+
+@require_POST
+def delete_comment(request, pk, comment_id):
+    """Allow a user to delete their own comment (or replies)."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    comment = get_object_or_404(Comment, pk=comment_id, exhibit=exhibit)
+
+    if not request.user.is_authenticated:
+        login_url = reverse("login")
+        next_url = reverse("exhibits:detail", args=[exhibit.id]) + "#comments"
+        return redirect(f"{login_url}?next={next_url}")
+
+    if comment.user_id != request.user.id:
+        return HttpResponseForbidden("You can only delete your own comments.")
+
+    comment.delete()
     return redirect(reverse("exhibits:detail", args=[exhibit.id]) + "#comments")
 
 def quiz_view(request, pk):
@@ -162,13 +216,33 @@ def quiz_view(request, pk):
             })
         
         score_percentage = (correct_answers / total_questions * 100) if total_questions > 0 else 0
-        
+
+        score_saved = False
+        if request.user.is_authenticated and total_questions > 0:
+            quiz_score, _created = QuizScore.objects.get_or_create(
+                user=request.user,
+                exhibit=exhibit,
+                defaults={
+                    "total_questions": total_questions,
+                    "correct_answers": correct_answers,
+                    "score_percentage": score_percentage,
+                },
+            )
+            # Always keep the best score
+            if correct_answers > quiz_score.correct_answers:
+                quiz_score.total_questions = total_questions
+                quiz_score.correct_answers = correct_answers
+                quiz_score.score_percentage = score_percentage
+                quiz_score.save()
+            score_saved = True
+
         return render(request, "exhibits/quiz_results.html", {
             "exhibit": exhibit,
             "results": results,
             "total_questions": total_questions,
             "correct_answers": correct_answers,
             "score_percentage": round(score_percentage, 1),
+            "score_saved": score_saved,
         })
     
     # GET request - show quiz with randomized options
@@ -198,3 +272,45 @@ def quiz_view(request, pk):
 
 def health(request):
     return JsonResponse({"status": "ok"})
+
+
+def signup(request):
+    """User registration view."""
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            next_url = request.GET.get("next") or reverse("home")
+            return redirect(next_url)
+    else:
+        form = UserCreationForm()
+
+    return render(request, "exhibits/signup.html", {"form": form})
+
+
+def login_view(request):
+    """User login view."""
+    next_url = request.GET.get("next") or reverse("home")
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            redirect_to = request.POST.get("next") or next_url
+            return redirect(redirect_to)
+    else:
+        form = AuthenticationForm(request)
+
+    return render(
+        request,
+        "exhibits/login.html",
+        {"form": form, "next": next_url},
+    )
+
+
+def logout_view(request):
+    """Log the user out and redirect to home."""
+    logout(request)
+    return redirect("home")
