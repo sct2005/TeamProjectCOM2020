@@ -1,6 +1,7 @@
 import pytest
 import json
 import requests
+import time
 from django.urls import reverse
 
 
@@ -17,11 +18,20 @@ def test_home_page_loads(client):
     response = client.get(reverse("home"))
 
     assert response.status_code == 200
+    assert "AI Ethics & Failures Case Studies" in response.content.decode()
+
+@pytest.mark.django_db
+def test_performance(client):
+    start = time.time()
+    response = client.get(reverse("home"))
+    duration = time.time() - start
+    assert duration < 1
 
 @pytest.mark.django_db
 def test_exhibits_page_loads(client):
-    response = client.get(reverse("list"))
+    response = client.get(reverse("exhibits:list"))
 
     assert response.status_code == 200
+    assert "Exhibits" in response.content.decode()
 
 
