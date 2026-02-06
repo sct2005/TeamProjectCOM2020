@@ -257,76 +257,86 @@ Techinical Risks
 
 1. Database corruption or loss
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Low
+Impact: Critical
+Risk Score: High
+Description: The SQLite file corrupts or was accidently deleted which results in loss of exhibits and quizzes.
+Mitigation: Daily backups of file
+Owners: Software Developer
 
 2. Quiz Answer Shuffling Bug
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Low
+Impact: Medium
+Risk Score: Low
+Description: Wrong answers being marked as correct
+Mitigation: Ensure quizzes are fully tested to catch bugs
+Owners: Software Developer
 
 3. Comment Spam Flood
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Medium
+Impact: Medium
+Risk Score: Medium
+Description: User posts hundreads of comments
+Mitigation: Limit amount of comments by a user by a time period
+Owners: Software Developer
 
 Delivery Risks
 
 1. Team Member Unavailability
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Medium
+Impact: High 
+Risk Score: High
+Description: Key developer unavailable during the sprint
+Mitigation: Code documentation with comments so that other team members understand the code and could also have weekly knowledge transfer sessions
+Owners: Scrum Master
 
 2. Integration Issues
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Medium
+Impact: Medium
+Risk Score: Medium
+Description: Frontend and backend changes dont work together
+Mitigation: Integration tests
+Owners: Testing
 
 3. Misunderstanding Requirements
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Low
+Impact: Critical
+Risk Score: High
+Description: Building features that don't match the specification
+Mitigation: Weekly specification review to ensure that the project remains on track
+Owners: Documentation
 
 Operational Risks
 
 1. Misinformation in Exhibits
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Medium
+Impact: Medium  
+Risk Score: Medium
+Description: Factual errors that can cause users to learn incorrect information
+Mitigation: Credible sources and peer review for approval
+Owners: Data Lead
 
 2. Inappropriate Comment Content
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Medium
+Impact: Low
+Risk Score: Medium
+Description: Users post offensive/spam content
+Mitigation: Manual deletion by admin 
+Owners: Scrum Master
 
 3. Quiz Difficulty Imbalance
 
-Likelihood:
-Impact:
-Risk Score:
-Mitigation:
-Owners:
+Likelihood: Low
+Impact: Low
+Risk Score: Low 
+Description: Quizzes too easy or too hard
+Mitigation: Detailed explanations and unlimited retakes
+Owners: Data Lead
+
