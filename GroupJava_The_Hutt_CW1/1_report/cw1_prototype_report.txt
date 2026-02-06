@@ -237,3 +237,96 @@ Data Quality Standards:
 - Peer reviewed: All exhibits were checked by other team members
 - Educational focus: Content emphasises lessons learned
 - Complete fields: All required fields are populated
+
+
+
+
+Evaluation plan (initial):
+
+
+
+
+Risk register:
+
+Risk Classification
+Risks are classified by:
+  - Likelihood: Low/Medium/High
+  - Impact: Low/Medium/High/Critical
+
+Techinical Risks
+
+1. Database corruption or loss
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+2. Quiz Answer Shuffling Bug
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+3. Comment Spam Flood
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+Delivery Risks
+
+1. Team Member Unavailability
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+2. Integration Issues
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+3. Misunderstanding Requirements
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+Operational Risks
+
+1. Misinformation in Exhibits
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+2. Inappropriate Comment Content
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
+
+3. Quiz Difficulty Imbalance
+
+Likelihood:
+Impact:
+Risk Score:
+Mitigation:
+Owners:
