@@ -111,6 +111,47 @@
             color: #666;
             margin-bottom: 5px;
         }
+        /* Timeline */
+        .timeline-wrap {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-wrap::before {
+            content: "";
+            position: absolute;
+            left: 0.4rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 3px;
+            background: #0066cc;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -2rem;
+            top: 0.4rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #0066cc;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 1px #0066cc;
+        }
+        .timeline-item-content {
+            background: #f8fafc;
+            border-left: 3px solid #0066cc;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .timeline-item-content p { margin: 0; }
     </style>
 </head>
 <body>
@@ -208,7 +249,17 @@
         {% if exhibit.timeline %}
         <div class="info-section">
             <h2>Timeline of Failure and Aftermath</h2>
+            {% if timeline_entries %}
+            <div class="timeline-wrap">
+                {% for entry in timeline_entries %}
+                <div class="timeline-item">
+                    <div class="timeline-item-content">{{ entry }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
             <p style="white-space: pre-line;">{{ exhibit.timeline }}</p>
+            {% endif %}
         </div>
         {% endif %}
 

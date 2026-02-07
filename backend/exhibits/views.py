@@ -104,9 +104,18 @@ def exhibit_detail(request, pk):
         Comment.objects.filter(exhibit=exhibit, parent__isnull=True)
         .prefetch_related("replies__replies__replies")
     )
+    # Split timeline into entries for visual timeline (by newlines or by ". " for single paragraph)
+    timeline_entries = []
+    if exhibit.timeline and exhibit.timeline.strip():
+        raw = exhibit.timeline.strip()
+        if "\n" in raw:
+            timeline_entries = [s.strip() for s in raw.split("\n") if s.strip()]
+        else:
+            timeline_entries = [s.strip() for s in raw.split(". ") if s.strip()]
     return render(request, "exhibits/exhibit_detail.html", {
         "exhibit": exhibit,
         "comments": comments,
+        "timeline_entries": timeline_entries,
     })
 
 @require_POST
