@@ -57,10 +57,10 @@ In scope for Sprint 1 (Currently implemented)
 - Content management: Curators can create and edit exhibits via Django admin, with all changes logged for audit trails
 - Role-based Access: Three user types (visitors, curators, admins) with appropriate permissions enforced by Django.
 - Comment system: Visitors can post comments on exhibits to discuss failure cases.
+- Quiz scores: stores users best score per exhibit in the database
 
 Out of scope for Sprint 1 (Not implemented)
 
-- Quiz score tracking: Quiz scores are displayed immediately but not stored in the database. There's no record of which users completed which quizzes or their performance over time.
 - Points and badges: No gamification beyond immediate quiz feedback. No achievement system or progress tracking.
 - Comment moderation: Comments post immediately without approval. No flagging system for users to report inappropriate content.
 - Analytics: No tracking of which exhibits are most viewed, which quizzes have lowest accuracy or other usage metrics for curators.
@@ -77,6 +77,8 @@ We have 4 areas of success for our Sprint 1 success criteria
 1. Complete functions within the Museum
 - At least 10 exhibits covering multiple domains
 - At least 30 quiz questions
+- User authentification system
+- Quiz score tracking
 
 2. Technical Quality
 - Database integrity
@@ -339,4 +341,5 @@ Risk Score: Low
 Description: Quizzes too easy or too hard
 Mitigation: Detailed explanations and unlimited retakes
 Owners: Data Lead
+
 
