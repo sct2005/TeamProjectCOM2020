@@ -2,11 +2,14 @@ from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseForbid
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
-from django.contrib.auth import login, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import json
 import random
-from .models import Exhibit, Quiz, Comment, QuizScore
+from .models import Exhibit, Quiz, Comment, QuizScore, UserProfile
+from .forms import UsernameChangeForm
 
 
 # Menu page design: map exhibit title -> category, severity, categories (tags)
@@ -317,4 +320,82 @@ def login_view(request):
 def logout_view(request):
     """Log the user out and redirect to home."""
     logout(request)
+    return redirect("home")
+
+
+# ---------------------------------------------------------------------------
+# Profile
+# ---------------------------------------------------------------------------
+
+@login_required
+def profile_view(request):
+    """Profile page with tabs: scores, account, access level."""
+    tab = (request.GET.get("tab") or "scores").strip().lower()
+    if tab not in ("scores", "account", "access"):
+        tab = "scores"
+
+    # Ensure user has a profile (for access level)
+    profile, _ = UserProfile.objects.get_or_create(user=request.user, defaults={"access_level": "viewer"})
+
+    # Quiz scores for tab 1
+    quiz_scores = QuizScore.objects.filter(user=request.user).select_related("exhibit").order_by("exhibit__title")
+
+    # Forms for tab 2
+    username_form = UsernameChangeForm(user=request.user)
+    password_form = PasswordChangeForm(user=request.user)
+
+    return render(request, "exhibits/profile.html", {
+        "active_tab": tab,
+        "quiz_scores": quiz_scores,
+        "username_form": username_form,
+        "password_form": password_form,
+        "user_profile": profile,
+    })
+
+
+@login_required
+@require_POST
+def profile_change_username(request):
+    form = UsernameChangeForm(request.POST, user=request.user)
+    if form.is_valid():
+        request.user.username = form.cleaned_data["new_username"]
+        request.user.save()
+        messages.success(request, "Your username has been updated.")
+    else:
+        for _field, errors in form.errors.items():
+            for err in errors:
+                messages.error(request, err)
+    return redirect(reverse("profile") + "?tab=account")
+
+
+@login_required
+@require_POST
+def profile_change_password(request):
+    form = PasswordChangeForm(user=request.user, data=request.POST)
+    if form.is_valid():
+        form.save()
+        update_session_auth_hash(request, form.user)
+        messages.success(request, "Your password has been changed.")
+    else:
+        for _field, errors in form.errors.items():
+            for err in errors:
+                messages.error(request, err)
+    return redirect(reverse("profile") + "?tab=account")
+
+
+@login_required
+@require_POST
+def profile_delete_scores(request):
+    QuizScore.objects.filter(user=request.user).delete()
+    messages.success(request, "All your quiz scores have been deleted.")
+    return redirect(reverse("profile") + "?tab=account")
+
+
+@login_required
+@require_POST
+def profile_delete_account(request):
+    user = request.user
+    logout(request)
+    user.delete()
+    messages.success(request, "Your account has been deleted.")
     return redirect("home")

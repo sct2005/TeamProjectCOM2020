@@ -86,6 +86,30 @@ class Comment(models.Model):
         return f"Comment by {self.author_name} on {self.exhibit.title}"
 
 
+class UserProfile(models.Model):
+    """Extended profile for user (access level, etc.)."""
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile",
+    )
+    ACCESS_LEVELS = [
+        ("viewer", "Viewer"),
+        ("contributor", "Contributor"),
+        ("moderator", "Moderator"),
+        ("admin", "Admin"),
+    ]
+    access_level = models.CharField(
+        max_length=20,
+        choices=ACCESS_LEVELS,
+        default="viewer",
+    )
+
+    def __str__(self):
+        return f"Profile: {self.user.username} ({self.get_access_level_display()})"
+
+
 class QuizScore(models.Model):
     """Per-user quiz performance for an exhibit (stores the best score)."""
 
