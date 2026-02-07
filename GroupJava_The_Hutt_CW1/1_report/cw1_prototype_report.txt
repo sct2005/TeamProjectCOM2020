@@ -179,9 +179,20 @@ User-posted discussions with nested reply support. This entity has 6 fields:
 - id - Primary key
 - exhibit_id: Foreign key to Exhibit
 - parent_id: Foreign key to Comment
+- user_id: Foreign key to user 
 - author_name: Display name
 - body: Comment text
 - created_at: Timestamp
+
+QuizScore Table (exhibits_quizscore):
+Stores users' best quiz performance per exhibit. This entity has 6 fields:
+
+- id: Primary key
+- user_id: Foreign key to User 
+- exhibit_id: Foreign key to Exhibit 
+- score: Integer 
+- total_questions: Integer 
+- completed_at: Timestamp 
 
 Supporting Tables (Django Built-in)
 
@@ -341,5 +352,6 @@ Risk Score: Low
 Description: Quizzes too easy or too hard
 Mitigation: Detailed explanations and unlimited retakes
 Owners: Data Lead
+
 
 
