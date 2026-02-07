@@ -54,17 +54,21 @@ def home(request):
         ex.user_quiz_score = None
         ex.user_quiz_badge = None
         ex.user_quiz_badge_level = None
+        ex.user_quiz_dot_level = "none"  # for score dot: none | bronze | silver | gold
         if quiz_score:
             ex.user_quiz_score = quiz_score.score_percentage
             if quiz_score.score_percentage >= 80:
                 ex.user_quiz_badge = "Mastered"
                 ex.user_quiz_badge_level = "gold"
+                ex.user_quiz_dot_level = "gold"
             elif quiz_score.score_percentage >= 50:
                 ex.user_quiz_badge = "In Progress"
                 ex.user_quiz_badge_level = "silver"
+                ex.user_quiz_dot_level = "silver"
             elif quiz_score.score_percentage > 0:
                 ex.user_quiz_badge = "Started"
                 ex.user_quiz_badge_level = "bronze"
+                ex.user_quiz_dot_level = "bronze"
 
     # Unique categories for tabs (from exhibits)
     categories = ["all"] + sorted({ex.menu_category for ex in exhibits if ex.menu_category}, key=str.lower)
