@@ -140,9 +140,9 @@ We have concluded that a formal ethics approval is not required because:
 - Only basic account information: username, email, hashed password, optional names
 - No sensitive information is stored 
 
-3. No behaviour tracking 
-- We don't track which exhibits users view
-- We don't store quiz completion records or scores
+3. Minimal behaviour tracking 
+- We don't track which exhibits users view or how long the spend
+- We store only users best quiz score per exhibit
 - No third-party cookies or tracking services
 
 4. Low Risk Educational Purpose
@@ -167,4 +167,5 @@ If our project evolved to include the following:
 - Commercial use
 
 Given that our project doesn't currently implement any of the above we belive that a formal ethics approval is not required
+
 
