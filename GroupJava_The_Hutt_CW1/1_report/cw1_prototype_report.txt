@@ -1,6 +1,6 @@
 Executive Summary
 
-The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation abd accountability.
+The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation and accountability.
 
 What the prototype currently achieves:
 
@@ -8,7 +8,7 @@ What the prototype currently achieves:
 
 - Browse functionality: Users can view a list of all exhibits through our home page, which includes category filtering tabs (All Cases, Healthcare, Tech, Social Media, etc.) and severity badges (critical, high, medium) for each case. Clicking on any exhibit card takes users to a detailed page about the exhibit.
 
--Interactive quizzes: The system includes 37 reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect), and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
+-Interactive quizzes: The system includes reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect), and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
 
 - Comments and discussion: Visitors can post comments on exhibits to discuss failure cases with others. The commenting system supports nested replies, allowing for threaded discussions. 
 
@@ -26,10 +26,6 @@ Key Risks:
 
 - Content Accuracy: There's potential for AI failure case studies to oversimplify complex technical issues, get facts wrong or unintentionally damage reputations. 
 - Unmoderated comments: The commenting system currently has no moderation - which means that anyone can post anything.
-
-
-
-
 
 
 Project description and prioritised requirements
@@ -96,11 +92,63 @@ We have 4 areas of success for our Sprint 1 success criteria
 
 Requirements as GitHub Issues
 
+Our requirements are tracked as user stories prioritised using MoSCow (Must/Should/Couldn't/Won't). With each story having story points reflecting the implementation complexity. 
+
 Must-Have Features (Sprint 1 - All Implemented):
+
+Feature 1: Login and comments
+User Story: As a researcher, I want to be able to login so that I can leave comments
+MoSCow: Must
+Story Point: 6
+
+Feature 2: Quiz System
+User Story: As a student, I want to be able to do the quizzes so that I can test my knowledge
+MoSCow: Must
+Story Point: 3
+
+Feature 3: View Historical AI Failures
+User Story: As an AI researcher, I want to see what AI was like 6 months ago compared to now so that I can learn from previous AI's mistakes
+MoSCow: Must
+Story Point: 0.5 
+
+Feature 4: Safe and Efficient Website
+User Story: As a general user, I want to be able to have a functioning website which is safe and efficient
+MoSCow: Must
+Story Point: 5 
 
 Should-Have Features (Sprint 2 - Planned):
 
+Feature 1: Create New Cases
+User Story: As a journalist, I want to be able to edit and create new cases so that other people can view them
+MoSCow: Should
+Story Point: 5
+
+Feature 2: View Changes for Moderation
+User Story: As a moderator, I want to be able to view changes so that the website can be regulated
+MoSCow: Should 
+Story Point: 2
+
+Feature 3: View Images and Links
+User Story: As a student, I want to be able to view images or links about the cases
+MoSCow: Should
+Story Point: 2
+
 Could-Have Features (Future Enhancements):
+
+Feature 1: Annotate Exhibits
+User Story: As a general user, I want to be able to annotate an exhibit so that I can make notes
+MoSCow: Could
+Story Point: 3
+
+Feature 2: Exhibit Bookmarking
+User Story: As a general user, I want to be able to bookmark exhibits so that I can have a personal favourite reading list
+MoSCow: Could
+Story Point: 3
+
+Feature 3: Mobile app
+User Story: As a general user, I want to have a mobile app where I can use an offline mode and download off the app store
+MoSCow: Could
+Story Point: 15
 
 Won't Have:
 - User-generated content without curator review
@@ -352,6 +400,7 @@ Risk Score: Low
 Description: Quizzes too easy or too hard
 Mitigation: Detailed explanations and unlimited retakes
 Owners: Data Lead
+
 
 
 
