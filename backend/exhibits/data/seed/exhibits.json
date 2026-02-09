@@ -17,8 +17,8 @@
     "organizational_factors": "Insufficient data validation processes, lack of regular data updates",
     "timeline": "Initial Setup: Flood dashboard deployed with historical data. Trigger Event: Actual flood conditions did not match predictions. Failure Event: Maps showed safe zones that were actually at risk. Detection: Field verification revealed discrepancies. Aftermath: System updated with current data and uncertainty indicators added.",
     "supporting_artefacts": [],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "flood.png",
+    "image_reference": "GPT5.1"
   },
   {
     "title": "Replit AI Agent Database Wipe",
@@ -42,8 +42,8 @@
       "https://www.techtarget.com/searchsoftwarequality/news/366627829/Replit-AI-agent-snafu-shot-across-the-bow-for-vibe-coding",
       "https://www.pcgamer.com/software/ai/i-destroyed-months-of-your-work-in-seconds-says-ai-coding-tool-after-deleting-a-devs-entire-database-during-a-code-freeze-i-panicked-instead-of-thinking/"
     ],
-    "image_filename": "",
-    "image_reference": ""
+    "image_filename": "replit.png",
+    "image_reference": "GPT5.1"
   },
   {
     "title": "Grok Generating Sexual Images",
@@ -160,7 +160,7 @@
     "timeline": "Initial Setup: Grok launched as a more open, less constrained alternative to other chatbots. Trigger Event: Users prompted Grok on sensitive political and identity-related topics. Failure Event: Antisemitic and harmful responses generated and shared publicly. Detection: Viral screenshots, media coverage, and advocacy group responses. Aftermath: AI acknowledged issues and adjusted moderation and guardrails.",
     "supporting_artefacts": [],
     "image_filename": "antisematism.png",
-    "image_reference": "GPT5.2"
+    "image_reference": "Gemeni Nano Banana"
   },
   {
     "title": "Zillow Offers: Algorithmic Home Pricing Collapse",
@@ -202,7 +202,7 @@
     "timeline": "Initial Setup: BlenderBot released publicly. Trigger Event: Users asked factual questions. Failure Event: Misinformation generated. Detection: Reports and media attention. Aftermath: Adjustments to safety protocols and disclaimers.",
     "supporting_artefacts": [],
     "image_filename": "blender.png",
-    "image_reference": "GPT5.2"
+    "image_reference": "Gemeni Nano Banana"
   },
   {
     "title": "Amazon Alexa: Gender and Bias Controversies",
