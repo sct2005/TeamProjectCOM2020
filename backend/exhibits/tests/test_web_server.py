@@ -1,7 +1,6 @@
 import pytest
-import json
-import requests
 import time
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 
@@ -33,5 +32,19 @@ def test_exhibits_page_loads(client):
 
     assert response.status_code == 200
     assert "Exhibits" in response.content.decode()
+
+@pytest.mark.django_db
+def test_signup_page_loads(client):
+    response = client.get(reverse("signup"))
+
+    assert response.status_code == 200
+    assert "Create account" in response.content.decode()
+
+@pytest.mark.django_db
+def test_login_page_loads(client):
+    response = client.get(reverse("login"))
+
+    assert response.status_code == 200
+    assert "Sign in" in response.content.decode()
 
 

@@ -50,7 +50,7 @@ User:
 
 Via inhertiance from hierachy:
 Admin: read / write → DB , read / write → MP
-Curator: read / wriet → MP
-Journalist: read / wriet → MP
+Curator: read / write → MP
+Journalist: read / write → MP
 User: read → MP
 
