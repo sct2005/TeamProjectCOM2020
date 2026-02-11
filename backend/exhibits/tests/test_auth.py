@@ -2,6 +2,7 @@ import pytest
 import time
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.shortcuts import redirect
 
 @pytest.mark.django_db
 def test_sign_up_creates_user(client):
@@ -31,6 +32,7 @@ def test_invalid_password(client, user):
 def test_successful_logout(client):
     response = client.get(reverse("logout"))
     assert response.status_code == 302
+    assert redirect("home")
 
 @pytest.mark.django_db
 def test_delete_account(client_log_in, user):
