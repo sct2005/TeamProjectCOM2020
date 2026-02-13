@@ -41,3 +41,49 @@ def test_delete_account(client_log_in, user):
     assert response.status_code == 302
     assert not user.__class__.objects.filter(username = "Alice").exists()
 
+@pytest.mark.django_db
+def test_successful_change_password(logged_in_client, user):
+    response = logged_in_client.post(reverse("profile_change_password"),{"old_password": "Password1",
+                                                                         "new_password1": "NewPassword123!",
+                                                                         "new_password2": "NewPassword123!",})
+    
+    assert response.status_code == 302
+
+    user.refresh_from_db()
+    assert user.check_password("NewPassword123")
+
+@pytest.mark.django_db
+def test_unsuccessful_change_password_old_password_does_not_match(logged_in_client, user):
+    response = logged_in_client.post(reverse("profile_change_password"),{"old_password": "UnmatchedPassword",
+                                                                         "new_password1": "NewPassword123!",
+                                                                         "new_password2": "NewPassword123!"})
+    
+    assert response.status_code == 200
+
+def test_unsuccessful_change_password_passwords_do_not_match(logged_in_client, user):
+    response = logged_in_client.post(reverse("profile_change_password"),{"old_password": "Password1",
+                                                                         "new_password1": "NewPassword123!",
+                                                                         "new_password2": "UnmatchedPassword"})
+    
+    assert response.status_code == 200
+
+@pytest.mark.django_db
+def test_successful_change_username(logged_in_client, user):
+    response = logged_in_client.post(reverse("profile_change_username"), {"new_username" : "Bob"})
+
+    assert response.status_code == 302
+
+@pytest.mark.django_db
+def test_unsuccessful_change_username_username_taken(logged_in_client, user):
+    User.objects.create_user(username = "Bob", password = "Password!")
+
+    response = logged_in_client.post(reverse("profile_change_username"), {"new_username" : "Bob"})
+
+    assert response.status_code == 200
+
+@pytest.mark.django_db
+def test_unsuccessful_change_username_username_empty(logged_in_client, user):
+    response = logged_in_client.post(reverse("profile_change_username"), {"new_username" : ""})
+
+    assert response.status_code == 200
+
