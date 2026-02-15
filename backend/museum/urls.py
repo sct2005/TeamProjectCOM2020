@@ -19,13 +19,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
-from exhibits.views import home
+from exhibits import views as exhibit_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", home, name="home"),
+    path("", exhibit_views.home, name="home"),
     path("exhibits/", include("exhibits.urls")),
+    path("health/", exhibit_views.health, name="health"),
+    path("accounts/signup/", exhibit_views.signup, name="signup"),
+    path("accounts/login/", exhibit_views.login_view, name="login"),
+    path("accounts/logout/", exhibit_views.logout_view, name="logout"),
+    path("accounts/profile/", exhibit_views.profile_view, name="profile"),
+    path("accounts/profile/username/", exhibit_views.profile_change_username, name="profile_change_username"),
+    path("accounts/profile/password/", exhibit_views.profile_change_password, name="profile_change_password"),
+    path("accounts/profile/delete-scores/", exhibit_views.profile_delete_scores, name="profile_delete_scores"),
+    path("accounts/profile/delete-account/", exhibit_views.profile_delete_account, name="profile_delete_account"),
 ]
 
 # Serve media files in development

@@ -1,4 +1,4 @@
-
+ 
 1. Replit went rogue and wiped a database
 2. Gronk Generating sexual images
 3. Racial Bias in Healthcare AI Risk Prediction
@@ -9,7 +9,12 @@
 8. Meta BlenderBot: Misinformation Propagation
 9. Amazon Alexa: Gender and Bias Controversies
 10. Air Canada Chatbot: Hallucinated Refund Policy
-11. Case Study Title (empty template)
+11. clawdBot the future or terminator
+12. google photos wrongfull classifciation
+13. IBM watson for oncology
+14. apple card gender bias
+15. amazons gender bias recruitting system 
+16. Case Study Title (empty template)
 
 
 
@@ -1015,6 +1020,582 @@ Air Canada Chatbot: Hallucinated Refund Policy
 
 
 
+## ClawdBot Future or terminator 
+
+### Domain
+pesonal agent
+
+---
+
+### Deployment Context
+an agent that "actually dose things" that dosnt need to be told what to do 
+
+---
+
+### Intended Use
+to interact with difrent apps such as gmail , run commands all through one chat interface 
+
+---
+
+### System Type
+ a combination of LLM and agent 
+
+---
+
+### Inputs and Assumptions
+- acess to your info
+- running commands for you 
+- assume it will be secure and do what its told exactlyt and just that 
+
+---
+
+### Outputs Presented to Users
+- to users it works as inteneded 
+- and the tech world went crazy beliving it was the future
+- "closest thing to jarvis" 
+
+---
+
+### What Went Wrong
+-the core issue is combinning automation and real systems access in a single agent
+-full system acess breaks saftey boundries
+-giving an agent acces to file system , terminal execution
+-claude bot reads emails documents and webpages leaving it open to prompt injections 
+-centralized aceses to sensitive data , such as email and calander OAuth tokens , API keys for AI and cloud services
+-remote cointrol ssystem where chat logs are stored in plain text 
+
+---
+
+### How the Failure Was Detected
+- unexpected actions commited without user aproval
+- this then led to people dicing into the working , where they uncovered teh failures 
+---
+
+### Who Was Affected
+- end users 
+- developer using for development
+- distrust in broder AI eco system 
+
+
+---
+
+### Data Issues
+- Ober collection of user data  
+- Long term storage of sensitve info
+- lack of clear isolation between tasks 
+
+---
+
+### Technical Choices
+- singel agaent with not much oversight and lots of permissions 
+- traeting all inputs as trusted
+- tight coupling betwween reasoning and action 
+
+---
+
+### Organisational / Governance Factors
+- overconfidance in LLM aligment
+- prioritise of speed and cababnilty over saftey
+- weak seperation betweem research prototype and production system 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  agent launch 
+- **Trigger Event:**  malicous prompt injection 
+- **Failure Event:**  unautharized commands 
+- **Detection:**      discovered by users
+- **Aftermath:**      public backlash 
+
+---
+
+### Supporting Artefacts
+- https://medium.com/data-science-in-your-pocket/why-clawdbot-is-dangerous-ee9ea5370603
+- https://snyk.io/articles/clawdbot-ai-assistant/
+
+---
+
+### Lessons Learned
+- autonamy must not eual unrestricted acses 
+- all external inputs will have toi be treated as untrusted 
+- 
+
+---
+
+### Quiz
+- **Q:**  What was the core design flaw 
+  **A:**  combining autonamous descion making with unrestricted aceses 
+- **Q:**  why prompt injections dangerous in this case?
+  **A:**  as it reads web documnets and emails, so SQL injections could be disquised as genuine documnets  
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
+- google photos mislablles photos missables people of colour as "gorillas"
+
+### Domain
+-tech,automation,digital media 
+---
+
+### Deployment Context
+googles photos app,using artifical intelligence, would give titles to diffrfent photos , and a picture of a black couple was uploaded and google mislables the couple as "Gorillas"
+
+---
+
+### Intended Use
+- give titles for photos for eaier traversal 
+
+---
+
+### System Type
+- app, integrated artifical intelligence 
+
+---
+
+### Inputs and Assumptions
+- user would upload there photos 
+- the app would store and label them - corectly 
+- 
+
+---
+
+### Outputs Presented to Users
+- stored , but were incorectly labbled 
+- black couple was labbled as "gorillas"
+
+---
+
+### What Went Wrong
+- black people under repesesnted intrainning data lead to the ai system mistakling labeling balck people as gorillas
+
+---
+
+### How the Failure Was Detected
+- the user saw the label and uploaded a screenshot to social media 
+
+---
+
+### Who Was Affected
+- the user , and wider black community - rasicm  
+- the industry causes distrust in ai and backrolls progress made 
+- 
+
+---
+
+### Data Issues
+- not enough variety / repesention of diffrent skin tonnes in trainning data 
+- 
+
+---
+
+### Technical Choices
+- took short term fixes , such as removing the ais abilty to label tthings as a gorilla befor edoing a full fix 
+- 
+
+---
+
+### Organisational / Governance Factors
+- overconfidance in LLM predictions 
+- prioritise of pushing production than perfecting 
+- low amount / indadquet variet y of trainning data 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  launch of google photos integrated with AI 
+- **Trigger Event:**  uploading the photos to google photos 
+- **Failure Event:**  the catagorising of the photo as gorillas
+- **Detection:**   the user realising thw wrongfull classifiction 
+- **Aftermath:**   was uploaded to social media and there was public outrage and backlash 
+
+---
+
+### Supporting Artefacts
+- https://www.bbc.co.uk/news/technology-33347866
+- https://www.congress.gov/119/meeting/house/118424/documents/HHRG-119-GO27-20250625-SD013.pdf
+
+---
+
+### Lessons Learned
+- need a varied acurate trainning set
+- Ai is only as good as the data its trained on 
+- racial steryotypes if present in trainning data can infucen the AI 
+
+---
+
+### Quiz
+- **Q:**  what is the failure event 
+  **A:**  the catagorising of the photo as gorillas
+- **Q:**  name the key data issue 
+  **A:**  inadequte data set 
+
+
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
+- unsafe / incorect treatment recomdtions from IBMs Watson 
+
+### Domain
+- AI,Health , oncology 
+
+---
+
+### Deployment Context
+IBM watson for onmcolgy was used to give treatment recomndtion based on cancer cases , and was used by hosptial and physician s
+
+---
+
+### Intended Use
+
+- to give treatment recomndtion based on cancer cases and to be used by hosptial and physicians
+
+---
+
+### System Type
+
+- AI predictive model 
+
+---
+
+### Inputs and Assumptions
+- cancer cases 
+- act as an specialist physican 
+- 
+
+---
+
+### Outputs Presented to Users
+- gave treatment recomedtions 
+- howveer thses were deemed unsafe and or incorect 
+
+---
+
+### What Went Wrong
+- poor trainning data was trained on a small set of sythetic cancer cases - rather than real world patient data
+- recomedtions were based on few specialist prefrences 
+
+---
+
+### How the Failure Was Detected
+- checked by actuall doctors 
+
+---
+
+### Who Was Affected
+- Trust in AI to be used in medical systems 
+- No confirmed case sof actual harm 
+- Hurt IBMs reputation
+- frustation amoung doctors 
+
+---
+
+### Data Issues
+- trainning set ws based in hypothetical scenarios not real ones 
+- real clincal outcomes differ widley by region and cancer type , highlighting gaps in watsons decisions 
+
+---
+
+### Technical Choices
+- uses hypothetical cases over real ones 
+- outputs werent benchmarked against real clinical practice across a broad range of conditions 
+
+---
+
+### Organisational / Governance Factors
+- insufficent clinical governace and oversight during deployment 
+- lack of clear acountability for saftey , validation an post deployment monitoring 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  Watson for Oncology developed
+- **Trigger Event:**  Internal testing revealed unsafe and incorrect treatment
+- **Failure Event:**  Discrepancies between marketing claims and system reliability
+- **Detection:**   Investigative journalism and academic studies exposed limitations
+- **Aftermath:** Loss of trust, scaled-back deployments  
+
+---
+
+### Supporting Artefacts
+- https://www.statnews.com/2018/07/25/ibm-watson-recommended-unsafe-incorrect-treatments/
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC6656482/
+
+
+---
+
+### Lessons Learned
+- 
+- 
+- 
+
+---
+
+### Quiz
+- **Q:**  What was the primary technical weakness of Watson for Oncology?  
+  **A:**  Reliance on synthetic training data and limited expert curation
+- **Q:**  Did Watson for Oncology directly harm patients? 
+  **A:**  No
+
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
+- apple card gender bias 
+
+### Domain
+- fintech
+---
+
+### Deployment Context
+- apples card automated systed gave gredit card limits 
+
+---
+
+### Intended Use
+- automate consumer credit decisions for apple card users
+  
+
+---
+
+### System Type
+- algorithmic credit scoring / limit setting system 
+
+---
+
+### Inputs and Assumptions
+- users finacl data  
+- assumption gender is not explictly used 
+- 
+
+---
+
+### Outputs Presented to Users
+- credit aproval or rejction 
+- assign credit limit 
+
+---
+
+### What Went Wrong
+- system woul dlower credit limit for soem women compared to men with simialer identical finacial profiles  - creates apperance of gender based descrimination 
+
+---
+
+### How the Failure Was Detected
+- public complaints on social media - high profile individuals sharing concrete examples 
+
+---
+
+### Who Was Affected
+- female apple card applicant
+- couple with shared finaces 
+- apple / goldmen sacs - loss of trust 
+
+---
+
+### Data Issues
+- historical creit data liley reflected structural gender inaqualities
+- 
+
+---
+
+### Technical Choices
+- heavy reliance on black box modles 
+- limited explainabilty provided to users about credit descienosn 
+
+---
+
+### Organisational / Governance Factors
+- seperation between apple and goldman sacs blurred acountabilty 
+- Insufficent reglatory - grade transparacey and fairness auditting before launch 
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  apple card laucnh - 2019
+- **Trigger Event:**  public tweets about credit disparities 
+- **Failure Event:**  widespread though that the algorithmn disadvanteged women 
+- **Detection:**      New York departemnt of finacial services opended an investigation 
+- **Aftermath:**      regualterors foud they did not discriminate on purpose  - but highlighted transparcy and trust issues 
+
+---
+
+### Supporting Artefacts
+- https://www.bbc.co.uk/news/business-50365609
+- https://www.library.hbs.edu/working-knowledge/gender-bias-complaints-against-apple-card-signal-a-dark-side-to-fintech
+
+---
+
+### Lessons Learned
+-  explainabilty for descions that heavily imapc people are needed - should you use a blkack box modle in these scenarios  
+- algortith system need ongoing bias audits 
+  
+
+---
+
+### Quiz
+- **Q:**  Why did Apple Card’s algorithm raise concerns despite not using gender explicitly?
+  **A:**  Because proxy variables and biased historical data can still produce discriminatory outcomes
+- **Q:**  How was the issue first identified?
+  **A:**  Through public social-media complaints, not internal detection systems
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Case Study Title
+ - Amazons AI Recruiting engine shows gender bias 
+### Domain
+
+- human reasources , automation
+
+---
+
+### Deployment Context
+- Amazon deployed an AI recuritting tool within its HR departemts   
+
+---
+
+### Intended Use
+- automaet and accelerate job screenings Processes 
+- review resumes and rate them
+- crawl the internet to identify potenial candidates
+- reduce realience on recurters 
+
+---
+
+### System Type
+ML Resume screening system 
+
+---
+
+### Inputs and Assumptions
+- Resumes subbitted to amazon over a 10-year period 
+- past hiring descions = sucsefull outcomes 
+- candidates simmialer to previously hired ones would be aceppted 
+
+---
+
+### Outputs Presented to Users
+- star raitting
+- ranked candidate lits 
+- recommneded candidates 
+
+---
+
+### What Went Wrong
+- system developed systematic gender bias against female candidates
+- penilizeed resumaes with the word "womens" e.g "womens chess club"
+- downgraded candidates from all women collages
+- The system was trained on 10 years of resumes submitted to Amazon, predominantly from male candidates
+- Amazon's existing software engineering workforce was overwhelmingly male (63% male company-wide in 2018)
+
+---
+
+### How the Failure Was Detected
+- it was discoverd that the system was not raitting in a gender neutral way 
+- internal test and monitoring
+- Pattern analysis showing systematic downgrading of female-associated terms
+
+---
+
+### Who Was Affected
+- Female Job Applicants
+- Graduates of Women's Colleges
+- Women in Tech
+- Amazon's Diversity Goals
+- Trust in AI Hiring Systems
+
+---
+
+### Data Issues
+- 
+- 
+
+---
+
+### Technical Choices
+- Imbalance in trainng data 
+- Historical Bias Embedded in Data
+- Lack of Demographic Diversity
+- Missing Context
+
+---
+
+### Organisational / Governance Factors
+- Algorithm Design Flaw , pattern matching form when there were less women in workforce let alone tech
+- black box nature
+- insufficent bias testing
+- lack of fairness constraints 
+
+
+---
+
+### Timeline of Failure + Aftermath
+- **Initial Setup:**  2014 - the system was developed  -> 2015 500 computer modles focusing on specific job funcions and locations  
+- **Trigger Event:**  2015 - internal system revealed was not raitting candidates in an neutral manner 
+- **Failure Event:**  2015 - bias was discovered by the reasearches 
+- **Detection:**  ai had taught itself "Male candidates are favourable"
+- **Aftermath:**  project scrapped and there was distrust placed in AI hirring systems 
+
+---
+
+### Supporting Artefacts
+- https://www.reuters.com/article/world/insight-amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK0AG/
+- https://www.bbc.co.uk/news/technology-45809919
+
+---
+
+### Lessons Learned
+- Trainning data quality is extremly important
+- pattern recognition without causeation isnt understanding an d it can lead to bias 
+- black box algorithms  make bias corection and detction hard 
+
+
+---
+
+### Quiz
+- **Q:**  Why did Amazon's AI recruiting tool penalize resumes that included the word "women's"?
+  **A:**  the ai ws traind on past hirirng histroy which is predominatley male 
+- **Q:**  What year was the bias detected 
+  **A:**  2015
+ 
+
+
+
+
+
+
+
 ## Case Study Title
 
 ### Domain
@@ -1107,3 +1688,6 @@ Air Canada Chatbot: Hallucinated Refund Policy
   **A:**  
 - **Q:**  
   **A:**  
+
+
+

@@ -119,17 +119,32 @@
         .btn-secondary:hover {
             background-color: #5a6268;
         }
+        .saved-note {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'exhibits:list' %}" class="back-link">← Back to exhibits</a>
+        <a href="{% url 'exhibits:detail' exhibit.id %}" class="back-link">← Back to exhibit</a>
         
         <h1>Quiz Results: {{ exhibit.title }}</h1>
         
         <div class="score-summary">
             <h2>{{ correct_answers }}/{{ total_questions }}</h2>
             <p>{{ score_percentage }}% Correct</p>
+            {% if request.user.is_authenticated %}
+                <div class="saved-note">
+                    {% if score_saved %}
+                        Your best score for this exhibit is saved to your account.
+                    {% else %}
+                        Sign in to save your progress and earn badges.
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
         
         <h2>Question Review</h2>

@@ -29,6 +29,12 @@ class Command(BaseCommand):
         with open(exhibits_path, "r") as f:
             exhibits_data = json.load(f)
 
+        # Remove exhibits not in the seed file (replace mode: DB reflects seed)
+        seed_titles = [ex["title"] for ex in exhibits_data]
+        deleted_count, _ = Exhibit.objects.exclude(title__in=seed_titles).delete()
+        if deleted_count:
+            self.stdout.write(self.style.WARNING(f"Removed {deleted_count} exhibit(s) no longer in seed."))
+
         for ex_data in exhibits_data:
             # Extract image_filename if present
             image_filename = ex_data.pop("image_filename", None)
@@ -108,6 +114,12 @@ class Command(BaseCommand):
         with open(quizzes_path, "r") as f:
             quizzes_data = json.load(f)
 
+        # Build set of (exhibit_title, question) that are in JSON so we can remove DB questions no longer in JSON
+        questions_in_json = {}  # exhibit_title -> set of question strings
+        for q_data in quizzes_data:
+            title = q_data["exhibit_title"]
+            questions_in_json.setdefault(title, set()).add(q_data["question"])
+
         for q_data in quizzes_data:
             exhibit = Exhibit.objects.get(title=q_data["exhibit_title"])
             quiz, created = Quiz.objects.get_or_create(
@@ -128,3 +140,13 @@ class Command(BaseCommand):
                 quiz.explanation = q_data.get("explanation", "")
                 quiz.save()
                 self.stdout.write(f"Updated Quiz: {quiz.question[:30]}...")
+
+        # Remove quiz questions that are no longer in the JSON (sync with seed data)
+        for ex_data in exhibits_data:
+            exhibit = Exhibit.objects.get(title=ex_data["title"])
+            allowed_questions = questions_in_json.get(exhibit.title, set())
+            to_remove = Quiz.objects.filter(exhibit=exhibit).exclude(question__in=allowed_questions)
+            removed_count = to_remove.count()
+            if removed_count:
+                to_remove.delete()
+                self.stdout.write(self.style.WARNING(f"Removed {removed_count} quiz question(s) from {exhibit.title}"))

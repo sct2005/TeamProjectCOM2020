@@ -1,35 +1,38 @@
 Executive Summary
 
-The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation abd accountability.
+The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation and accountability.
 
 What the prototype currently achieves:
 
-~NEED TO HAVE FULL NUMBER OF EXHIBITS~
+- Content library: The system contains 11 curated exhibits covering diverse domains including technology failures, healthcare AI bias, social media content moderation, flooding risk mapping, finance and real estate automation, voice assistant ethics, consumer AI customer service and international relations. Each exhibit presents structured information about the failure context, system description, what went wrong, contributing factors and lessons learned from it.
 
-Users can view a list of all the exhibits and click through to detailed exhibit pages. With each exhibit page displaying the domain, deployment context, system type, inputs and assumptions, outputs presented to users, failure description, detection method, affected parties, contributing factors and lessons learned in a structured format.
+- Browse functionality: Users can view a list of all exhibits through our home page, which includes category filtering tabs (All Cases, Healthcare, Tech, Social Media, etc.) and severity badges (critical, high, medium) for each case. Clicking on any exhibit card takes users to a detailed page about the exhibit.
 
-~NEED TO HAVE ALL INTERACTIVE QUIZZES DONE~
+-Interactive quizzes: The system includes reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect), and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
 
-Curators can create and edit exhibits through Django's admin interface. All the changes are logged in the admin log table which creates an audit trail for accountability. 
+- Comments and discussion: Visitors can post comments on exhibits to discuss failure cases with others. The commenting system supports nested replies, allowing for threaded discussions. 
+
+- Content management: Curators can create and edit exhibits through Django's admin interface. All changes are logged in the admin log table, creating an audit trail for accountability. The curator workflow supports adding structured failure information, uploading images with attribution, linking supporting artefacts and documenting timeline information.
 
 Key Benefits:
 
-The prototype deonstrates several important benefits such as:
+The prototype demonstrates several important benefits such as:
 
 - Learning from mistakes: Rather than soley focusing on the success of AI, the museum provides insights that aren't usually that well documented and this allows for people to learn what can go wrong. This can help people be aware of the limitations are errors that AI can make.
 - Structured Analysis: Each exhibit breaks down complex failures into understandable components which helps users develop an understanding of AI and how to evaluate it and make their own decisions.
-- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding of the rading to answer questions.
+- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding to answer the questions with imediate feedback with explanations that reinforces learning.
 
 Key Risks:
 
-- Content Accuracy: There is the potential for the AI failure case studies to oversimplify complex issues, get facts wrong or unintentially damage reputations. 
-- 
+- Content Accuracy: There's potential for AI failure case studies to oversimplify complex technical issues, get facts wrong or unintentionally damage reputations. 
+- Unmoderated comments: The commenting system currently has no moderation - which means that anyone can post anything.
+
 
 Project description and prioritised requirements
 
 Original Problem: 
 
-AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
+AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise as a result. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
 
 Solution:
 
@@ -43,12 +46,25 @@ The system has 3 primary user groups:
 
 Scope Boundaries
 
-Our sprint 1 prototype focuses on the core museum functionality such as:
+In scope for Sprint 1 (Currently implemented)
 
 - Exhibit browsing: Users can view a list of all exhibits and click through to detailed pages showing structured failure information
-- Quizzes: Each exhibit has quiz questions
+- Interactive quizzes: Each exhibit has multiple-choice quiz questions. The system randomises answer order, processes submissions, calculates scores with percentages and displays immediate feedback with colour-coded results and explanations for every question.
 - Content management: Curators can create and edit exhibits via Django admin, with all changes logged for audit trails
 - Role-based Access: Three user types (visitors, curators, admins) with appropriate permissions enforced by Django.
+- Comment system: Visitors can post comments on exhibits to discuss failure cases.
+- Quiz scores: stores users best score per exhibit in the database
+
+Out of scope for Sprint 1 (Not implemented)
+
+- Points and badges: No gamification beyond immediate quiz feedback. No achievement system or progress tracking.
+- Comment moderation: Comments post immediately without approval. No flagging system for users to report inappropriate content.
+- Analytics: No tracking of which exhibits are most viewed, which quizzes have lowest accuracy or other usage metrics for curators.
+
+Permanent Out of Scope:
+
+- User-generated exhibits: Only curators can create exhibits. Visitors cannot submit their own failure stories to prevent misinformation.
+- Social features: No user profiles, friend connections, or social sharing buttons to maintain focus on education rather than social engagement.
 
 Success Criteria
 
@@ -57,6 +73,8 @@ We have 4 areas of success for our Sprint 1 success criteria
 1. Complete functions within the Museum
 - At least 10 exhibits covering multiple domains
 - At least 30 quiz questions
+- User authentification system
+- Quiz score tracking
 
 2. Technical Quality
 - Database integrity
@@ -71,3 +89,318 @@ We have 4 areas of success for our Sprint 1 success criteria
 4. Usability
 - Clear navigation
 - User friendly design
+
+Requirements as GitHub Issues
+
+Our requirements are tracked as user stories prioritised using MoSCow (Must/Should/Couldn't/Won't). With each story having story points reflecting the implementation complexity. 
+
+Must-Have Features (Sprint 1 - All Implemented):
+
+Feature 1: Login and comments
+User Story: As a researcher, I want to be able to login so that I can leave comments
+MoSCow: Must
+Story Point: 6
+
+Feature 2: Quiz System
+User Story: As a student, I want to be able to do the quizzes so that I can test my knowledge
+MoSCow: Must
+Story Point: 3
+
+Feature 3: View Historical AI Failures
+User Story: As an AI researcher, I want to see what AI was like 6 months ago compared to now so that I can learn from previous AI's mistakes
+MoSCow: Must
+Story Point: 0.5 
+
+Feature 4: Safe and Efficient Website
+User Story: As a general user, I want to be able to have a functioning website which is safe and efficient
+MoSCow: Must
+Story Point: 5 
+
+Should-Have Features (Sprint 2 - Planned):
+
+Feature 1: Create New Cases
+User Story: As a journalist, I want to be able to edit and create new cases so that other people can view them
+MoSCow: Should
+Story Point: 5
+
+Feature 2: View Changes for Moderation
+User Story: As a moderator, I want to be able to view changes so that the website can be regulated
+MoSCow: Should 
+Story Point: 2
+
+Feature 3: View Images and Links
+User Story: As a student, I want to be able to view images or links about the cases
+MoSCow: Should
+Story Point: 2
+
+Could-Have Features (Future Enhancements):
+
+Feature 1: Annotate Exhibits
+User Story: As a general user, I want to be able to annotate an exhibit so that I can make notes
+MoSCow: Could
+Story Point: 3
+
+Feature 2: Exhibit Bookmarking
+User Story: As a general user, I want to be able to bookmark exhibits so that I can have a personal favourite reading list
+MoSCow: Could
+Story Point: 3
+
+Feature 3: Mobile app
+User Story: As a general user, I want to have a mobile app where I can use an offline mode and download off the app store
+MoSCow: Could
+Story Point: 15
+
+Won't Have:
+- User-generated content without curator review
+- Social networking features
+- Commercial monetisation 
+
+
+
+
+
+Architecture (v1)
+High-Level Component Diagram
+
+Component Explanations:
+
+
+
+
+Data Model and Dataset Description
+
+Database Schema: Our database uses a relational structure with three main content tables also Django's built in authentification and logging tables. All data is stored in a single SQLite3 file.
+
+Core Entities
+
+Exhibit Table (exhibits_exhibit):
+This is our primrary entity representing an AI failure case study. Each exhibit has 21 fields:
+
+Basic Information:
+- id: Primary Key
+- title: case study name
+- domain: Sector category
+- created_at: timestamp
+
+System Context:
+- deployment_context: Where and why the system was deployed
+- intended_use: What the system was supposed to accomplish
+- system_type: Type of AI/ML system in the case study
+
+Technical Details:
+- inputs_and_assumptions: Data inputs and underlying assumptions
+- outputs_presented: What the system produced
+
+Failure Documentation:
+- failure_description: What went wrong
+- detection_method: How the failure was discovered 
+- affected_parties: Who was impacted 
+
+Analysis:
+- contributing_factors: General factors 
+- data_issues: Data-related problems
+- technical_choices: Technical decisions 
+- organizational_factors: Governance issues 
+- lessons_learned: What can be learned
+- timeline: Chronology of events
+
+Supporting Materials:
+- image: Visual representation
+- image_reference: Attribution
+- supporting_artefacts: Source links
+
+
+Quiz Table (exhibits_quiz):
+Multiple-choice questions linked to exhibits. This entity has 6 fields:
+
+- id: Primary key
+- exhibit_id: Foreign key to Exhibit
+- question: Question text 
+- options: Answer choices 
+- correct_answer_index: Which option is correct
+- explanation: Why answer is correct 
+
+
+Comment Table (exhibits_comment):
+User-posted discussions with nested reply support. This entity has 6 fields:
+
+- id - Primary key
+- exhibit_id: Foreign key to Exhibit
+- parent_id: Foreign key to Comment
+- user_id: Foreign key to user 
+- author_name: Display name
+- body: Comment text
+- created_at: Timestamp
+
+QuizScore Table (exhibits_quizscore):
+Stores users' best quiz performance per exhibit. This entity has 6 fields:
+
+- id: Primary key
+- user_id: Foreign key to User 
+- exhibit_id: Foreign key to Exhibit 
+- score: Integer 
+- total_questions: Integer 
+- completed_at: Timestamp 
+
+Supporting Tables (Django Built-in)
+
+User Authentication (auth_user): Django's standard User model with key fields
+
+- username: Unique identifier
+- email: Email address
+- password: Hash string
+- first_name, last_name: Optional
+- is_staff: curator access
+- is_superuser: admin access
+- is_active: disable accounts
+- date_joined, last_login : Timestamps
+
+Session Management (django_session): Django's session table
+
+- session_key: 40 character random string
+- session_data: Encrypted session state
+- expire_date: Sessions expire after 2 weeks
+
+Admin Log (django_admin_log):
+Django automatically records all admin actions:
+
+- user_id: Which admin made the change
+- content_type_id: Which model was affected
+- object_id: Which record
+- action_flag: Type: 1=add, 2=change, 3=delete
+- change_message: Text description
+- action_time: When the change occurred
+
+Database Relationships
+
+Exhibit -> Quiz (One-To_Many): Each quiz belongs to exactly one exhibit and if the exhibit is deleted, then quizzes are automatically deleted.
+Exhibit -> Comment (One-to-Many): Each comment is about exactly one exhibit and if the exhibit is deleted the the comments will delete too.
+Comment -> Comment (Self-referential): Comments can be replies to another comment so if the original comment was deleted the reply to that comment would be deleted.
+
+Seed Data Files:
+We maintain our dataset as JSON files with the two files:
+
+-exhibits.json: This stores the exhibits
+-quizzes.json: This stores the quizzes
+
+Data Curation Process:
+Each exhibit was manually researched by team members and followed this structured approach:
+
+1.Identify publicly documented AI failures
+2.Gather information from credible sources
+3.Structure into schema
+4.Write 3-4 quiz questions per exhibit
+5.Peer review for accuracy
+6.Add to JSON seed files
+
+Data Quality Standards:
+- Source attribution: supporting_artefacts field contains credible source URLs
+- Peer reviewed: All exhibits were checked by other team members
+- Educational focus: Content emphasises lessons learned
+- Complete fields: All required fields are populated
+
+
+
+
+Evaluation plan (initial):
+
+
+
+
+Risk register:
+
+Risk Classification
+Risks are classified by:
+  - Likelihood: Low/Medium/High
+  - Impact: Low/Medium/High/Critical
+
+Techinical Risks
+
+1. Database corruption or loss
+
+Likelihood: Low
+Impact: Critical
+Risk Score: High
+Description: The SQLite file corrupts or was accidently deleted which results in loss of exhibits and quizzes.
+Mitigation: Daily backups of file
+Owners: Software Developer
+
+2. Quiz Answer Shuffling Bug
+
+Likelihood: Low
+Impact: Medium
+Risk Score: Low
+Description: Wrong answers being marked as correct
+Mitigation: Ensure quizzes are fully tested to catch bugs
+Owners: Software Developer
+
+3. Comment Spam Flood
+
+Likelihood: Medium
+Impact: Medium
+Risk Score: Medium
+Description: User posts hundreads of comments
+Mitigation: Limit amount of comments by a user by a time period
+Owners: Software Developer
+
+Delivery Risks
+
+1. Team Member Unavailability
+
+Likelihood: Medium
+Impact: High 
+Risk Score: High
+Description: Key developer unavailable during the sprint
+Mitigation: Code documentation with comments so that other team members understand the code and could also have weekly knowledge transfer sessions
+Owners: Scrum Master
+
+2. Integration Issues
+
+Likelihood: Medium
+Impact: Medium
+Risk Score: Medium
+Description: Frontend and backend changes dont work together
+Mitigation: Integration tests
+Owners: Testing
+
+3. Misunderstanding Requirements
+
+Likelihood: Low
+Impact: Critical
+Risk Score: High
+Description: Building features that don't match the specification
+Mitigation: Weekly specification review to ensure that the project remains on track
+Owners: Documentation
+
+Operational Risks
+
+1. Misinformation in Exhibits
+
+Likelihood: Medium
+Impact: Medium  
+Risk Score: Medium
+Description: Factual errors that can cause users to learn incorrect information
+Mitigation: Credible sources and peer review for approval
+Owners: Data Lead
+
+2. Inappropriate Comment Content
+
+Likelihood: Medium
+Impact: Low
+Risk Score: Medium
+Description: Users post offensive/spam content
+Mitigation: Manual deletion by admin 
+Owners: Scrum Master
+
+3. Quiz Difficulty Imbalance
+
+Likelihood: Low
+Impact: Low
+Risk Score: Low 
+Description: Quizzes too easy or too hard
+Mitigation: Detailed explanations and unlimited retakes
+Owners: Data Lead
+
+
+
+

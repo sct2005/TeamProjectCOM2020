@@ -106,112 +106,68 @@
             font-weight: bold;
             margin-bottom: 15px;
         }
-        .comments-section {
-            margin-top: 50px;
-        }
-        .comment-box {
-            width: 90%;
-            min-height: 100px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: vertical;
-            font-size: 14px;
-        }
-        .comment-button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .comment-button:hover {
-            background-color: #0052a3;
-        }
-        .comment-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 25px;
-        }
-        .comment-item {
-            background-color: #f9f9f9;
-            border-left: 4px solid #0066cc;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            border-radius: 4px;
-        }
         .comment-meta {
             font-size: 12px;
             color: #666;
             margin-bottom: 5px;
         }
+        /* Timeline */
+        .timeline-wrap {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-wrap::before {
+            content: "";
+            position: absolute;
+            left: 0.4rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 3px;
+            background: #0066cc;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -2rem;
+            top: 0.4rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #0066cc;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 1px #0066cc;
+        }
+        .timeline-item-content {
+            background: #f8fafc;
+            border-left: 3px solid #0066cc;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .timeline-item-content p { margin: 0; }
     </style>
 </head>
-<!-- JavaScript for comments -->
-<script>
-    const exhibitId = "{{ exhibit.id }}";
-    const storageKey = `comments-exhibit-${exhibitId}`;
-
-    function loadComments() {
-        return JSON.parse(localStorage.getItem(storageKey)) || [];
-    }
-
-    function saveComments(comments) {
-        localStorage.setItem(storageKey, JSON.stringify(comments));
-    }
-
-    function addComment() {
-        const input = document.getElementById("commentInput");
-        const text = input.value.trim();
-
-        if (!text) return;
-
-        const comments = loadComments();
-        comments.push({
-            text: text,
-            time: new Date().toLocaleString()
-        });
-
-        saveComments(comments);
-        input.value = "";
-        renderComments();
-    }
-
-    function renderComments() {
-        const list = document.getElementById("commentList");
-        const comments = loadComments();
-        list.innerHTML = "";
-
-        comments.forEach(comment => {
-            const li = document.createElement("li");
-            li.className = "comment-item";
-
-            const meta = document.createElement("div");
-            meta.className = "comment-meta";
-            meta.textContent = `UserName • ${comment.time}`;
-
-            const content = document.createElement("div");
-            content.textContent = comment.text;
-
-            li.appendChild(meta);
-            li.appendChild(content);
-            list.appendChild(li);
-        });
-    }
-    function handleCommentKey(event) {
-        if (event.key === "Enter" && !event.shiftKey) {
-            event.preventDefault();
-            addComment();
-        }
-    }
-    renderComments();
-</script>
-
 <body>
     <div class="container">
-        <a href="{% url 'home' %}" class="back-link">← Back to home</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <a href="{% url 'home' %}" class="back-link">← Back to home</a>
+            <div style="font-size: 0.875rem;">
+                {% if request.user.is_authenticated %}
+                    Signed in as <a href="{% url 'profile' %}" style="color: #0066cc; text-decoration: none; font-weight: 600;">{{ request.user.username }}</a>
+                    · <a href="{% url 'logout' %}" style="color: #0066cc; text-decoration: none;">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
+                    <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc; text-decoration: none;">Create account</a>
+                {% endif %}
+            </div>
+        </div>
 
         <h1>{{ exhibit.title }}</h1>
         <span class="domain-badge">{{ exhibit.domain }}</span>
@@ -293,7 +249,17 @@
         {% if exhibit.timeline %}
         <div class="info-section">
             <h2>Timeline of Failure and Aftermath</h2>
+            {% if timeline_entries %}
+            <div class="timeline-wrap">
+                {% for entry in timeline_entries %}
+                <div class="timeline-item">
+                    <div class="timeline-item-content">{{ entry }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
             <p style="white-space: pre-line;">{{ exhibit.timeline }}</p>
+            {% endif %}
         </div>
         {% endif %}
 
@@ -328,18 +294,24 @@
 
         <h2>Comments</h2>
 
-        <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" style="margin-top: 15px;">
-            {% csrf_token %}
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="text" name="author_name" maxlength="80" required placeholder="Your name" style="flex: 1; min-width: 200px; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
-            </div>
-            <div style="margin-top: 10px;">
-                <textarea name="body" maxlength="2000" required placeholder="Add a comment..." rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
-            </div>
-            <button type="submit" style="margin-top: 10px; padding: 10px 16px; background: #0066cc; color: white; border: 0; border-radius: 4px; font-weight: bold;">
-                Post comment
-            </button>
-        </form>
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" style="margin-top: 15px;">
+                {% csrf_token %}
+                <div style="margin-top: 10px;">
+                    <textarea name="body" maxlength="2000" required placeholder="Add a comment..." rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+                </div>
+                <button type="submit" style="margin-top: 10px; padding: 10px 16px; background: #0066cc; color: white; border: 0; border-radius: 4px; font-weight: bold;">
+                    Post comment
+                </button>
+            </form>
+        {% else %}
+            <p style="margin-top: 10px; color: #666;">
+                <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">Sign in</a>
+                or
+                <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">create an account</a>
+                to join the discussion.
+            </p>
+        {% endif %}
 
         <div style="margin-top: 25px;">
             {% if comments %}
@@ -352,14 +324,6 @@
                 <p style="color: #666;">No comments yet. Be the first to comment.</p>
             {% endif %}
         </div>
-    </div>
-    <!-- Comments section for exhibits -->
-    <div class="comments-section"></div>
-        <h2>Comments</h2>
-        <textarea id="commentInput" class="comment-box" placeholder="Share your thoughts on this AI failure..." onkeydown="handleCommentKey(event)"></textarea>
-        <button class="comment-button" onclick="addComment()">Post comment</button>
-        <ul id="commentList" class="comment-list"></ul>
-        <script>renderComments();</script>
     </div>
 </body>
 </html>
