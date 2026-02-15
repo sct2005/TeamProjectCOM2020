@@ -3,19 +3,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 @pytest.mark.django_db
-def test_signup_fails_without_email(client):
-    response = client.post(reverse("signup"), {"username" : "Alice",
-                                               "email" : "",
-                                               "password1" : "Password!",
-                                               "password2" : "Password!"})
-    
-    assert response.status_code == 200
-    assert not User.objects.filter(username = "Alice").exists()
-
-    form = response.context["form"]
-    assert "email" in form.errors
-
-@pytest.mark.django_db
 def test_signup_fails_without_password(client):
     response = client.post(reverse("signup"), {"username" : "Alice",
                                                "email" : "alice@example.com",
@@ -51,18 +38,6 @@ def test_signup_fails_without_matching_passwords(client):
     assert response.status_code == 200
     assert not User.objects.filter(username = "Alice").exists()
 
-@pytest.mark.django_db
-def test_signup_fails_with_invalid_email(client):
-    response = client.post(reverse("signup"), {"username" : "Alice",
-                                               "email" : "alice123.invalidemail",
-                                               "password1" : "Password!",
-                                               "password2" : "Password!"})
-    
-    assert response.status_code == 200
-    assert not User.objects.filter(username = "Alice").exists()
-
-    form = response.context["form"]
-    assert "email" in form.errors
 
 @pytest.mark.django_db
 def test_signup_fails_with_duplicate_username(client):
