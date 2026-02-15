@@ -15,17 +15,26 @@ from .forms import UsernameChangeForm
 # Menu page design: map exhibit title -> category, severity, categories (tags)
 # Matches "Menu Page for Topics" design. Fallback: domain as category, severity 'medium'
 EXHIBIT_MENU_META = {
-    "Flood Risk Map Overconfidence": {"category": "Environmental", "severity": "high", "categories": ["Flooding", "Risk Assessment"]},
-    "Replit AI Agent Database Wipe": {"category": "Tech", "severity": "critical", "categories": ["Tech", "Data Loss"]},
-    "Grok Generating Sexual Images": {"category": "Social Media", "severity": "high", "categories": ["Social Media", "Content Moderation"]},
-    "Racial Bias in Healthcare AI Risk Prediction": {"category": "Healthcare", "severity": "critical", "categories": ["Healthcare", "Bias & Ethics"]},
-    "DeepSeek Taiwan Censorship Case Study": {"category": "International", "severity": "medium", "categories": ["Tech", "International Relations"]},
-    "Parents Sue OpenAI for Role in Teenager Taking His Own Life": {"category": "Social Impact", "severity": "critical", "categories": ["Tech", "Life/Social/Wellbeing"]},
-    "Grok AI Makes Antisemitic Comments and Hate Speech Output Failure": {"category": "AI Safety", "severity": "critical", "categories": ["AI Safety", "Hate Speech", "Misinformation"]},
-    "Zillow Offers: Algorithmic Home Pricing Collapse": {"category": "Finance", "severity": "high", "categories": ["AI in Finance", "Real Estate", "Predictive Modeling"]},
-    "Meta BlenderBot: Misinformation Propagation": {"category": "Social Media", "severity": "high", "categories": ["Conversational AI", "LLM Moderation", "Social Media"]},
-    "Amazon Alexa: Gender and Bias Controversies": {"category": "Consumer Tech", "severity": "medium", "categories": ["Voice Assistants", "AI Ethics", "Consumer Devices"]},
-    "Air Canada Chatbot: Hallucinated Refund Policy": {"category": "Consumer Tech", "severity": "medium", "categories": ["Consumer AI", "Customer Service"]},
+    "The Outdated Inundation": {"category": "Environmental", "severity": "high", "categories": ["Environmental Management", "Urban Planning", "Risk Assessment"]},
+    "The Resolution Mirage": {"category": "Agriculture", "severity": "high", "categories": ["Agricultural Surveillance", "Supply Chain Ethics", "Land-Cover"]},
+    "The Overconfident Credit Dashboard": {"category": "Finance", "severity": "high", "categories": ["Fintech", "Lending", "Decision Support"]},
+    "The Out-of-Context Arid Agriculture": {"category": "Agriculture", "severity": "high", "categories": ["Irrigation", "Agriculture", "Context Mismatch"]},
+    "The Authoritative Air Quality Omission": {"category": "Public Health", "severity": "high", "categories": ["Smart City", "Public Health", "Data Visualization"]},
+    "The \"Ghost Lane\" Traffic Optimizer": {"category": "Transport", "severity": "high", "categories": ["Autonomous Transportation", "Computer Vision", "Context Mismatch"]},
+    "The Confidence-Blind Wildlife Tracker": {"category": "Conservation", "severity": "critical", "categories": ["Conservation Biology", "Decision Dashboard", "Uncertainty"]},
+    "The Resolution-Blurred Property Line": {"category": "Legal Tech", "severity": "high", "categories": ["Real Estate", "Legal Tech", "Resolution Mismatch"]},
+    "The Outdated Pandemic Supply Chain": {"category": "Healthcare", "severity": "critical", "categories": ["Logistics", "Healthcare", "Supply Chain"]},
+    "The Authoritative Sea-Wall Projection": {"category": "Infrastructure", "severity": "critical", "categories": ["Civil Engineering", "Infrastructure", "Visualization"]},
+    "The Subsurface Blind Spot": {"category": "Infrastructure", "severity": "critical", "categories": ["Civil Engineering", "Predictive Maintenance", "Infrastructure"]},
+    "The Arctic Drift Bias": {"category": "Maritime", "severity": "high", "categories": ["Maritime Logistics", "Climate Research", "Navigation"]},
+    "The High-Altitude Diagnostic": {"category": "Healthcare", "severity": "critical", "categories": ["Healthcare", "Telemedicine", "Context Mismatch"]},
+    "The Solar Microgrid Blackout": {"category": "Energy", "severity": "critical", "categories": ["Energy", "Smart Grids", "Uncertainty"]},
+    "The Precision-Mismatched Firebreak": {"category": "Emergency Services", "severity": "critical", "categories": ["Disaster Response", "Emergency Services", "Resolution Mismatch"]},
+    "The Invisible Urban Heat Island": {"category": "Public Policy", "severity": "high", "categories": ["Social Services", "Public Policy", "Equity"]},
+    "The Outdated Bio-Security Filter": {"category": "Agriculture", "severity": "high", "categories": ["Agriculture", "Pest Control", "Outdated Data"]},
+    "The Forest Carbon Credit Mirage": {"category": "Finance", "severity": "high", "categories": ["Finance", "Sustainability", "Resolution Mismatch"]},
+    "The Arid-Logic Flood Barrier": {"category": "Water Management", "severity": "critical", "categories": ["Water Management", "Climate Shift", "Context Mismatch"]},
+    "The Confidence-Blind Dam Sensor": {"category": "Infrastructure", "severity": "critical", "categories": ["Public Infrastructure", "Monitoring", "Uncertainty"]},
 }
 
 

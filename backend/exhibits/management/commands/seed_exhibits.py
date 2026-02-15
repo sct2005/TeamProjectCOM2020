@@ -29,6 +29,12 @@ class Command(BaseCommand):
         with open(exhibits_path, "r") as f:
             exhibits_data = json.load(f)
 
+        # Remove exhibits not in the seed file (replace mode: DB reflects seed)
+        seed_titles = [ex["title"] for ex in exhibits_data]
+        deleted_count, _ = Exhibit.objects.exclude(title__in=seed_titles).delete()
+        if deleted_count:
+            self.stdout.write(self.style.WARNING(f"Removed {deleted_count} exhibit(s) no longer in seed."))
+
         for ex_data in exhibits_data:
             # Extract image_filename if present
             image_filename = ex_data.pop("image_filename", None)
