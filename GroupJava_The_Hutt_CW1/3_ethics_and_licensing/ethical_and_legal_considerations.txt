@@ -37,11 +37,11 @@ Users have the following rights, implementable via Django's admin interface:
 
 2. Acceptable Use and safety of Gamification
 
-Our system has immediate feedback gamification for our quizzes. Our database has 37 quiz questions * subject to change * across 11 exhibits.
+Our system has immediate feedback gamification for our quizzes. Our database has 33 quiz questions across all of our exhibits.
 
 Quiz Scoring and Feedback
 
-When users complete a quiz they recieve:
+When users complete a quiz they receive:
 - Overall score displaying how many questions they got right out of the attempted questions while showing a percentage score too
 - Colour coded feedback (Green for correct and red for incorrect)
 - Question by question breakdown 
@@ -54,10 +54,10 @@ Quiz Design Principles
 The quiz feedback has been designed so that it is supposed to be educational rather than competitive:
 
 - No time limits on the quiz which ensures self paced learning
-- Scores are shown only to the user and not stored or publically displayed
+- Scores are stored privately per user in the database and are not publicly displayed to other users. Users can view all their own quiz scores on their profile page.
 - Users see immediate feedback
 - The users have the option to retake the quiz
-- Wrong answers dont count against the user
+- Wrong answers don't count against the user
 
 This approach focuses on the learning rather than competition which ensures that users are taking the tests to improve their understanding, since no scores are reflected users are more incentivised to attempt quizzes fairly as there are no repercussions and there are detailed explanations for every question regardless if the user got the question right or wrong.
 
@@ -71,7 +71,7 @@ In our database each exhibit includes:
 - Supporting artefacts
 - Timeline information
 
-Our exhibits cover multiple sectors including technology, healthcare, flooding, social media, finance, international relations and consumer AI. This ensures that we cover a wide range of sectors which helps users gather information and understand how it can effect different sectors differently.
+Our exhibits cover multiple sectors including environmental management, agricultural surveillance, fintech and lending, public health and smart city monitoring, autonomous transportation, conservation biology, real estate and legal tech, logistics and healthcare and civil engineering infrastructure.
 
 Since we are presenting real or realistic AI failure cases there are some risks that are attached:
 Ai failure case studies risk:
@@ -86,7 +86,7 @@ Only user that have curators permissions can create or edit exhibits through Dja
 
 For real-world incidents that were publicly reported, we name the company and present facts as a neutral. For more sensitive cases, we anonymise them to avoid reporting sensitive information.
 
-We never name individual developers or engineers, never include personal information and avoid using inappropriate language. We also don’t present speculation as if its fact.
+We never name individual developers or engineers, never include personal information and avoid using inappropriate language. We also don’t present speculation as if it's fact.
 
 If we get something wrong, the Django admin log lets us track changes and update the exhibits.
 
@@ -100,7 +100,7 @@ Our project will aim to make sure everyone can use our website, including people
 
 Django's form system does some of the basics for us automatically. Form fields come with proper labels that screen readers can understand, error messages get linked to the right fields and the admin interface has basic keyboard navigation built in. 
 
-All exhibits are text based with images that are optional and the exhibits can be understood without them. This means that users can access all the important educational content without missing anything if they didnt have the images.
+All exhibits are text based with images that are optional and the exhibits can be understood without them. This means that users can access all the important educational content without missing anything if they didn't have the images.
 
 We are aiming to include AI failures from different contexts and fields, not just focusing on big tech companies. We want the content to be relevant to different industries and geographic regions such as flooding failures that could happen in the UK, healthcare issues that affect diverse populations and international incidents showing global AI impacts.
 
@@ -111,11 +111,7 @@ There is no premium or pay to view features which ensures that everyone can acce
 
 We are using Django's built-in authentication system. Passwords are hashed which is what Django does by default and exceeds security recommendations.
 
-In our settings.py file, we have password validators that require:
-- Minimum 8 characters 
-- Password can't be too similar to your username
-- Can't be a commonly used password
-- Can't be all numbers
+Django's AUTH_PASSWORD_VALIDATORS is currently set to an empty list, meaning no password complexity rules are enforced at signup. This is a known limitation flagged for Sprint 2. However, all passwords are still stored securely using Django's built-in hashing algorithm regardless of this setting.
 
 We have three user types:
 
@@ -166,6 +162,7 @@ If our project evolved to include the following:
 - External data sharing
 - Commercial use
 
-Given that our project doesn't currently implement any of the above we belive that a formal ethics approval is not required
+Given that our project doesn't currently implement any of the above we believe that a formal ethics approval is not required
+
 
 
