@@ -269,35 +269,35 @@ Public Advisory
 ### What Went Wrong
 The visualisation looked authoritative but omitted key assumptions. It ignored ground-level Ozone and NO2.
 ### How the Failure Was Detected
-A spike in emergency room admissions for respiratory distress on a day the app labeled "Perfect."
+peopel admitted for respiratory distress on a day the app labeled "Perfect."
 
 ### Who Was Affected
-- **Vulnerable Citizens:** Elderly people and asthmatics who trusted the "Safe" icon.
-- **Athletes:** People who performed high-intensity cardio in toxic conditions.
+- **Vulnerable Citizens:** Elderly people and asthmatics who trusted the "Safe" raitting .
+- **Athletes:** peopel who exercised in toxic conditions 
 
 ### Data Issues
-- **Metric Exclusion:** Narrow focus on one pollutant while ignoring others.
-- **False Precision:** A score of "100" implied absolute safety when it only meant "low dust."
+- **Metric Exclusion:** too foucused on one pollutent and not others
+- **False Precision:** A score of 100 implied absolute safety when it only meant low if the polutent monitored 
 
 ### Technical Choices
-- **UI Design:** Chose a "single score" for simplicity, masking the complexity of air chemistry.
+- **UI Design:** a score that based of one metric hides the whole story 
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:** App launched with high praise for its "clean design."
-- **Trigger Event:** Stagnant high-pressure system trapped NO2 at street level.
-- **Failure Event:** App displayed "98/100" while smog was visible.
-- **Detection:** Hospitals reported a 300% increase in inhaler use.
-- **Aftermath:** App pulled and redesigned to show a multi-pollutant breakdown.
+- **Initial Setup:** App launched 
+- **Trigger Event:** Stagnant high-pressure system trapped NO2 at street level
+- **Failure Event:** App displayed 98/100 while smog was visible.
+- **Detection:** Hospitals reported a 300% increase in respitory cases 
+- **Aftermath:** people were exposed yo harmful levels of pollutent based of them using the app as a guid line 
 
 ### Lessons Learned
 - Summarization of complex data must include "What this score doesn't measure."
-- Authority in design must be matched by comprehensiveness in data.
+  
 
 ### Quiz
-- **Q:** Why was the "100/100" score misleading?
-- **A:** It only measured one type of pollutant while omitting dangerous gases.
+- **Q:** Why was the 100/100 score misleading?
+- **A:** as it only measured one type of pollutant while omitting dangerous gases.
 - **Q:** How did the UI contribute to the harm?
-- **A:** It used authoritative icons (green runner) that encouraged risky behavior.
+- **A:** didnt show what the score didnt take into acount 
 
 ---
 
@@ -306,38 +306,37 @@ A spike in emergency room admissions for respiratory distress on a day the app l
 ### Domain
 Autonomous Transportation
 
-### Deployment Context
-An AI-managed traffic light system designed to reduce congestion in a historic European city.
+### Deployment ContextAi used to controll a traffic light systemn , with the idea of removing congestion 
 
 ### Intended Use
-To dynamically adjust signal timing based on real-time vehicle counts.
+Tdynamicallay adjust the lighst that the system controll based of traffic volume , speed and position
 
 ### System Type
-Optimization / Control System
+ Control System
 
 ### Inputs and Assumptions
-- **Video Feeds:** Cameras at every intersection.
-- **Assumption:** Large objects moving above 10km/h are vehicles; stationary objects are ignored after 5 minutes.
+- **Video Feeds:** Cameras at  intersections.
+- **Assumption:** Large objects moving above 10km/h are vehicles and stationary objects are ignored after 5 minutes.
 
 ### What Went Wrong
-The system was deployed in a context different from its training (modern US cities). In narrow European streets, the AI misclassified outdoor cafe umbrellas as "stationary delivery trucks," keeping lights red indefinitely.
+The system was deployed in a  different city from its training (modern US cities). In narrow European streets, the AI misclassified outdoor cafe umbrellas as stationary delivery trucks, keeping lights red indefinitely.
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:** System activated in the city center.
-- **Trigger Event:** A sunny Friday when cafes opened their large umbrellas.
-- **Failure Event:** A total gridlock that lasted 6 hours.
-- **Detection:** Police officers had to physically cover the sensors to reset the lights.
-- **Aftermath:** The city reverted to fixed timers until the AI could "learn" local features.
+- **Initial Setup:** System activated 
+- **Trigger Event:** A sunny Friday when cafes opened umbrellas.
+- **Failure Event:** A gridlock that lasted >6 hours.
+- **Detection:** Police officers had to physically cover the sensors
+- **Aftermath:** The city reverted to fixed timers. 
 
 ### Lessons Learned
-- Visual object detection is highly sensitive to cultural and architectural context.
-- Systems need an easy "manual override" for edge cases.
+- Visual object detection is highly sensitive 
+- Systems need a manual override.
 
 ### Quiz
 - **Q:** What environmental difference caused the failure?
-- **A:** The AI was trained on modern US cities but deployed in a historic European city with different street features.
+- **A:** The AI was trained on modern US cities but deployed in a historic European city 
 - **Q:** What specific object did the AI misclassify?
-- **A:** Outdoor cafe umbrellas, which it mistook for stationary delivery trucks.
+- **A:** Outdoor cafe umbrellas, which it mistook for delivery trucks.
 
 ---
 
