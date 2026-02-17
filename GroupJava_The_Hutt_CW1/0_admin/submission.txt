@@ -1,6 +1,3 @@
 Group Number:  Java_The_Hutt
 GitHub repository URL: https://github.com/sct2005/TeamProjectCOM2020
-Deployed demo URL: (Website URL)
-Demo/test account credentials (if needed):
-??
-??
+Deployed demo URL: Follow file "deployment_guide.pdf"
