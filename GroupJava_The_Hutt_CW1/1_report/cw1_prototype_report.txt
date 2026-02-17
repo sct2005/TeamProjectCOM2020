@@ -1,10 +1,10 @@
 Executive Summary
 
-The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systmes fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation and accountability.
+The AI Failures Museum is an education web application that we have designed to help people learn from real-world AI system failures. Rather than showcasing successful AI deployments, we have focused on where, how and why AI supported systems fail. By studying these failures, users can develop their own thoughts about the limitations of AI and then recognise potential warning signs in their own projects. Understanding the importance of proper validation and accountability.
 
 What the prototype currently achieves:
 
-- Content library: The system contains 11 curated exhibits covering diverse domains including technology failures, healthcare AI bias, social media content moderation, flooding risk mapping, finance and real estate automation, voice assistant ethics, consumer AI customer service and international relations. Each exhibit presents structured information about the failure context, system description, what went wrong, contributing factors and lessons learned from it.
+- Content library: The system contains 11 curated exhibits covering diverse domains including environmental management, agricultural surveillance, fintech and lending, irrigation management, public health and smart city monitoring, autonomous transportation, conservation biology, real estate and legal tech, logistics and healthcare, and civil engineering infrastructure.
 
 - Browse functionality: Users can view a list of all exhibits through our home page, which includes category filtering tabs (All Cases, Healthcare, Tech, Social Media, etc.) and severity badges (critical, high, medium) for each case. Clicking on any exhibit card takes users to a detailed page about the exhibit.
 
@@ -18,9 +18,9 @@ Key Benefits:
 
 The prototype demonstrates several important benefits such as:
 
-- Learning from mistakes: Rather than soley focusing on the success of AI, the museum provides insights that aren't usually that well documented and this allows for people to learn what can go wrong. This can help people be aware of the limitations are errors that AI can make.
+- Learning from mistakes: Rather than solely focusing on the success of AI, the museum provides insights that aren't usually that well documented and this allows for people to learn what can go wrong. This can help people be aware of the limitations are errors that AI can make.
 - Structured Analysis: Each exhibit breaks down complex failures into understandable components which helps users develop an understanding of AI and how to evaluate it and make their own decisions.
-- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding to answer the questions with imediate feedback with explanations that reinforces learning.
+- Testing Knowledge: The quizzes allows the user to turn the reading into learning by allowing the users to apply their understanding to answer the questions with immediate feedback with explanations that reinforces learning.
 
 Key Risks:
 
@@ -32,7 +32,7 @@ Project description and prioritised requirements
 
 Original Problem: 
 
-AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be servere consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise as a result. There is a lot more information about the success of AI and how it can be used to be benefical which it undoubtably true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowlege gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
+AI systems are becoming increasingly prominent in many in industries and when these systems fail there can be severe consequences. However, these failures are rarely documented and people can be unaware of the effects that that can arise as a result. There is a lot more information about the success of AI and how it can be used to be beneficial which it undoubtedly true but there is little to no coverage on the potential impacts it can have. This creates a dangerous knowledge gap as people may be unprepared to recognise potential warning signs or understand common failures of AI. Without the knowledge of what went wrong and why, the same mistakes may happen again and again.
 
 Solution:
 
@@ -41,7 +41,7 @@ Our AI Failures Museum addresses this gap by creating a digital repository of AI
 The system has 3 primary user groups:
 
 - Visitors: University students, professionals and researchers who browse exhibits, complete quizzes and learn from the documented failures.
-- Curators: Experts who create and edit exhibits throigh Django's admin interface.
+- Curators: Experts who create and edit exhibits through Django's admin interface.
 - Developers: Our team members who access the GitHub repository, run the system locally and deploy updates.
 
 Scope Boundaries
@@ -57,14 +57,14 @@ In scope for Sprint 1 (Currently implemented)
 
 Out of scope for Sprint 1 (Not implemented)
 
-- Points and badges: No gamification beyond immediate quiz feedback. No achievement system or progress tracking.
 - Comment moderation: Comments post immediately without approval. No flagging system for users to report inappropriate content.
 - Analytics: No tracking of which exhibits are most viewed, which quizzes have lowest accuracy or other usage metrics for curators.
 
 Permanent Out of Scope:
 
 - User-generated exhibits: Only curators can create exhibits. Visitors cannot submit their own failure stories to prevent misinformation.
-- Social features: No user profiles, friend connections, or social sharing buttons to maintain focus on education rather than social engagement.
+- Social networking features: No friend connections or social sharing buttons to maintain focus on education.
+- Commercial monetisation
 
 Success Criteria
 
@@ -73,7 +73,7 @@ We have 4 areas of success for our Sprint 1 success criteria
 1. Complete functions within the Museum
 - At least 10 exhibits covering multiple domains
 - At least 30 quiz questions
-- User authentification system
+- User authentication system
 - Quiz score tracking
 
 2. Technical Quality
@@ -92,62 +92,62 @@ We have 4 areas of success for our Sprint 1 success criteria
 
 Requirements as GitHub Issues
 
-Our requirements are tracked as user stories prioritised using MoSCow (Must/Should/Couldn't/Won't). With each story having story points reflecting the implementation complexity. 
+Our requirements are tracked as user stories prioritised using MoSCoW (Must/Should/Couldn't/Won't). With each story having story points reflecting the implementation complexity. 
 
 Must-Have Features (Sprint 1 - All Implemented):
 
 Feature 1: Login and comments
 User Story: As a researcher, I want to be able to login so that I can leave comments
-MoSCow: Must
+MoSCoW: Must
 Story Point: 6
 
 Feature 2: Quiz System
 User Story: As a student, I want to be able to do the quizzes so that I can test my knowledge
-MoSCow: Must
+MoSCoW: Must
 Story Point: 3
 
 Feature 3: View Historical AI Failures
 User Story: As an AI researcher, I want to see what AI was like 6 months ago compared to now so that I can learn from previous AI's mistakes
-MoSCow: Must
+MoSCoW: Must
 Story Point: 0.5 
 
 Feature 4: Safe and Efficient Website
 User Story: As a general user, I want to be able to have a functioning website which is safe and efficient
-MoSCow: Must
+MoSCoW: Must
 Story Point: 5 
 
 Should-Have Features (Sprint 2 - Planned):
 
 Feature 1: Create New Cases
 User Story: As a journalist, I want to be able to edit and create new cases so that other people can view them
-MoSCow: Should
+MoSCoW: Should
 Story Point: 5
 
 Feature 2: View Changes for Moderation
 User Story: As a moderator, I want to be able to view changes so that the website can be regulated
-MoSCow: Should 
+MoSCoW: Should 
 Story Point: 2
 
 Feature 3: View Images and Links
 User Story: As a student, I want to be able to view images or links about the cases
-MoSCow: Should
+MoSCoW: Should
 Story Point: 2
 
 Could-Have Features (Future Enhancements):
 
 Feature 1: Annotate Exhibits
 User Story: As a general user, I want to be able to annotate an exhibit so that I can make notes
-MoSCow: Could
+MoSCoW: Could
 Story Point: 3
 
 Feature 2: Exhibit Bookmarking
 User Story: As a general user, I want to be able to bookmark exhibits so that I can have a personal favourite reading list
-MoSCow: Could
+MoSCoW: Could
 Story Point: 3
 
 Feature 3: Mobile app
 User Story: As a general user, I want to have a mobile app where I can use an offline mode and download off the app store
-MoSCow: Could
+MoSCoW: Could
 Story Point: 15
 
 Won't Have:
@@ -162,7 +162,6 @@ Won't Have:
 Architecture (v1)
 High-Level Component Diagram
 
-Component Explanations:
 
 
 
@@ -174,7 +173,7 @@ Database Schema: Our database uses a relational structure with three main conten
 Core Entities
 
 Exhibit Table (exhibits_exhibit):
-This is our primrary entity representing an AI failure case study. Each exhibit has 21 fields:
+This is our primary entity representing an AI failure case study. Each exhibit has 21 fields:
 
 Basic Information:
 - id: Primary Key
@@ -222,7 +221,7 @@ Multiple-choice questions linked to exhibits. This entity has 6 fields:
 
 
 Comment Table (exhibits_comment):
-User-posted discussions with nested reply support. This entity has 6 fields:
+User-posted discussions with nested reply support. This entity has 7 fields:
 
 - id - Primary key
 - exhibit_id: Foreign key to Exhibit
@@ -233,14 +232,15 @@ User-posted discussions with nested reply support. This entity has 6 fields:
 - created_at: Timestamp
 
 QuizScore Table (exhibits_quizscore):
-Stores users' best quiz performance per exhibit. This entity has 6 fields:
+Stores users' best quiz performance per exhibit. This entity has 7 fields:
 
 - id: Primary key
-- user_id: Foreign key to User 
-- exhibit_id: Foreign key to Exhibit 
-- score: Integer 
-- total_questions: Integer 
-- completed_at: Timestamp 
+- user_id: Foreign key to User
+- exhibit_id: Foreign key to Exhibit
+- correct_answers: Integer
+- total_questions: Integer
+- score_percentage: Real number
+- taken_at: Timestamp
 
 Supporting Tables (Django Built-in)
 
@@ -278,10 +278,11 @@ Exhibit -> Comment (One-to-Many): Each comment is about exactly one exhibit and 
 Comment -> Comment (Self-referential): Comments can be replies to another comment so if the original comment was deleted the reply to that comment would be deleted.
 
 Seed Data Files:
-We maintain our dataset as JSON files with the two files:
+We maintain our dataset as JSON files with the three files:
 
 -exhibits.json: This stores the exhibits
 -quizzes.json: This stores the quizzes
+-artefacts.json: This stores the supporting artefacts and source links
 
 Data Curation Process:
 Each exhibit was manually researched by team members and followed this structured approach:
@@ -289,7 +290,7 @@ Each exhibit was manually researched by team members and followed this structure
 1.Identify publicly documented AI failures
 2.Gather information from credible sources
 3.Structure into schema
-4.Write 3-4 quiz questions per exhibit
+4.Write 3 quiz questions per exhibit
 5.Peer review for accuracy
 6.Add to JSON seed files
 
@@ -300,10 +301,28 @@ Data Quality Standards:
 - Complete fields: All required fields are populated
 
 
-
-
 Evaluation plan (initial):
 
+Implemented Measure: Quiz Comprehension Accuracy
+
+Our primary measure is quiz comprehension accuracy, tracked through our QuizScore system which stores each users best score per exhibit in the database.
+
+Early Results:
+
+From our initial testing, we have 2 quiz attempts stored from 1 user:
+- Exhibit 16: 3/3 correct (100%)
+- Exhibit 17: 2/3 correct (66.7%)
+- Average score: 83.3%
+
+The variation between exhibits suggests quizzes differ in difficulty.
+
+We also developed an automated test suite of 28 tests covering authentication, comments, quiz scoring, and page loading, all of which are included in the repository under exhibits/tests/.
+
+What We Will Evaluate in CW2:
+
+1. Quiz comprehension with a lot more participants across all exhibits to generate meaningful accuracy data and identify which domains are harder or easier.
+2. Content accuracy audit with review of all exhibits to verify factual correctness and credibility of sources.
+3. How effective the badge system is on our home page as for each exhibit a bronze, silver and gold badges is given to a user based on their quiz scores (bronze: >0%, silver: 50%+, gold: 80%+). We will evaluate whether these badges motivate users to retake quizzes and improve their scores over time.
 
 
 
@@ -314,7 +333,7 @@ Risks are classified by:
   - Likelihood: Low/Medium/High
   - Impact: Low/Medium/High/Critical
 
-Techinical Risks
+Technical Risks
 
 1. Database corruption or loss
 
@@ -339,7 +358,7 @@ Owners: Software Developer
 Likelihood: Medium
 Impact: Medium
 Risk Score: Medium
-Description: User posts hundreads of comments
+Description: User posts hundreds of comments
 Mitigation: Limit amount of comments by a user by a time period
 Owners: Software Developer
 
@@ -400,6 +419,7 @@ Risk Score: Low
 Description: Quizzes too easy or too hard
 Mitigation: Detailed explanations and unlimited retakes
 Owners: Data Lead
+
 
 
 
