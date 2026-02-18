@@ -4,11 +4,11 @@ The AI Failures Museum is an education web application that we have designed to 
 
 What the prototype currently achieves:
 
-- Content library: The system contains 11 curated exhibits covering diverse domains including environmental management, agricultural surveillance, fintech and lending, irrigation management, public health and smart city monitoring, autonomous transportation, conservation biology, real estate and legal tech, logistics and healthcare, and civil engineering infrastructure.
+- Content library: The system contains 11 curated exhibits covering diverse domains including environmental management, agricultural surveillance, fintech and lending, irrigation management, public health and smart city monitoring, autonomous transportation, conservation biology, real estate and legal tech, logistics and healthcare and civil engineering infrastructure.
 
 - Browse functionality: Users can view a list of all exhibits through our home page, which includes category filtering tabs (All Cases, Healthcare, Tech, Social Media, etc.) and severity badges (critical, high, medium) for each case. Clicking on any exhibit card takes users to a detailed page about the exhibit.
 
--Interactive quizzes: The system includes reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect), and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
+-Interactive quizzes: The system includes reflective quiz questions that test the user and encourage them to learn and understand the content. Users can complete multiple-choice quizzes where answer options are randomised to prevent memorisation. After submission, users immediately see their score, color-coded feedback (green for correct, red for incorrect) and detailed explanations for each question. Users can retake quizzes as many times as they want to improve understanding.
 
 - Comments and discussion: Visitors can post comments on exhibits to discuss failure cases with others. The commenting system supports nested replies, allowing for threaded discussions. 
 
@@ -36,7 +36,7 @@ AI systems are becoming increasingly prominent in many in industries and when th
 
 Solution:
 
-Our AI Failures Museum addresses this gap by creating a digital repository of AI failure cases. Focusing exclusively on failures, limitations and the misuses of AI-supported systems. Each exhibit presents a structured breakdown of a specific failure, including the system's intended purpose, what went wrong, contributing factors, and actionable lessons learned.
+Our AI Failures Museum addresses this gap by creating a digital repository of AI failure cases. Focusing exclusively on failures, limitations and the misuses of AI-supported systems. Each exhibit presents a structured breakdown of a specific failure, including the system's intended purpose, what went wrong, contributing factors and actionable lessons learned.
 
 The system has 3 primary user groups:
 
@@ -160,9 +160,31 @@ Won't Have:
 
 
 Architecture (v1)
-High-Level Component Diagram
+High-Level Component Diagram:
 
+1. User Browser
+The web browser that visitors use to access and view the AI Failures Museum website.
 
+2. Django Web Server
+The application server that receives HTTP requests from users and sends back HTML responses with the requested content.
+
+3. URL Router
+The component that maps incoming URLs to the appropriate view function, directing /exhibits/5/ to show exhibit 5 or /quiz/3/ to display quiz 3.
+
+4. View Layer
+Python functions in views.py that process user requests, retrieve data from models and render the appropriate response for each page.
+
+5. Model Layer
+Python classes that define the database structure for Exhibit, Quiz, Comment and QuizScore, providing an interface to interact with data.
+
+6. SQLite3 Database
+The database file that stores all persistent data including exhibits, quizzes, comments, quiz scores and user accounts.
+
+7. File Storage
+The directory where curator-uploaded exhibit images are stored, separate from the main database.
+
+8. External Services
+Current: None - the system operates completely offline.
 
 
 
@@ -316,7 +338,7 @@ From our initial testing, we have 2 quiz attempts stored from 1 user:
 
 The variation between exhibits suggests quizzes differ in difficulty.
 
-We also developed an automated test suite of 28 tests covering authentication, comments, quiz scoring, and page loading, all of which are included in the repository under exhibits/tests/.
+We also developed an automated test suite of 28 tests covering authentication, comments, quiz scoring and page loading, all of which are included in the repository under exhibits/tests/.
 
 What We Will Evaluate in CW2:
 
@@ -419,6 +441,7 @@ Risk Score: Low
 Description: Quizzes too easy or too hard
 Mitigation: Detailed explanations and unlimited retakes
 Owners: Data Lead
+
 
 
 
