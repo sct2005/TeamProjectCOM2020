@@ -346,159 +346,152 @@ The system was deployed in a  different city from its training (modern US cities
 Conservation Biology
 
 ### Deployment Context
-An AI used by a national park to track the population of the nearly extinct "Clouded Leopard."
+ai model to track the population of an nearly extinct clouded leopard
 
 ### Intended Use
-Automating the count of animals from remote camera trap images.
+counting animals from remote camera trap images.
 
 ### What Went Wrong
-The decision dashboard hid uncertainty. When the AI saw a blurry shape, it labeled it "Clouded Leopard (85% Confidence)" even if the alternative was "stray cat." The park reported a false "population boom," leading to the withdrawal of critical conservation funding.
+The decision dashboard hid uncertainty. it would often makr blurry shaped as leopords with non 100% uncertantiy , but as the uncrtanty wasnt shown , it was unclear that the model  wasn uncertain it was an leopard.
 
 ### How the Failure Was Detected
-A manual audit of the "positive" images revealed that 60% of them were actually domestic animals or swaying foliage.
+manual checking of images that were marked as leopard  revealling 60% were false positives
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:** Automated counting implemented to save on manual labor.
-- **Failure Event:** AI overestimated the population by 300%.
-- **Aftermath:** Funding for anti-poaching was cut based on the "recovery" data; actual leopard numbers dwindled further.
+- **Initial Setup:** system implemented
+- **Failure Event:** the system overestimated the population 
+- **Aftermath:** oversetimated population led to loss of funding for conservation problems 
 
 ### Lessons Learned
-- High confidence percentages can be misleading when the AI is choosing between very different alternatives.
-- Conservation decisions should never rely solely on automated counts without manual verification.
-
+consercatuion decisions could never be fully autiomated withouthuman approval 
 ### Quiz
 - **Q:** What did the dashboard hide that led to poor decisions?
-- **A:** Uncertainty—it showed high confidence scores without revealing that the AI was often choosing between very different alternatives like leopards vs. cats.
+- **A:** Uncertainty
 - **Q:** What was the tragic consequence of the overestimation?
-- **A:** Conservation funding was withdrawn, causing actual leopard populations to decline further.
-
+- **A:** Conservation funding was withdrawn
 ---
 
 ## Case Study 8: The Resolution-Blurred Property Line
 
 ### Domain
-Real Estate / Legal Tech
+Legal Tech
 
 ### Deployment Context
-An AI used by an automated land-registry system to flag "encroachments" (structures crossing property lines).
+AI was used to check incroachments on property boundries
 
 ### What Went Wrong
-The land-cover classification was used beyond its spatial resolution. The AI used imagery where 1 pixel = 2 meters. It flagged thousands of fences as "encroachments" simply because the fence fell within a "blurry" pixel.
+the system used 1 pixel as 2 meters o if there was a blurry pixel on teh boudrie the system would classify it as an encroachment 
 
 ### Who Was Affected
-- **Homeowners:** Received legal notices demanding they move their fences.
-- **Legal System:** Clogged with thousands of frivolous property disputes.
+- **Homeowners:** Received told to move their fences based of false classifications
+- **Legal System:** backlog due to cases with false reports
 
 ### Lessons Learned
-- Legal enforcement should never be automated based on data that has a margin of error larger than the legal threshold.
-
+ should not automnate task that will lead to lega reprocusions 
 ### Quiz
 - **Q:** What was the resolution problem?
-- **A:** Each pixel represented 2 meters, creating a margin of error larger than the typical property line dispute.
+- **A:** Each pixel represented 2 meters leading to a marginal erro 
 - **Q:** Why is this particularly problematic for legal applications?
-- **A:** Legal thresholds require precision that exceeds the data's inherent margin of error—you can't enforce law based on "blurry" data.
+- **A:** laws rewuire precision , cant make cases  without convincing evidence 
 
 ---
+
+
 
 ## Case Study 9: The Outdated Pandemic Supply Chain
 
 ### Domain
-Logistics / Healthcare
-
+Logistics 
 ### Deployment Context
-A hospital's AI for "Just-in-Time" inventory management for Personal Protective Equipment (PPE).
+an automated invatory tracker 
 
 ### Intended Use
-To minimize storage costs by ordering supplies only when needed.
+to try top minimise storage costs it would only order when it was gonna be needed
 
 ### What Went Wrong
-The system produced misleading requirements due to outdated data. It was trained on 2018–2019 usage patterns. During a localized 2026 outbreak, the AI refused to order extra masks because the "historical average" said they weren't needed.
+trained on data from 2018 , there was an outbreak in 2026 due to increse usage led to the hospital riunning out of supplies 
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:** AI optimized to keep inventory low to save costs.
-- **Failure Event:** PPE stocks ran out in 48 hours during a surge.
-- **Detection:** Staff were forced to reuse single-use masks.
-- **Aftermath:** The "Just-in-Time" model was replaced with a "Just-in-Case" hybrid model.
+- **Initial Setup:** deployment 
+- **Failure Event:** PPE stocks ran out 
+- **Detection:** re use of single used PPE.
+- **Aftermath:** modle was replaced with an modle that oreders just in case
 
 ### Lessons Learned
-- Healthcare supply chain AI must account for sudden demand surges, not just historical averages.
-- Cost optimization should never compromise emergency preparedness.
+models must acount for un for seen circumstanecs were situstions ore non linear or prone to variabilty 
 
 ### Quiz
 - **Q:** What time period was the AI trained on?
-- **A:** 2018–2019 usage patterns, which didn't include pandemic-level demand.
+- **A:** 2018–2019 
 - **Q:** What replacement model did the hospital adopt?
-- **A:** A "Just-in-Case" hybrid model that balanced cost savings with emergency reserves.
+- **A:** A "Just-in-Case"
 
 ---
 
 ## Case Study 10: The Authoritative Sea-Wall Projection
 
 ### Domain
-Civil Engineering / Infrastructure
+Civil Engineering 
 
 ### Deployment Context
-An AI model used to design the height of a new multi-billion dollar sea wall.
+AAI modle to desing the height of an sea wall
 
 ### Intended Use
-To predict the maximum wave height and sea-level rise over a 50-year period.
+predict sea level rise 
 
 ### What Went Wrong
-The visualisation looked authoritative but omitted key assumptions. The 3D model was impressive but omitted the assumption that the local land was sinking (subsidence). The wall was built 1 meter too short, rendering it obsolete in a decade.
+didi not take into account that the land could sink not that sea level woudl rise 
 
 ### Lessons Learned
-- Visualizations of engineering projects must explicitly state which geological variables were not included.
-- Engineering AI needs a multi-disciplinary review (geology + hydrology).
+AI model mustr state what modles are not included 
 
 ### Quiz
 - **Q:** What critical geological factor did the AI omit?
-- **A:** Land subsidence (the gradual sinking of the land itself).
-- **Q:** What was the consequence of this omission?
-- **A:** A multi-billion dollar sea wall was built 1 meter too short and became obsolete within a decade.
+- **A:** land sinking 
+
 
 ---
 
 ## Case Study 11: The Subsurface Blind Spot
 
 ### Domain
-Infrastructure / Civil Engineering
+Civil Engineering
 
 ### Deployment Context
-A city-wide AI system used for predicting road sinkholes by analyzing surface-level traffic vibrations.
+predicting sinholes based of road levels based of traffic vibrations 
 
 ### Intended Use
-To identify areas where underground soil erosion is occurring before a sinkhole opens.
+identify where areas have sinking soil before the sink hole itself apears
 
 ### System Type
-Anomaly Detection / Predictive Maintenance
+Predictive Maintenance
 
 ### Inputs and Assumptions
-- **Seismic Sensors:** 500 sensors placed on the asphalt surface.
-- **Assumption:** Surface vibrations accurately reflect subsurface density changes without requiring radar.
+- **Seismic Sensors:** sensors placedunder the road
+- **Assumption:** Surface vibrations are an acurate measurment to predict road erasure 
 
 ### Outputs Presented to Users
-- **Risk Map:** A digital twin of the city with "Safe" and "Compromised" roads.
-- **Maintenance Priority List:** A ranked list of streets for urgent inspection.
+- **Risk Map:** A digital twin of the city with compromised or safe
+- **Maintenance Priority List:** rank streets based on urgancy 
 
 ### What Went Wrong
-The visualization looked authoritative but omitted key assumptions—specifically, it didn't account for the dampening effect of the city's old cobblestone layers beneath the asphalt. The AI misinterpreted "quiet" vibrations as stable ground when, in fact, the cobbles were masking a massive void below.
+didnt acount for damge by other means e.g dampness
+diffrent surfaces could mask the level of vibnbrations 
 
 ### How the Failure Was Detected
-A major transit bus fell through a "Green Zone" road that the AI had labeled as having 99% stability.
+an acident was caused sue to a sink whole in an area that was deemed safe 
 
 ### Who Was Affected
-- **Commuters:** Public safety was compromised.
-- **City Maintenance:** Budgets were wasted on "Orange Zone" roads that were actually fine.
+- **Commuters:** Public safety compromised.
+- **City Maintenance:** Budgets used for roads that were demed needing fixing but were not in reality 
 
 ### Lessons Learned
-- Surface data is an insufficient proxy for subsurface structural integrity.
-- Predictive models must explicitly flag where geological layers interfere with sensor accuracy.
+- Surface vibrations alone was  insufficant 
 
 ### Quiz
 - **Q:** What physical phenomenon did the AI fail to account for?
-- **A:** The dampening effect of old cobblestone layers beneath the asphalt, which masked vibrations from subsurface voids.
-- **Q:** What was the danger of the "authoritative" visualization?
-- **A:** It showed 99% stability for a road that actually had a massive void underneath, leading to a bus accident.
+- **A:** The dampening effect 
+
 
 ---
 
