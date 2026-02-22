@@ -282,10 +282,65 @@
 
         {% if active_tab == 'access' %}
             <div class="panel">
-                <h2>Access level</h2>
+                <h2>{% if user_profile.is_admin %}Permissions &amp; Admin panel{% else %}Access level{% endif %}</h2>
                 <p style="margin: 0 0 0.5rem 0;">Your current access level:</p>
                 <span class="access-badge">{{ user_profile.get_access_level_display }}</span>
-                <p class="access-note">Specific abilities based on your access level will be available here in a future update.</p>
+
+                {% if user_profile.is_admin %}
+                <div class="admin-panel" style="margin-top: 2rem;">
+                    <h3 style="font-size: 1rem; margin: 0 0 1rem 0;">User management</h3>
+                    <p class="access-note" style="margin-bottom: 1rem;">Manage all users: edit roles, delete accounts, or delete quiz scores. You can also delete any comment on any exhibit.</p>
+                    {% if all_users %}
+                    <table class="score-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in all_users %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'admin_user_comments' item.user.id %}">{{ item.user.username }}</a>
+                                    {% with comment_count=item.user.comments.count %}
+                                    {% if comment_count %}<span style="font-size: 0.75rem; color: #717182;">({{ comment_count }} comment{{ comment_count|pluralize }})</span>{% endif %}
+                                    {% endwith %}
+                                </td>
+                                <td>
+                                    <form method="post" action="{% url 'admin_edit_user_role' item.user.id %}" style="display: inline-flex; gap: 0.5rem; align-items: center;">
+                                        {% csrf_token %}
+                                        <select name="access_level" onchange="this.form.submit()" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">
+                                            <option value="admin" {% if item.profile.access_level == 'admin' %}selected{% endif %}>Admin</option>
+                                            <option value="curator" {% if item.profile.access_level == 'curator' %}selected{% endif %}>Curator</option>
+                                            <option value="user" {% if item.profile.access_level == 'user' %}selected{% endif %}>User</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" action="{% url 'admin_delete_user_scores' item.user.id %}" style="display: inline;" onsubmit="return confirm('Delete all quiz scores for {{ item.user.username }}?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete scores</button>
+                                    </form>
+                                    {% if item.user.id != request.user.id %}
+                                    <form method="post" action="{% url 'admin_delete_user' item.user.id %}" style="display: inline;" onsubmit="return confirm('Permanently delete account {{ item.user.username }}?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete account</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p style="color: #717182;">No users in the system.</p>
+                    {% endif %}
+                </div>
+                {% else %}
+                <p class="access-note">As a {{ user_profile.get_access_level_display }}, you can view exhibits, add comments, and take quizzes.{% if user_profile.is_curator %} You can also add, edit, and delete exhibits.{% endif %}</p>
+                {% endif %}
             </div>
         {% endif %}
     </div>

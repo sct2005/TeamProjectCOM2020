@@ -4,7 +4,7 @@
       <strong>{{ comment.author_name }}</strong>
       <span style="color: #666; font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
     </div>
-    {% if request.user.is_authenticated and comment.user_id == request.user.id %}
+    {% if request.user.is_authenticated and user_profile and comment.user_id == request.user.id or request.user.is_authenticated and user_profile and user_profile.is_admin or request.user.is_authenticated and request.user.is_superuser %}
       <form method="post" action="{% url 'exhibits:delete_comment' exhibit.id comment.id %}" style="margin: 0;">
         {% csrf_token %}
         <button type="submit" style="background: transparent; border: none; color: #b91c1c; font-size: 12px; cursor: pointer; padding: 0;">

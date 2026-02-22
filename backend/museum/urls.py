@@ -34,6 +34,11 @@ urlpatterns = [
     path("accounts/profile/password/", exhibit_views.profile_change_password, name="profile_change_password"),
     path("accounts/profile/delete-scores/", exhibit_views.profile_delete_scores, name="profile_delete_scores"),
     path("accounts/profile/delete-account/", exhibit_views.profile_delete_account, name="profile_delete_account"),
+    # Admin panel
+    path("accounts/admin/users/<int:user_id>/role/", exhibit_views.admin_edit_user_role, name="admin_edit_user_role"),
+    path("accounts/admin/users/<int:user_id>/delete/", exhibit_views.admin_delete_user, name="admin_delete_user"),
+    path("accounts/admin/users/<int:user_id>/delete-scores/", exhibit_views.admin_delete_user_scores, name="admin_delete_user_scores"),
+    path("accounts/admin/users/<int:user_id>/comments/", exhibit_views.admin_user_comments, name="admin_user_comments"),
 ]
 
 # Serve media files in development

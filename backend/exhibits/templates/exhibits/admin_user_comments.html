@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comments by {{ target_user.username }}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: #f9fafb; }
+        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .comment { padding: 1rem; background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 1rem; }
+        .comment-meta { font-size: 0.875rem; color: #717182; margin-bottom: 0.5rem; }
+        .comment-body { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Comments by {{ target_user.username }}</h1>
+    <p><a href="{% url 'profile' %}?tab=access">← Back to admin panel</a></p>
+
+    {% if comments %}
+        {% for c in comments %}
+        <div class="comment">
+            <div class="comment-meta">
+                On <a href="{% url 'exhibits:detail' c.exhibit_id %}#comment-{{ c.id }}">{{ c.exhibit.title }}</a>
+                · {{ c.created_at|date:"M j, Y H:i" }}
+            </div>
+            <div class="comment-body">{{ c.body }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="color: #717182;">No comments yet.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if quiz %}Edit{% else %}Add{% endif %} quiz question – {{ exhibit.title }}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem; background: #f9fafb; }
+        h1 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.25rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+        .form-group textarea { min-height: 80px; }
+        .form-group .helptext { font-size: 0.75rem; color: #717182; }
+        .btn { padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; font-weight: 500; }
+        .btn-primary { background: #2563eb; color: white; border: none; }
+        .btn-secondary { background: #e5e7eb; color: #374151; text-decoration: none; display: inline-block; }
+        .actions { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <h1>{% if quiz %}Edit{% else %}Add{% endif %} quiz question</h1>
+    <p><a href="{% url 'exhibits:quiz_manage' exhibit.pk %}">← Back to quiz management</a></p>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<p class="helptext">{{ field.help_text }}</p>{% endif %}
+            {% if field.errors %}<ul style="color: #b91c1c;">{{ field.errors }}</ul>{% endif %}
+        </div>
+        {% endfor %}
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">{% if quiz %}Save{% else %}Add{% endif %}</button>
+            <a href="{% url 'exhibits:quiz_manage' exhibit.pk %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>

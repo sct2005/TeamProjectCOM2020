@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage quiz – {{ exhibit.title }}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: #f9fafb; }
+        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.125rem; margin: 1.5rem 0 0.75rem 0; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        th { font-weight: 600; background: #f9fafb; }
+        .btn { padding: 0.375rem 0.75rem; font-size: 0.875rem; border-radius: 0.375rem; cursor: pointer; }
+        .btn-primary { background: #2563eb; color: white; border: none; text-decoration: none; display: inline-block; }
+        .btn-danger { background: #dc2626; color: white; border: none; }
+        .actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>{{ exhibit.title }}</h1>
+    <p><a href="{% url 'exhibits:detail' exhibit.pk %}">← Back to exhibit</a></p>
+
+    <h2>Quiz questions</h2>
+    {% if quizzes %}
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Options</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in quizzes %}
+            <tr>
+                <td>{{ q.question|truncatewords:15 }}</td>
+                <td>{{ q.options|length }} option(s)</td>
+                <td>
+                    <a href="{% url 'exhibits:quiz_edit' exhibit.pk q.id %}" class="btn btn-primary">Edit</a>
+                    <form method="post" action="{% url 'exhibits:quiz_delete' exhibit.pk q.id %}" style="display: inline;" onsubmit="return confirm('Delete this quiz question?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="color: #717182;">No quiz questions yet.</p>
+    {% endif %}
+
+    <div class="actions" style="margin-top: 1.5rem;">
+        <a href="{% url 'exhibits:quiz_add' exhibit.pk %}" class="btn btn-primary">Add quiz question</a>
+    </div>
+</body>
+</html>

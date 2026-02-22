@@ -216,6 +216,9 @@
                         <div style="margin-bottom: 0.25rem;">
                             Signed in as <a href="{% url 'profile' %}" style="color: #2563eb; text-decoration: none; font-weight: 600;">{{ request.user.username }}</a>
                         </div>
+                        {% if user_profile and user_profile.is_curator %}
+                        <a href="{% url 'exhibits:create' %}" style="color: #2563eb; text-decoration: none; margin-right: 0.5rem;">Add exhibit</a>
+                        {% endif %}
                         <a href="{% url 'logout' %}" style="color: #2563eb; text-decoration: none;">Log out</a>
                     {% else %}
                         <a href="{% url 'login' %}" style="color: #2563eb; text-decoration: none; margin-right: 0.5rem;">Sign in</a>

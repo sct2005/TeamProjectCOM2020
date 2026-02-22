@@ -95,19 +95,27 @@ class UserProfile(models.Model):
         related_name="profile",
     )
     ACCESS_LEVELS = [
-        ("viewer", "Viewer"),
-        ("contributor", "Contributor"),
-        ("moderator", "Moderator"),
         ("admin", "Admin"),
+        ("curator", "Curator"),
+        ("user", "User"),
     ]
     access_level = models.CharField(
         max_length=20,
         choices=ACCESS_LEVELS,
-        default="viewer",
+        default="user",
     )
 
     def __str__(self):
         return f"Profile: {self.user.username} ({self.get_access_level_display()})"
+
+    @property
+    def is_admin(self):
+        return self.access_level == "admin"
+
+    @property
+    def is_curator(self):
+        """Curator or admin (admin inherits curator abilities)."""
+        return self.access_level in ("admin", "curator")
 
 
 class QuizScore(models.Model):

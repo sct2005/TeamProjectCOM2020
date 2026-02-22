@@ -1,15 +1,19 @@
 from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 import json
 import random
 from .models import Exhibit, Quiz, Comment, QuizScore, UserProfile
-from .forms import UsernameChangeForm
+from .forms import UsernameChangeForm, UserRoleForm, ExhibitForm, QuizForm
+from .decorators import admin_required, curator_required, can_delete_comment
+
+User = get_user_model()
 
 
 # Menu page design: map exhibit title -> category, severity, categories (tags)
@@ -169,7 +173,7 @@ def post_comment(request, pk):
 
 @require_POST
 def delete_comment(request, pk, comment_id):
-    """Allow a user to delete their own comment (or replies)."""
+    """Allow a user to delete their own comment, or admins to delete any comment."""
     exhibit = get_object_or_404(Exhibit, pk=pk)
     comment = get_object_or_404(Comment, pk=comment_id, exhibit=exhibit)
 
@@ -178,7 +182,7 @@ def delete_comment(request, pk, comment_id):
         next_url = reverse("exhibits:detail", args=[exhibit.id]) + "#comments"
         return redirect(f"{login_url}?next={next_url}")
 
-    if comment.user_id != request.user.id:
+    if not can_delete_comment(request.user, comment):
         return HttpResponseForbidden("You can only delete your own comments.")
 
     comment.delete()
@@ -305,6 +309,7 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            UserProfile.objects.get_or_create(user=user, defaults={"access_level": "user"})
             login(request, user)
             next_url = request.GET.get("next") or reverse("home")
             return redirect(next_url)
@@ -347,13 +352,13 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
-    """Profile page with tabs: scores, account, access level."""
+    """Profile page with tabs: scores, account, permissions (access level)."""
     tab = (request.GET.get("tab") or "scores").strip().lower()
     if tab not in ("scores", "account", "access"):
         tab = "scores"
 
     # Ensure user has a profile (for access level)
-    profile, _ = UserProfile.objects.get_or_create(user=request.user, defaults={"access_level": "viewer"})
+    profile, _ = UserProfile.objects.get_or_create(user=request.user, defaults={"access_level": "user"})
 
     # Quiz scores for tab 1
     quiz_scores = QuizScore.objects.filter(user=request.user).select_related("exhibit").order_by("exhibit__title")
@@ -362,12 +367,21 @@ def profile_view(request):
     username_form = UsernameChangeForm(user=request.user)
     password_form = PasswordChangeForm(user=request.user)
 
+    # Admin panel data: all users with profiles (for permissions tab)
+    all_users = []
+    if profile.is_admin:
+        users = User.objects.all().order_by("username")
+        for u in users:
+            up, _ = UserProfile.objects.get_or_create(user=u, defaults={"access_level": "user"})
+            all_users.append({"user": u, "profile": up})
+
     return render(request, "exhibits/profile.html", {
         "active_tab": tab,
         "quiz_scores": quiz_scores,
         "username_form": username_form,
         "password_form": password_form,
         "user_profile": profile,
+        "all_users": all_users,
     })
 
 
@@ -417,3 +431,155 @@ def profile_delete_account(request):
     user.delete()
     messages.success(request, "Your account has been deleted.")
     return redirect("home")
+
+
+# ---------------------------------------------------------------------------
+# Admin panel (admin-only)
+# ---------------------------------------------------------------------------
+
+@admin_required
+@require_POST
+def admin_edit_user_role(request, user_id):
+    """Admin: change a user's role."""
+    target_user = get_object_or_404(User, pk=user_id)
+    form = UserRoleForm(request.POST)
+    if form.is_valid():
+        profile, _ = UserProfile.objects.get_or_create(user=target_user, defaults={"access_level": "user"})
+        profile.access_level = form.cleaned_data["access_level"]
+        profile.save()
+        messages.success(request, f"Role for {target_user.username} updated to {profile.get_access_level_display()}.")
+    else:
+        messages.error(request, "Invalid role selection.")
+    return redirect(reverse("profile") + "?tab=access")
+
+
+@admin_required
+@require_POST
+def admin_delete_user(request, user_id):
+    """Admin: delete another user's account."""
+    target_user = get_object_or_404(User, pk=user_id)
+    if target_user.id == request.user.id:
+        messages.error(request, "You cannot delete your own account from here.")
+        return redirect(reverse("profile") + "?tab=access")
+    username = target_user.username
+    target_user.delete()
+    messages.success(request, f"Account {username} has been deleted.")
+    return redirect(reverse("profile") + "?tab=access")
+
+
+@admin_required
+@require_POST
+def admin_delete_user_scores(request, user_id):
+    """Admin: delete all quiz scores for a user."""
+    target_user = get_object_or_404(User, pk=user_id)
+    count, _ = QuizScore.objects.filter(user=target_user).delete()
+    messages.success(request, f"Deleted {count} quiz score(s) for {target_user.username}.")
+    return redirect(reverse("profile") + "?tab=access")
+
+
+@admin_required
+def admin_user_comments(request, user_id):
+    """Admin: view all comments by a user with links to exhibits."""
+    target_user = get_object_or_404(User, pk=user_id)
+    comments = Comment.objects.filter(user=target_user).select_related("exhibit").order_by("-created_at")
+    return render(request, "exhibits/admin_user_comments.html", {
+        "target_user": target_user,
+        "comments": comments,
+    })
+
+
+# ---------------------------------------------------------------------------
+# Curator: exhibit CRUD
+# ---------------------------------------------------------------------------
+
+@curator_required
+def exhibit_create(request):
+    """Curator: create a new exhibit."""
+    if request.method == "POST":
+        form = ExhibitForm(request.POST, request.FILES)
+        if form.is_valid():
+            exhibit = form.save()
+            messages.success(request, f"Exhibit '{exhibit.title}' created.")
+            return redirect("exhibits:detail", pk=exhibit.pk)
+    else:
+        form = ExhibitForm()
+    return render(request, "exhibits/exhibit_form.html", {"form": form, "exhibit": None, "is_edit": False})
+
+
+@curator_required
+def exhibit_edit(request, pk):
+    """Curator: edit an exhibit."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    if request.method == "POST":
+        form = ExhibitForm(request.POST, request.FILES, instance=exhibit)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Exhibit '{exhibit.title}' updated.")
+            return redirect("exhibits:detail", pk=exhibit.pk)
+    else:
+        form = ExhibitForm(instance=exhibit)
+    return render(request, "exhibits/exhibit_form.html", {"form": form, "exhibit": exhibit, "is_edit": True})
+
+
+@curator_required
+@require_POST
+def exhibit_delete(request, pk):
+    """Curator: delete an exhibit."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    title = exhibit.title
+    exhibit.delete()
+    messages.success(request, f"Exhibit '{title}' deleted.")
+    return redirect("home")
+
+
+@curator_required
+def quiz_manage(request, pk):
+    """Curator: add/edit/delete quiz questions for an exhibit."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    quizzes = exhibit.quizzes.all()
+    return render(request, "exhibits/quiz_manage.html", {"exhibit": exhibit, "quizzes": quizzes})
+
+
+@curator_required
+def quiz_add(request, pk):
+    """Curator: add a quiz question."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    if request.method == "POST":
+        form = QuizForm(request.POST)
+        if form.is_valid():
+            quiz = form.save(commit=False)
+            quiz.exhibit = exhibit
+            quiz.save()
+            messages.success(request, "Quiz question added.")
+            return redirect("exhibits:quiz_manage", pk=exhibit.pk)
+    else:
+        form = QuizForm()
+    return render(request, "exhibits/quiz_form.html", {"form": form, "exhibit": exhibit, "quiz": None})
+
+
+@curator_required
+def quiz_edit(request, pk, quiz_id):
+    """Curator: edit a quiz question."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    quiz = get_object_or_404(Quiz, pk=quiz_id, exhibit=exhibit)
+    if request.method == "POST":
+        form = QuizForm(request.POST, instance=quiz)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Quiz question updated.")
+            return redirect("exhibits:quiz_manage", pk=exhibit.pk)
+    else:
+        form = QuizForm(instance=quiz)
+        form.fields["options_text"].initial = "\n".join(quiz.options) if quiz.options else ""
+    return render(request, "exhibits/quiz_form.html", {"form": form, "exhibit": exhibit, "quiz": quiz})
+
+
+@curator_required
+@require_POST
+def quiz_delete(request, pk, quiz_id):
+    """Curator: delete a quiz question."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    quiz = get_object_or_404(Quiz, pk=quiz_id, exhibit=exhibit)
+    quiz.delete()
+    messages.success(request, "Quiz question deleted.")
+    return redirect("exhibits:quiz_manage", pk=exhibit.pk)
