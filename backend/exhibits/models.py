@@ -86,6 +86,28 @@ class Comment(models.Model):
         return f"Comment by {self.author_name} on {self.exhibit.title}"
 
 
+class Bookmark(models.Model):
+    """User bookmark of an exhibit."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="bookmarks",
+    )
+    exhibit = models.ForeignKey(
+        Exhibit,
+        on_delete=models.CASCADE,
+        related_name="bookmarks",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "exhibit")
+
+    def __str__(self):
+        return f"Bookmark: {self.user} → {self.exhibit}"
+
+
 class UserProfile(models.Model):
     """Extended profile for user (access level, etc.)."""
 

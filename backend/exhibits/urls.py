@@ -9,6 +9,7 @@ urlpatterns = [
     path("<int:pk>/", views.exhibit_detail, name="detail"),
     path("<int:pk>/edit/", views.exhibit_edit, name="edit"),
     path("<int:pk>/delete/", views.exhibit_delete, name="delete"),
+    path("<int:pk>/bookmark/", views.toggle_bookmark, name="toggle_bookmark"),
     path("<int:pk>/comments/post/", views.post_comment, name="post_comment"),
     path(
         "<int:pk>/comments/<int:comment_id>/delete/",

@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 import json
 import random
-from .models import Exhibit, Quiz, Comment, QuizScore, UserProfile
+from .models import Exhibit, Quiz, Comment, QuizScore, UserProfile, Bookmark
 from .forms import UsernameChangeForm, UserRoleForm, ExhibitForm, QuizForm
 from .decorators import admin_required, curator_required, can_delete_comment
 
@@ -46,12 +46,18 @@ def home(request):
     """Homepage: Menu Page for Topics design — case study cards with category filter."""
     exhibits = list(Exhibit.objects.all().order_by("title"))
     selected_category = (request.GET.get("category") or "all").strip()
+    search_query = (request.GET.get("q") or "").strip()
 
     # Preload quiz scores for the authenticated user (for badge display)
     user_scores_by_exhibit_id = {}
+    bookmarked_exhibit_ids = set()
     if request.user.is_authenticated:
         user_scores = QuizScore.objects.filter(user=request.user)
         user_scores_by_exhibit_id = {qs.exhibit_id: qs for qs in user_scores}
+        # User bookmarks
+        bookmarked_exhibit_ids = set(
+            Bookmark.objects.filter(user=request.user).values_list("exhibit_id", flat=True)
+        )
 
     # Attach menu metadata (category, severity, categories) and user quiz badge to each exhibit
     for ex in exhibits:
@@ -86,14 +92,28 @@ def home(request):
                 ex.user_quiz_badge_level = "bronze"
                 ex.user_quiz_dot_level = "bronze"
 
-    # Unique categories for tabs (from exhibits)
-    categories = ["all"] + sorted({ex.menu_category for ex in exhibits if ex.menu_category}, key=str.lower)
+        # Bookmark flag for UI
+        ex.is_bookmarked = ex.id in bookmarked_exhibit_ids
+
+    # Unique categories for tabs (from exhibits) plus a Bookmarks tab for logged-in users
+    base_categories = sorted({ex.menu_category for ex in exhibits if ex.menu_category}, key=str.lower)
+    categories = ["all"]
+    if request.user.is_authenticated and bookmarked_exhibit_ids:
+        categories.append("bookmarks")
+    categories.extend(base_categories)
     total_count = len(exhibits)
     critical_count = sum(1 for ex in exhibits if ex.menu_severity == "critical")
     category_count = len(categories) - 1  # exclude 'all'
 
-    if selected_category != "all":
+    if selected_category == "bookmarks" and request.user.is_authenticated:
+        exhibits = [ex for ex in exhibits if ex.id in bookmarked_exhibit_ids]
+    elif selected_category != "all":
         exhibits = [ex for ex in exhibits if ex.menu_category == selected_category]
+
+    # Text search by exhibit title (case-insensitive)
+    if search_query:
+        q_lower = search_query.lower()
+        exhibits = [ex for ex in exhibits if q_lower in (ex.title or "").lower()]
 
     return render(request, "exhibits/home.html", {
         "exhibits": exhibits,
@@ -102,6 +122,7 @@ def home(request):
         "total_count": total_count,
         "critical_count": critical_count,
         "category_count": category_count,
+        "search_query": search_query,
     })
 
 
@@ -117,6 +138,10 @@ def exhibit_detail(request, pk):
         Comment.objects.filter(exhibit=exhibit, parent__isnull=True)
         .prefetch_related("replies__replies__replies")
     )
+    # Bookmark state for the current user
+    is_bookmarked = False
+    if request.user.is_authenticated:
+        is_bookmarked = Bookmark.objects.filter(user=request.user, exhibit=exhibit).exists()
     # Split timeline into entries for visual timeline (by newlines or by ". " for single paragraph)
     timeline_entries = []
     if exhibit.timeline and exhibit.timeline.strip():
@@ -129,6 +154,7 @@ def exhibit_detail(request, pk):
         "exhibit": exhibit,
         "comments": comments,
         "timeline_entries": timeline_entries,
+        "is_bookmarked": is_bookmarked,
     })
 
 @require_POST
@@ -169,6 +195,22 @@ def post_comment(request, pk):
     )
 
     return redirect(reverse("exhibits:detail", args=[exhibit.id]) + "#comments")
+
+
+@login_required
+@require_POST
+def toggle_bookmark(request, pk):
+    """Toggle bookmark for an exhibit for the current user."""
+    exhibit = get_object_or_404(Exhibit, pk=pk)
+    bookmark, created = Bookmark.objects.get_or_create(user=request.user, exhibit=exhibit)
+    if not created:
+        bookmark.delete()
+        messages.success(request, "Exhibit removed from your bookmarks.")
+    else:
+        messages.success(request, "Exhibit added to your bookmarks.")
+
+    next_url = request.POST.get("next") or request.META.get("HTTP_REFERER") or reverse("exhibits:detail", args=[exhibit.id])
+    return redirect(next_url)
 
 
 @require_POST

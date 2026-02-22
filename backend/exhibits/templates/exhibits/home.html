@@ -201,6 +201,29 @@
             font-size: 0.875rem;
             color: #717182;
         }
+
+        .bookmark-btn{
+    font-size: 0.875rem;
+    background: #f3f4f6;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    }
+
+    .bookmark-btn:hover{
+        transform: scale(1.1);
+        background: #e5e7eb;
+    }
+
+    .bookmark-btn.bookmarked{
+        color: #f59e0b;
+    }
+
+    .bookmark-btn:not(.bookmarked){
+        color: #6b7280;
+    }
     </style>
 </head>
 <body>
@@ -228,12 +251,39 @@
             </div>
         </div>
 
+        <!-- Search bar -->
+        <form method="get" style="margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                <div style="flex: 1 1 220px;">
+                    <input
+                        type="text"
+                        name="q"
+                        value="{{ search_query }}"
+                        placeholder="Search exhibits by name..."
+                        style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.5rem; border: 1px solid #d1d5db; font-size: 0.9rem;"
+                    />
+                </div>
+                {% if selected_category and selected_category != "all" %}
+                    <input type="hidden" name="category" value="{{ selected_category }}">
+                {% endif %}
+                <button type="submit" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; background: #2563eb; color: white; font-size: 0.9rem; font-weight: 500; cursor: pointer;">
+                    Search
+                </button>
+            </div>
+        </form>
+
         <div class="tabs" role="tablist">
             {% for cat in categories %}
-                <a href="?category={{ cat|urlencode }}"
+                <a href="?category={{ cat|urlencode }}{% if search_query %}&amp;q={{ search_query|urlencode }}{% endif %}"
                    class="{% if selected_category == cat %}active{% endif %}"
                    role="tab">
-                    {% if cat == "all" %}All Cases{% else %}{{ cat }}{% endif %}
+                    {% if cat == "all" %}
+                        All Cases
+                    {% elif cat == "bookmarks" %}
+                        ★ Bookmarks
+                    {% else %}
+                        {{ cat }}
+                    {% endif %}
                 </a>
             {% endfor %}
         </div>
@@ -248,6 +298,21 @@
                                     <span class="exhibit-dot-inner"></span>
                                 </span>
                             </div>
+                            {% if request.user.is_authenticated %}
+                            <form method="post" action="{% url 'exhibits:toggle_bookmark' exhibit.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                            
+                                <button type="submit"
+                                    class="bookmark-btn {% if exhibit.is_bookmarked %}bookmarked{% endif %}">
+                                    {% if exhibit.is_bookmarked %}
+                                        ★
+                                    {% else %}
+                                        ☆
+                                    {% endif %}
+                                </button>
+                            </form>
+                            {% endif %}
                             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem;">
                                 <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
                                 {% if request.user.is_authenticated and exhibit.user_quiz_badge %}
@@ -262,6 +327,11 @@
                         </div>
                         <h2 class="card-title">{{ exhibit.title }}</h2>
                         <div class="card-tags">
+                            {% if request.user.is_authenticated and exhibit.is_bookmarked %}
+                                <span class="tag" style="background: #facc15; color: #92400e;">
+                                    ★ Bookmarked
+                                </span>
+                            {% endif %}
                             {% for tag in exhibit.menu_categories %}
                                 <span class="tag">{{ tag }}</span>
                             {% endfor %}
