@@ -498,33 +498,35 @@ an acident was caused sue to a sink whole in an area that was deemed safe
 ## Case Study 12: The Arctic Drift Bias
 
 ### Domain
-Maritime Logistics / Climate Research
+Climate Research
 
 ### Deployment Context
-An autonomous navigation AI for icebreakers operating in the Northern Sea Route.
+
+an autonmous navigation system for ice breakers sailling in the northen sea 
 
 ### Intended Use
-To find the most fuel-efficient path through thinning Arctic ice.
+to find th optimal pathfor fuel efficency.
 
 ### System Type
-Autonomous Navigation / Pathfinding
+Autonomous Navigation and optimal path finding 
 
 ### Inputs and Assumptions
 - **Historical Ice Thickness:** Data from 2000–2015.
-- **Assumption:** Ice floe movement patterns are cyclical and predictable based on 20th-century models.
+- **Assumption:**  Ice movemnt patterns are predictable not random and canm be predicted based of data from the 20th century. 
 
 ### What Went Wrong
-The system produced misleading routes due to outdated data. It was trained on "Old Ice" patterns, but the 2026 Arctic environment consisted mostly of "New Ice," which moves and breaks 40% faster. The AI led a fleet into a "clear" channel that closed behind them in hours due to rapid drift.
+
+system prodiced misleading routes due to being trained on old ice movment but due to global warming current ice moves faster and is more unpredicable, system lead a vessel into a clear path that want clear.
 
 ### Timeline of Failure + Aftermath
-- **Initial Setup:** Deployed for the summer transit season.
+- **Initial Setup:** Deployment of system.
 - **Trigger Event:** An unpredicted shift in wind direction.
-- **Failure Event:** Three vessels became ice-locked in a "guaranteed clear" route.
-- **Aftermath:** Expensive rescue operations were required; the AI was grounded for lack of real-time adaptability.
+- **Failure Event:** Three vessels became ice-locked in a route that was deemed clear.
+- **Aftermath:** Expensive rescue operations, system was scrapped due 
 
 ### Lessons Learned
-- Climate change creates fundamentally new environmental conditions that historical data cannot predict.
-- Navigation systems in rapidly changing environments need real-time adaptability, not just historical patterns.
+- Climate change creates new unpredicatablre enviromental conditions that are hard/impossible to predict with historical data 
+- Navigation systems need real time adabtibilty 
 
 ### Quiz
 - **Q:** What was the key difference between "Old Ice" and "New Ice"?
@@ -537,54 +539,57 @@ The system produced misleading routes due to outdated data. It was trained on "O
 ## Case Study 13: The High-Altitude Diagnostic
 
 ### Domain
-Healthcare / Telemedicine
+Healthcare 
 
 ### Deployment Context
-A medical diagnostic AI deployed in high-altitude Andean villages to identify respiratory issues via pulse oximetry.
+
+AI to identify respitory issues via a pulse Oxygen level 
 
 ### Intended Use
-To flag patients who need emergency oxygen or transport to a lower altitude.
+Flag patients with low oxygen levels 
 
 ### What Went Wrong
-The system was deployed in a context very different from the one it was trained for. The AI was trained on a dataset of patients living at sea level. At 4,000 meters, healthy humans have naturally lower oxygen saturation. The AI flagged the entire population as being in "Critical Respiratory Failure," triggering unnecessary mass evacuations and panic.
+
+
+used sensors on a watch, diffrent skintones cuase diffrent readings as it cant penatrate darker tones as easily. leading to pateints being miss diagnosed.
 
 ### Data Issues
-- **Contextual Blindness:** Failed to normalize "healthy" baselines for specific environmental pressures (altitude).
-- **Population Bias:** Training data lacked representation from high-altitude residents.
+- **Contextual Blindness:** Failed to get acurate reaadings on diffrent skin tones 
+- **Population Bias:** Training data lacked representation for diffrent skintones 
 
 ### Lessons Learned
 - Medical AI must be trained on populations that reflect the deployment context's environmental conditions.
-- "Normal" physiological ranges are not universal—they vary significantly with altitude, climate, and population genetics.
+- take into acount all users.
 
 ### Quiz
-- **Q:** What was the "Out-of-Distribution" factor in this case?
-- **A:** Altitude—the AI's training data only represented sea-level physiology.
-- **Q:** What happened when the AI was deployed at 4,000 meters?
-- **A:** It flagged the entire healthy population as being in critical respiratory failure because lower oxygen saturation is normal at high altitude.
+- **Q:** What was the main  factor in the incorect predictions?
+- **A:** the system didnt take into acount diffrent skin tones.
+- **Q:** What happened when the AI was deployed?
+- **A:** gave incorrect readings on pateints 
 
 ---
 
 ## Case Study 14: The Solar Microgrid Blackout
 
 ### Domain
-Energy / Smart Grids
+Energy 
 
 ### Deployment Context
-An AI-managed solar microgrid for a remote island community.
+An AI-managed solar microgrid for an remoote island.
 
 ### Intended Use
-To balance battery discharge and solar intake to ensure 24/7 power.
+To balance battery discharge and solar intake for power maximisation.
 
 ### What Went Wrong
-The decision dashboard hid uncertainty. During a week of heavy fog, the AI predicted a 90% chance of "Enough Storage," but its confidence interval was actually very wide due to a malfunctioning sensor. The dashboard only showed the 90% figure, so the community didn't conserve power. The grid collapsed at 2 AM.
+their was no uncertantiy raitting on the dashboard , so when the system predicted 90% of enough storage on a day when their was heavy fog,their wasnmt enough power conserved and led to a power outaeg for the island.
 
 ### Who Was Affected
-- **Local Hospital:** Lost refrigeration for temperature-sensitive vaccines.
+- **Local Hospital:** Lost refrigeration and internet connection
+  
 - **Small Businesses:** Experienced data loss and equipment damage.
 
 ### Lessons Learned
-- Energy systems must display uncertainty ranges, especially when sensor reliability is questionable.
-- Critical infrastructure decisions should never rely on point estimates without confidence intervals.
+- Energy systems must display uncertainty ranges especially if they dont include all weather metric s such as perceotiation.
 
 ### Quiz
 - **Q:** What did the dashboard hide from users?
@@ -597,22 +602,24 @@ The decision dashboard hid uncertainty. During a week of heavy fog, the AI predi
 ## Case Study 15: The Precision-Mismatched Firebreak
 
 ### Domain
-Emergency Services / Disaster Response
+Emergency Services 
 
 ### Deployment Context
-An AI system used to direct the placement of controlled burns to stop advancing wildfires.
+AI system that wuld predict the nest place to conduct controll burns to stop wildfires
 
 ### What Went Wrong
 A land-cover classification was used beyond its spatial resolution. The AI used 50-meter satellite pixels to determine "burnable fuel." It missed a 10-meter wide dry drainage ditch (invisible at that resolution), which acted as a fuse, carrying the fire directly into a residential area the AI labeled as "Protected by Firebreak."
 
-### Lessons Learned
-- High-stakes tactical decisions require sub-meter resolution; satellite data is often too "blurry" for life-safety applications.
+a classifiction model was used to see land cover , but the incorrect spatial resoultionswere used , teh ai used a 50 meter satilite pixels and predicted it as burnable fuel , howver it missed a 10 meter dry drainage ditch, which was invisable to the resalution, drainage ditch acted as a fuse an lead to the fire going directly towards an residential area causing property damage. 
 
+### Lessons Learned
+- for modles making predictions with very high consequences they should be precise ass possibel 50meters is not precise enough 
 ### Quiz
+
 - **Q:** What spatial resolution did the AI use?
 - **A:** 50-meter pixels, which were too coarse to detect a 10-meter wide drainage ditch.
 - **Q:** How did this resolution mismatch lead to disaster?
-- **A:** The AI missed the dry ditch, which acted as a fuse and carried fire into a residential area the AI thought was protected.
+- **A:** The AI missed the dry ditch, which acted as a fuse and carried fire into a residential area.
 
 ---
 
