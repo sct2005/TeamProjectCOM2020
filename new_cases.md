@@ -720,23 +720,26 @@ Can mean policies created to protect teh enviroment , that are based on predicti
 
 ---
 
-## Case Study 20: The Confidence-Blind Dam Sensor
+## Case Study : E-waste and Mineral extrcation
 
 ### Domain
-Public Infrastructure
+Enviromental
+
 
 ### Deployment Context
-An AI dashboard used by dam engineers to monitor structural "seepage" levels.
+AI modles reqauire large computaionol power coming from CPUs and GPUs which require rare earth minerals to be made, rare earth mineral extraction process is very impactfull on the enviroment from deforestation to soil and water contamination and more. Aswell due to the rapid advancment of Gpus and Cpus it is being found that data centers are replaycing there equipment after 3-5years while there still functnol thi slead to a rapid increase in e waste"The world generated aroudn 62 million tonns of eWaste in 2022 making it the fastest growing waste" [8]
 
 ### What Went Wrong
-The decision dashboard hid uncertainty. The AI detected a 5% increase in seepage but gave a "95% Stability Rating" because its sensors were vibrating. The dashboard didn't show that the sensors were fluctuating wildly (high uncertainty). Engineers saw the 95% and went home for the weekend; the dam suffered a partial breach the next morning.
+AIs rapid expansion and massive hype has lead to the enviromental impact being over looked, as companies have foucused on increasing infastructure and computainol performance , without considering the enviromental impact or lifecycle of hardware.
 
 ### Lessons Learned
-- Infrastructure monitoring systems must prominently display sensor reliability and data quality metrics.
-- High confidence scores are meaningless when based on unreliable sensor data.
+- AI systems shoudl be desinges with hardware efficency in mind
+- Data centers shoudl extend through reuse refurbishment and secondry markets.
+
 
 ### Quiz
-- **Q:** What did the dashboard hide that led to the dam breach?
-- **A:** The fact that sensors were fluctuating wildly, creating high uncertainty that contradicted the "95% Stability Rating."
-- **Q:** What decision did engineers make based on the misleading dashboard?
-- **A:** They went home for the weekend thinking the dam was safe, when in fact it was in critical condition.
+- **Q:** how many millions of tonnes were generated through ewaste in 2022?
+- **A:** 62
+- **Q:** What environmental impacts can occur from extracting rare earth minerals used in AI hardware
+- **A:**deforestation to soil and water contamination and more
+- [8] https://www.who.int/news-room/fact-sheets/detail/electronic-waste-%28e-waste%29?
