@@ -623,27 +623,28 @@ a classifiction model was used to see land cover , but the incorrect spatial res
 
 ---
 
-## Case Study 16: The Invisible Urban Heat Island
-
+## Case Study 16: AI data centers enviromental impacts
 ### Domain
-Social Services / Public Policy
+enviromental 
 
 ### Deployment Context
-An AI used to allocate "Cooling Center" funding based on projected urban temperatures.
-
-### What Went Wrong
-The visualization looked authoritative but omitted key assumptions—specifically, it didn't account for building materials (brick vs. glass). It used a general "neighborhood average," failing to see that specific low-income apartment blocks reached 10 degrees higher than the street level. Funding was diverted to wealthier, tree-lined areas that looked "red" on the map but felt much cooler in reality.
+Data centers , are massive warehouses which have 1000s of computers to host AI modelds and have massive enrgy consuption.
+" Data centres and data transmission networks account for around 1% of global energy-related greenhouse gas emissions."[1]
+they produce pressure on the electricty grids in plavces there built , this can lead to higher electricty prices effecting local residents.
 
 ### Lessons Learned
-- Urban temperature modeling must account for micro-climate variations at the building level, not just neighborhood averages.
-- Funding allocation AI must be tested for equity impacts across socioeconomic groups.
+- Data centers shoulkd build power facilties to support their data centers
+- tehy should be built in places where minimal people wil  be effected. 
 
 ### Quiz
-- **Q:** What critical variable did the AI omit?
-- **A:** Building materials (brick vs. glass) and their differential heat retention properties.
-- **Q:** Who was harmed by this omission?
-- **A:** Low-income residents in apartment blocks that were 10 degrees hotter than the neighborhood average but didn't receive cooling center funding.
+- **Q:** how much of global energy assumption do data centers consume?
+- **A:** 1%
+- **Q:** who are the first peopel effected?
+- **A:** The residents.
 
+
+### Citations 
+- [1] https://www.iea.org/energy-system/electricity/data-centres-and-data-transmission-networks?utm_source
 ---
 
 ## Case Study 17: The Outdated Bio-Security Filter
