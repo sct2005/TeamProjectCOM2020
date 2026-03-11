@@ -644,30 +644,31 @@ they produce pressure on the electricty grids in plavces there built , this can 
 
 
 ### Citations 
-- [1] https://www.iea.org/energy-system/electricity/data-centres-and-data-transmission-networks?utm_source
+- [1] https://www.iea.org/energy-system/electricity/data-centres-and-data-transmission-networks?
 ---
 
-## Case Study 17: The Outdated Bio-Security Filter
-
+## Case Study 17: Water scarcity and Mismangment
 ### Domain
-Agriculture / Pest Control
+Enviromental 
 
 ### Deployment Context
-An AI drone system designed to identify and spray invasive "Spotted Lanternflies" in vineyards.
+Data centers require cooling to prevent overheating which need maassive volumes of water, "gloabl AI demand could require 4.2 - 6.6 billioncubic meters pf water by 2027"[2], this leads to demand on local , physical and ecological impacts , most importantly in regions that already face drought as it will create a water shortage for local communities. "The extra water consumption by data centres is a big problem for some in Querétaro which last year endured the worst drought of a century" ,""Private industries are being prioritised in these arid zones," she says. "We hear that there's going to be 32 data centres but water is what's needed for the people, not for these industries."[3] an area that is already classified as high water scarcity[4].
+
 
 ### What Went Wrong
-The system produced misleading results due to outdated data. The AI was trained on the adult stage of the insect. In early spring, the insects were in their nymph stage, which looks completely different. The AI ignored millions of nymphs, allowing the infestation to explode before the "adult" training data became relevant.
+Building of AI data centers in areas that alrady have high  water scaricty leaves little to no water for the residents putting  proffits over people.
 
 ### Lessons Learned
-- Biological AI must account for all life stages, not just the most visually distinctive phase.
-- Pest control systems need seasonal awareness and multi-stage training data.
+- Data centers should be built in places where there large demands wont have significant imapcts oon local people or the enviroment.
 
 ### Quiz
-- **Q:** What life stage was the AI trained to recognize?
-- **A:** Only the adult stage of the Spotted Lanternfly.
-- **Q:** Why did the infestation explode?
-- **A:** The AI ignored millions of nymphs in early spring because they look completely different from adults, allowing the population to grow unchecked.
-
+- **Q:** What could the demand of water from AI be in by 2027?
+- **A:** 4.2 - 6.6 billion cubic meters.
+- **Q:** what country that faces high water scarcity are there plans for data centers to be built?
+- **A:** Querétaro
+[2] https://chatgpt.com/c/69b159ae-8544-8331-9a46-41251ff24a86
+[3]https://www.bbc.co.uk/news/articles/cx2ngz7ep1eo#:~:text=In%20addition%2C%20data%20centres%20also,is%20needed%20to%20produce%20electricity.&text=The%20extra%20water%20consumption%20by,water%20supplies%20to%20some%20communities.
+[4] https://www.thinkhazard.org/en/report/2049-mexico-queretaro/DG#:~:text=In%20the%20area%20you%20have,on%20average%20every%205%20years.
 ---
 
 ## Case Study 18: The Forest Carbon Credit Mirage
