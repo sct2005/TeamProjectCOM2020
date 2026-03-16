@@ -1,359 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Ethics & Failures Case Studies</title>
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            background-color: #f9fafb;
-            color: #030213;
-            font-size: 16px;
-        }
-        .wrap {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        @media (min-width: 640px) { .wrap { padding-left: 1.5rem; padding-right: 1.5rem; } }
-        @media (min-width: 1024px) { .wrap { padding-left: 2rem; padding-right: 2rem; } }
+{% extends "exhibits/base.html" %}
+{% block title %}AI Ethics &amp; Failures Case Studies{% endblock %}
 
-        .header { margin-bottom: 2rem; }
-        .header h1 {
-            font-size: 2.25rem;
-            font-weight: 500;
-            line-height: 1.5;
-            margin: 0 0 0.5rem 0;
-        }
-        .header p {
-            color: #717182;
-            margin: 0;
-        }
+{% block content %}
+    <!-- Hero splash (home only) -->
+    <header class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Case studies</span>
+            <h1>AI Ethics &amp; Failures</h1>
+            <p>Real-world examples of AI systems gone wrong, ethical concerns, and lessons learned</p>
+        </div>
+    </header>
 
-        /* Tabs */
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .tabs a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.375rem 0.75rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.75rem;
-            border: 1px solid transparent;
-            background: #ececf0;
-            color: #717182;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-        .tabs a:hover {
-            color: #030213;
-            background: #e9ebef;
-        }
-        .tabs a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* Card grid */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .card {
-            background: #fff;
-            color: #030213;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: box-shadow 0.2s, border-color 0.2s;
-            min-height: 200px;
-        }
-        .card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            border-color: #93c5fd;
-        }
-
-        .card-header {
-            padding: 1.5rem 1.5rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.375rem;
-        }
-        .card-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-        .card-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            background: #dbeafe;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-        /* Exhibit score dot: outer dark blue ring, white ring, inner circle coloured by quiz score */
-        .exhibit-dot {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            border: 2px solid #1e3a5f;
-            box-shadow: inset 0 0 0 2px #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .exhibit-dot-inner {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background: #030213;
-        }
-        .exhibit-dot-none .exhibit-dot-inner { background: #030213; }
-        .exhibit-dot-bronze .exhibit-dot-inner { background: #ea580c; }
-        .exhibit-dot-silver .exhibit-dot-inner { background: #94a3b8; }
-        .exhibit-dot-gold .exhibit-dot-inner { background: #eab308; }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.375rem;
-            border: 1px solid;
-            padding: 0.125rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .badge-critical { background: rgba(239,68,68,0.1); color: #b91c1c; border-color: #fecaca; }
-        .badge-high { background: rgba(249,115,22,0.1); color: #c2410c; border-color: #fed7aa; }
-        .badge-medium { background: rgba(234,179,8,0.1); color: #a16207; border-color: #fef08a; }
-        .badge-quiz { margin-top: 0.125rem; }
-        .badge-quiz-gold { background: linear-gradient(135deg, #facc15, #eab308); color: #78350f; border-color: #facc15; }
-        .badge-quiz-silver { background: linear-gradient(135deg, #e5e7eb, #d1d5db); color: #374151; border-color: #e5e7eb; }
-        .badge-quiz-bronze { background: linear-gradient(135deg, #f97316, #ea580c); color: #7c2d12; border-color: #fed7aa; }
-
-        .card-title {
-            font-size: 1.125rem;
-            font-weight: 500;
-            line-height: 1.4;
-            margin: 0 0 0.5rem 0;
-        }
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.375rem;
-            margin-top: 0.5rem;
-        }
-        .card-tags .tag {
-            font-size: 0.75rem;
-            padding: 0.125rem 0.5rem;
-            background: #ececf0;
-            color: #717182;
-            border-radius: 0.375rem;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #717182;
-        }
-
-        /* Footer stats */
-        .footer-stats {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e5e7eb;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            text-align: center;
-        }
-        @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
-        .footer-stat .num {
-            font-size: 1.875rem;
-            margin-bottom: 0.25rem;
-        }
-        .footer-stat .label {
-            font-size: 0.875rem;
-            color: #717182;
-        }
-
-        .bookmark-btn{
-    font-size: 0.875rem;
-    background: #f3f4f6;
-    border-radius: 999px;
-    border: 1px solid #d1d5db;
-    padding: 0.2rem 0.6rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    }
-
-    .bookmark-btn:hover{
-        transform: scale(1.1);
-        background: #e5e7eb;
-    }
-
-    .bookmark-btn.bookmarked{
-        color: #f59e0b;
-    }
-
-    .bookmark-btn:not(.bookmarked){
-        color: #6b7280;
-    }
-    </style>
-</head>
-<body>
     <div class="wrap">
-        <div class="header">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem;">
-                <div>
-                    <h1>AI Ethics & Failures Case Studies</h1>
-                    <p>Explore real-world examples of AI systems gone wrong, ethical concerns, and lessons learned</p>
-                </div>
-                <div style="text-align: right; font-size: 0.875rem;">
-                    {% if request.user.is_authenticated %}
-                        <div style="margin-bottom: 0.25rem;">
-                            Signed in as <a href="{% url 'profile' %}" style="color: #2563eb; text-decoration: none; font-weight: 600;">{{ request.user.username }}</a>
+        <!-- About card -->
+        <section class="about-section" aria-labelledby="about-heading">
+            <div class="about-card">
+                <h2 id="about-heading">What is this?</h2>
+                <p>This site collects case studies of AI systems that failed or raised serious ethical issues. Each exhibit breaks down what went wrong, who was affected, and what we can learn—so we can build more responsible technology.</p>
+                <p>Explore by category, bookmark your favourites, take quizzes to test your understanding, and join the discussion in the comments.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">📚</div>
+                        <div>
+                            <strong>Case studies</strong>
+                            <span>Structured breakdowns of real failures</span>
                         </div>
-                        {% if user_profile and user_profile.is_curator %}
-                        <a href="{% url 'exhibits:create' %}" style="color: #2563eb; text-decoration: none; margin-right: 0.5rem;">Add exhibit</a>
-                        {% endif %}
-                        <a href="{% url 'logout' %}" style="color: #2563eb; text-decoration: none;">Log out</a>
-                    {% else %}
-                        <a href="{% url 'login' %}" style="color: #2563eb; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
-                        <a href="{% url 'signup' %}" style="color: #2563eb; text-decoration: none;">Create account</a>
-                    {% endif %}
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">✓</div>
+                        <div>
+                            <strong>Quizzes</strong>
+                            <span>Test your understanding per exhibit</span>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">★</div>
+                        <div>
+                            <strong>Bookmarks</strong>
+                            <span>Save exhibits to revisit later</span>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">💬</div>
+                        <div>
+                            <strong>Comments</strong>
+                            <span>Discuss and share perspectives</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Search bar -->
-        <form method="get" style="margin-bottom: 1.5rem;">
-            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
-                <div style="flex: 1 1 220px;">
+        <!-- Main section: search, filters, exhibits -->
+        <section aria-labelledby="browse-heading">
+            <h2 id="browse-heading" class="section-title">Browse case studies</h2>
+
+            <div class="search-wrap">
+                <form method="get" class="search-form">
                     <input
                         type="text"
                         name="q"
                         value="{{ search_query }}"
                         placeholder="Search exhibits by name..."
-                        style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.5rem; border: 1px solid #d1d5db; font-size: 0.9rem;"
+                        aria-label="Search exhibits"
                     />
-                </div>
-                {% if selected_category and selected_category != "all" %}
-                    <input type="hidden" name="category" value="{{ selected_category }}">
-                {% endif %}
-                <button type="submit" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; background: #2563eb; color: white; font-size: 0.9rem; font-weight: 500; cursor: pointer;">
-                    Search
-                </button>
-            </div>
-        </form>
-
-        <div class="tabs" role="tablist">
-            {% for cat in categories %}
-                <a href="?category={{ cat|urlencode }}{% if search_query %}&amp;q={{ search_query|urlencode }}{% endif %}"
-                   class="{% if selected_category == cat %}active{% endif %}"
-                   role="tab">
-                    {% if cat == "all" %}
-                        All Cases
-                    {% elif cat == "bookmarks" %}
-                        ★ Bookmarks
-                    {% else %}
-                        {{ cat }}
+                    {% if selected_category and selected_category != "all" %}
+                        <input type="hidden" name="category" value="{{ selected_category }}">
                     {% endif %}
-                </a>
-            {% endfor %}
-        </div>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
 
-        <div class="grid">
-            {% for exhibit in exhibits %}
-                <a href="{% url 'exhibits:detail' exhibit.id %}" class="card">
-                    <div class="card-header">
-                        <div class="card-top">
-                            <div class="card-icon" aria-hidden="true">
-                                <span class="exhibit-dot exhibit-dot-{{ exhibit.user_quiz_dot_level }}">
-                                    <span class="exhibit-dot-inner"></span>
-                                </span>
-                            </div>
-                            {% if request.user.is_authenticated %}
-                            <form method="post" action="{% url 'exhibits:toggle_bookmark' exhibit.id %}" style="display:inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                            
-                                <button type="submit"
-                                    class="bookmark-btn {% if exhibit.is_bookmarked %}bookmarked{% endif %}">
-                                    {% if exhibit.is_bookmarked %}
-                                        ★
-                                    {% else %}
-                                        ☆
+            <nav class="tabs" role="tablist" aria-label="Filter by category">
+                {% for cat in categories %}
+                    <a href="?category={{ cat|urlencode }}{% if search_query %}&amp;q={{ search_query|urlencode }}{% endif %}"
+                       class="{% if selected_category == cat %}active{% endif %}"
+                       role="tab">
+                        {% if cat == "all" %}All
+                        {% elif cat == "bookmarks" %}★ Bookmarks
+                        {% else %}{{ cat }}{% endif %}
+                    </a>
+                {% endfor %}
+            </nav>
+
+            <div class="grid">
+                {% for exhibit in exhibits %}
+                    <a href="{% url 'exhibits:detail' exhibit.id %}" class="card">
+                        <div class="card-header">
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <div class="card-icon" aria-hidden="true">
+                                        <span class="exhibit-dot exhibit-dot-{{ exhibit.user_quiz_dot_level }}" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="card-top-right">
+                                    {% if request.user.is_authenticated %}
+                                        <form method="post" action="{% url 'exhibits:toggle_bookmark' exhibit.id %}" class="bookmark-form" onclick="event.stopPropagation();">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                                            <button type="submit" class="bookmark-btn {% if exhibit.is_bookmarked %}bookmarked{% endif %}" aria-label="{% if exhibit.is_bookmarked %}Remove bookmark{% else %}Bookmark{% endif %}">
+                                                {% if exhibit.is_bookmarked %}★ Bookmarked{% else %}☆ Bookmark{% endif %}
+                                            </button>
+                                        </form>
                                     {% endif %}
-                                </button>
-                            </form>
-                            {% endif %}
-                            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem;">
-                                <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
-                                {% if request.user.is_authenticated and exhibit.user_quiz_badge %}
-                                    <span class="badge badge-quiz badge-quiz-{{ exhibit.user_quiz_badge_level }}">
-                                        {{ exhibit.user_quiz_badge }}
-                                        {% if exhibit.user_quiz_score is not None %}
-                                            · {{ exhibit.user_quiz_score|floatformat:0 }}%
-                                        {% endif %}
-                                    </span>
+                                    <span class="badge badge-{{ exhibit.menu_severity }}">{{ exhibit.menu_severity }}</span>
+                                    {% if request.user.is_authenticated and exhibit.user_quiz_badge %}
+                                        <span class="badge badge-quiz badge-quiz-{{ exhibit.user_quiz_badge_level }}">
+                                            {{ exhibit.user_quiz_badge }}{% if exhibit.user_quiz_score is not None %} · {{ exhibit.user_quiz_score|floatformat:0 }}%{% endif %}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <h3 class="card-title">{{ exhibit.title }}</h3>
+                            <div class="card-tags">
+                                {% if request.user.is_authenticated and exhibit.is_bookmarked %}
+                                    <span class="tag bookmarked-tag">★ Bookmarked</span>
                                 {% endif %}
+                                {% for tag in exhibit.menu_categories %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
                             </div>
                         </div>
-                        <h2 class="card-title">{{ exhibit.title }}</h2>
-                        <div class="card-tags">
-                            {% if request.user.is_authenticated and exhibit.is_bookmarked %}
-                                <span class="tag" style="background: #facc15; color: #92400e;">
-                                    ★ Bookmarked
-                                </span>
-                            {% endif %}
-                            {% for tag in exhibit.menu_categories %}
-                                <span class="tag">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
+                    </a>
+                {% empty %}
+                    <div class="empty">
+                        <p>No case studies match this filter. Try another category or search.</p>
                     </div>
-                </a>
-            {% empty %}
-                <div class="empty" style="grid-column: 1 / -1;">
-                    <p>No case studies found in this category.</p>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        </section>
 
         <div class="footer-stats">
             <div class="footer-grid">
                 <div class="footer-stat">
                     <div class="num">{{ total_count }}</div>
-                    <div class="label">Total Cases</div>
+                    <div class="label">Total cases</div>
                 </div>
                 <div class="footer-stat">
                     <div class="num">{{ critical_count }}</div>
-                    <div class="label">Critical Issues</div>
+                    <div class="label">Critical issues</div>
                 </div>
                 <div class="footer-stat">
                     <div class="num">{{ category_count }}</div>
@@ -362,5 +148,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

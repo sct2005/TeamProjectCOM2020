@@ -1,196 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ exhibit.title }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #0066cc;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #0066cc;
-            padding-bottom: 5px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #0066cc;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .exhibit-image {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .info-section {
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-        .info-section p {
-            margin: 10px 0;
-        }
-        .supporting-artefacts {
-            margin-top: 20px;
-        }
-        .supporting-artefacts ol {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-        .supporting-artefacts li {
-            margin: 12px 0;
-            padding: 12px 15px;
-            background-color: #f9f9f9;
-            border-left: 4px solid #0066cc;
-            border-radius: 4px;
-            line-height: 1.6;
-        }
-        .supporting-artefacts a {
-            color: #0066cc;
-            text-decoration: none;
-            word-break: break-all;
-            font-weight: 500;
-        }
-        .supporting-artefacts a:hover {
-            text-decoration: underline;
-        }
-        .supporting-artefacts a:visited {
-            color: #6a4c93;
-        }
-        .references-header {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        .quiz-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #0066cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .quiz-button:hover {
-            background-color: #0052a3;
-        }
-        .domain-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            background-color: #e8f0fe;
-            color: #0066cc;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .comment-meta {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        /* Timeline */
-        .timeline-wrap {
-            position: relative;
-            padding-left: 2rem;
-        }
-        .timeline-wrap::before {
-            content: "";
-            position: absolute;
-            left: 0.4rem;
-            top: 0.5rem;
-            bottom: 0.5rem;
-            width: 3px;
-            background: #0066cc;
-            border-radius: 2px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1.25rem;
-        }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -2rem;
-            top: 0.4rem;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #0066cc;
-            border: 3px solid #fff;
-            box-shadow: 0 0 0 1px #0066cc;
-        }
-        .timeline-item-content {
-            background: #f8fafc;
-            border-left: 3px solid #0066cc;
-            padding: 0.75rem 1rem;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .timeline-item-content p { margin: 0; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <a href="{% url 'home' %}" class="back-link">← Back to home</a>
-            <div style="font-size: 0.875rem;">
-                {% if request.user.is_authenticated %}
-                    Signed in as <a href="{% url 'profile' %}" style="color: #0066cc; text-decoration: none; font-weight: 600;">{{ request.user.username }}</a>
-                    · <a href="{% url 'logout' %}" style="color: #0066cc; text-decoration: none;">Log out</a>
-                {% else %}
-                    <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
-                    <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc; text-decoration: none;">Create account</a>
-                {% endif %}
-            </div>
-        </div>
+{% extends "exhibits/base.html" %}
+{% load static %}
+{% block title %}{{ exhibit.title }}{% endblock %}
 
-        <h1>{{ exhibit.title }}</h1>
-        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 10px;">
+{% block content %}
+<div class="wrap">
+    <p style="margin-bottom: 0.5rem;">
+        <a href="{% url 'home' %}" class="back-link">← Back to home</a>
+    </p>
+
+    <div class="panel detail-panel">
+        <h1 class="page-title-detail">{{ exhibit.title }}</h1>
+        <div class="detail-actions">
             <span class="domain-badge">{{ exhibit.domain }}</span>
             {% if request.user.is_authenticated %}
-            <form method="post" action="{% url 'exhibits:toggle_bookmark' exhibit.id %}" style="display: inline;" >
+            <form method="post" action="{% url 'exhibits:toggle_bookmark' exhibit.id %}" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                <button type="submit" style="font-size: 0.875rem; background: #f3f4f6; border-radius: 999px; border: 1px solid #d1d5db; padding: 0.2rem 0.6rem; cursor: pointer;">
-                    {% if is_bookmarked %}
-                        ★ Bookmarked
-                    {% else %}
-                        ☆ Bookmark
-                    {% endif %}
+                <button type="submit" class="bookmark-btn {% if is_bookmarked %}bookmarked{% endif %}">
+                    {% if is_bookmarked %}★ Bookmarked{% else %}☆ Bookmark{% endif %}
                 </button>
             </form>
             {% endif %}
             {% if user_profile and user_profile.is_curator %}
-            <a href="{% url 'exhibits:edit' exhibit.id %}" style="font-size: 0.875rem; color: #0066cc;">Edit</a>
-            <a href="{% url 'exhibits:quiz_manage' exhibit.id %}" style="font-size: 0.875rem; color: #0066cc;">Manage quiz</a>
+            <a href="{% url 'exhibits:edit' exhibit.id %}">Edit</a>
+            <a href="{% url 'exhibits:quiz_manage' exhibit.id %}">Manage quiz</a>
             <form method="post" action="{% url 'exhibits:delete' exhibit.id %}" style="display: inline;" onsubmit="return confirm('Delete this exhibit? This cannot be undone.');">
                 {% csrf_token %}
-                <button type="submit" style="font-size: 0.875rem; color: #b91c1c; background: none; border: none; cursor: pointer; padding: 0;">Delete</button>
+                <button type="submit" class="btn btn-danger" style="padding: 0; background: none; border: none; cursor: pointer; font-size: 0.9375rem;">Delete</button>
             </form>
             {% endif %}
         </div>
@@ -198,77 +34,64 @@
         {% if exhibit.image %}
         <img src="{{ exhibit.image.url }}" alt="{{ exhibit.title }}" class="exhibit-image">
         {% if exhibit.image_reference %}
-        <p style="font-size: 12px; color: #666; font-style: italic; margin-top: -10px; margin-bottom: 20px;">Image source: {{ exhibit.image_reference }}</p>
+        <p style="font-size: 0.75rem; color: var(--site-text-muted); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">Image source: {{ exhibit.image_reference }}</p>
         {% endif %}
         {% endif %}
-
 
         <div class="info-section">
             <h2>Deployment Context</h2>
             <p>{{ exhibit.deployment_context }}</p>
         </div>
-
         <div class="info-section">
             <h2>Intended Use</h2>
             <p>{{ exhibit.intended_use }}</p>
         </div>
-
         <div class="info-section">
             <h2>System Type</h2>
             <p>{{ exhibit.system_type }}</p>
         </div>
-
         <div class="info-section">
             <h2>Inputs and Assumptions</h2>
             <p>{{ exhibit.inputs_and_assumptions }}</p>
         </div>
-
         <div class="info-section">
             <h2>Outputs Presented to Users</h2>
             <p>{{ exhibit.outputs_presented }}</p>
         </div>
-
         <div class="info-section">
             <h2>What Went Wrong</h2>
             <p>{{ exhibit.failure_description }}</p>
         </div>
-
         <div class="info-section">
             <h2>How the Failure Was Detected</h2>
             <p>{{ exhibit.detection_method }}</p>
         </div>
-
         <div class="info-section">
             <h2>Who Was Affected</h2>
             <p>{{ exhibit.affected_parties }}</p>
         </div>
-
         {% if exhibit.data_issues %}
         <div class="info-section">
             <h2>Data Issues</h2>
             <p>{{ exhibit.data_issues }}</p>
         </div>
         {% endif %}
-
         {% if exhibit.technical_choices %}
         <div class="info-section">
             <h2>Technical Choices</h2>
             <p>{{ exhibit.technical_choices }}</p>
         </div>
         {% endif %}
-
         {% if exhibit.organizational_factors %}
         <div class="info-section">
             <h2>Organizational and Governance Factors</h2>
             <p>{{ exhibit.organizational_factors }}</p>
         </div>
         {% endif %}
-
         <div class="info-section">
             <h2>Contributing Factors</h2>
             <p>{{ exhibit.contributing_factors }}</p>
         </div>
-
         {% if exhibit.timeline %}
         <div class="info-section">
             <h2>Timeline of Failure and Aftermath</h2>
@@ -285,68 +108,58 @@
             {% endif %}
         </div>
         {% endif %}
-
         <div class="info-section">
             <h2>Lessons Learned</h2>
             <p>{{ exhibit.lessons_learned }}</p>
         </div>
-
         {% if exhibit.supporting_artefacts %}
         <div class="info-section supporting-artefacts">
             <h2>References</h2>
-            <p class="references-header">Supporting Artefacts and Sources:</p>
+            <p style="font-weight: 600; margin-bottom: 0.5rem;">Supporting Artefacts and Sources:</p>
             <ol>
                 {% for artefact in exhibit.supporting_artefacts %}
-                <li>
-                    <a href="{{ artefact }}" target="_blank" rel="noopener noreferrer">{{ artefact }}</a>
-                </li>
+                <li><a href="{{ artefact }}" target="_blank" rel="noopener noreferrer">{{ artefact }}</a></li>
                 {% endfor %}
             </ol>
         </div>
         {% endif %}
 
-        <hr style="margin: 40px 0; border: none; border-top: 2px solid #ddd;">
-
+        <hr class="detail-hr">
         <h2>Test Your Knowledge</h2>
         <p>Take a quiz to test your understanding of this exhibit.</p>
-        <a href="{% url 'exhibits:quiz' exhibit.id %}" class="quiz-button">
-            Start Quiz
-        </a>
+        <a href="{% url 'exhibits:quiz' exhibit.id %}" class="btn btn-primary" style="margin-top: 0.5rem;">Start Quiz</a>
 
-        <hr id="comments" style="margin: 40px 0; border: none; border-top: 2px solid #ddd;">
-
+        <hr id="comments" class="detail-hr">
         <h2>Comments</h2>
 
         {% if request.user.is_authenticated %}
-            <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" style="margin-top: 15px;">
-                {% csrf_token %}
-                <div style="margin-top: 10px;">
-                    <textarea name="body" maxlength="2000" required placeholder="Add a comment..." rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
-                </div>
-                <button type="submit" style="margin-top: 10px; padding: 10px 16px; background: #0066cc; color: white; border: 0; border-radius: 4px; font-weight: bold;">
-                    Post comment
-                </button>
-            </form>
+        <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" class="comment-form" style="margin-top: 1rem;">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="body" maxlength="2000" required placeholder="Add a comment..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post comment</button>
+        </form>
         {% else %}
-            <p style="margin-top: 10px; color: #666;">
-                <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">Sign in</a>
-                or
-                <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">create an account</a>
-                to join the discussion.
-            </p>
+        <p style="margin-top: 0.5rem; color: var(--site-text-muted);">
+            <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments">Sign in</a>
+            or
+            <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments">create an account</a>
+            to join the discussion.
+        </p>
         {% endif %}
 
-        <div style="margin-top: 25px;">
+        <div style="margin-top: 1.5rem;">
             {% if comments %}
-                {% for comment in comments %}
-                    <div style="padding: 14px 16px; background: #f9f9f9; border-left: 4px solid #0066cc; border-radius: 4px; margin-bottom: 12px;">
-                        {% include "exhibits/_comment.html" with comment=comment depth=0 %}
-                    </div>
-                {% endfor %}
+            {% for comment in comments %}
+            <div class="comment-block">
+                {% include "exhibits/_comment.html" with comment=comment depth=0 %}
+            </div>
+            {% endfor %}
             {% else %}
-                <p style="color: #666;">No comments yet. Be the first to comment.</p>
+            <p style="color: var(--site-text-muted);">No comments yet. Be the first to comment.</p>
             {% endif %}
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

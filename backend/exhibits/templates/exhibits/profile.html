@@ -1,348 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile – {{ request.user.username }}</title>
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            background-color: #f9fafb;
-            color: #030213;
-            font-size: 16px;
-        }
-        .wrap {
-            max-width: 56rem;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .header h1 { font-size: 1.5rem; font-weight: 600; margin: 0; }
-        .header a {
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 0.875rem;
-        }
-        .header a:hover { text-decoration: underline; }
+{% extends "exhibits/base.html" %}
+{% load static %}
+{% block title %}Profile – {{ request.user.username }}{% endblock %}
 
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .tabs a {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            background: #ececf0;
-            color: #717182;
-            text-decoration: none;
-        }
-        .tabs a:hover { color: #030213; background: #e9ebef; }
-        .tabs a.active { background: #2563eb; color: white; }
+{% block content %}
+<div class="wrap">
+    <div class="profile-header">
+        <h1 class="page-title">Profile</h1>
+        <a href="{% url 'home' %}">← Back to home</a>
+    </div>
 
-        .panel {
-            background: #fff;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(0,0,0,0.08);
-            padding: 1.5rem;
-        }
-        .panel h2 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 0 0 1rem 0;
-        }
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        table.score-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-        }
-        table.score-table th,
-        table.score-table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        table.score-table th {
-            font-weight: 600;
-            color: #374151;
-            background: #f9fafb;
-        }
-        table.score-table tr:last-child td { border-bottom: none; }
-        table.score-table a { color: #2563eb; text-decoration: none; }
-        table.score-table a:hover { text-decoration: underline; }
-        .score-pct { font-variant-numeric: tabular-nums; }
+    <nav class="tabs" role="tablist">
+        <a href="?tab=scores" class="{% if active_tab == 'scores' %}active{% endif %}" role="tab">Quiz scores</a>
+        <a href="?tab=account" class="{% if active_tab == 'account' %}active{% endif %}" role="tab">Account</a>
+        <a href="?tab=access" class="{% if active_tab == 'access' %}active{% endif %}" role="tab">Access level</a>
+    </nav>
 
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            font-size: 0.875rem;
-            margin-bottom: 0.375rem;
-        }
-        .form-group input {
-            width: 100%;
-            max-width: 20rem;
-            padding: 0.5rem 0.75rem;
-            font-size: 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.375rem;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-        }
-        .form-group .helptext { font-size: 0.75rem; color: #717182; margin-top: 0.25rem; }
-        .form-group .errorlist { margin: 0.25rem 0 0 0; padding: 0; list-style: none; font-size: 0.875rem; color: #b91c1c; }
-
-        button.btn, input[type="submit"].btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.375rem;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-        button.btn-primary, input[type="submit"].btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-        button.btn-primary:hover, input[type="submit"].btn-primary:hover {
-            background: #1d4ed8;
-        }
-        button.btn-danger, input[type="submit"].btn-danger {
-            background: #dc2626;
-            color: white;
-        }
-        button.btn-danger:hover, input[type="submit"].btn-danger:hover {
-            background: #b91c1c;
-        }
-        .section { margin-bottom: 2rem; }
-        .section:last-child { margin-bottom: 0; }
-        .section h3 { font-size: 1rem; margin: 0 0 0.75rem 0; }
-
-        .messages {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1rem 0;
-        }
-        .messages li {
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-        .messages .success { background: #d1fae5; color: #065f46; }
-        .messages .error { background: #fee2e2; color: #991b1b; }
-
-        .access-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #dbeafe;
-            color: #1e40af;
-            border-radius: 0.5rem;
-            font-weight: 500;
-        }
-        .access-note { color: #717182; font-size: 0.875rem; margin-top: 0.75rem; }
-    </style>
-</head>
-<body>
-    <div class="wrap">
-        <div class="header">
-            <h1>Profile</h1>
-            <a href="{% url 'home' %}">← Back to home</a>
-        </div>
-
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{{ message.tags }}">{{ message }}</li>
+    {% if active_tab == 'scores' %}
+    <div class="panel">
+        <h2>Your quiz scores</h2>
+        {% if quiz_scores %}
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Exhibit</th>
+                    <th>Score</th>
+                    <th>Correct</th>
+                    <th>Last taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for qs in quiz_scores %}
+                <tr>
+                    <td><a href="{% url 'exhibits:detail' qs.exhibit_id %}">{{ qs.exhibit.title }}</a></td>
+                    <td class="score-pct">{{ qs.score_percentage|floatformat:0 }}%</td>
+                    <td>{{ qs.correct_answers }} / {{ qs.total_questions }}</td>
+                    <td>{{ qs.taken_at|date:"M j, Y" }}</td>
+                </tr>
                 {% endfor %}
-            </ul>
-        {% endif %}
-
-        <nav class="tabs" role="tablist">
-            <a href="?tab=scores" class="{% if active_tab == 'scores' %}active{% endif %}" role="tab">Quiz scores</a>
-            <a href="?tab=account" class="{% if active_tab == 'account' %}active{% endif %}" role="tab">Account</a>
-            <a href="?tab=access" class="{% if active_tab == 'access' %}active{% endif %}" role="tab">Access level</a>
-        </nav>
-
-        {% if active_tab == 'scores' %}
-            <div class="panel">
-                <h2>Your quiz scores</h2>
-                {% if quiz_scores %}
-                    <table class="score-table">
-                        <thead>
-                            <tr>
-                                <th>Exhibit</th>
-                                <th>Score</th>
-                                <th>Correct</th>
-                                <th>Last taken</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for qs in quiz_scores %}
-                                <tr>
-                                    <td><a href="{% url 'exhibits:detail' qs.exhibit_id %}">{{ qs.exhibit.title }}</a></td>
-                                    <td class="score-pct">{{ qs.score_percentage|floatformat:0 }}%</td>
-                                    <td>{{ qs.correct_answers }} / {{ qs.total_questions }}</td>
-                                    <td>{{ qs.taken_at|date:"M j, Y" }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p style="color: #717182; margin: 0;">You haven’t taken any quizzes yet. <a href="{% url 'home' %}">Try an exhibit</a> and take its quiz to see your scores here.</p>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        {% if active_tab == 'account' %}
-            <div class="panel">
-                <h2>Account settings</h2>
-
-                <div class="section">
-                    <h3>Change username</h3>
-                    <form method="post" action="{% url 'profile_change_username' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_new_username">New username</label>
-                            <input type="text" name="new_username" id="id_new_username" value="{{ request.user.username }}" maxlength="150" required />
-                            {% if username_form.new_username.errors %}
-                                <ul class="errorlist">{{ username_form.new_username.errors }}</ul>
-                            {% endif %}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update username</button>
-                    </form>
-                </div>
-
-                <div class="section">
-                    <h3>Change password</h3>
-                    <form method="post" action="{% url 'profile_change_password' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_old_password">Current password</label>
-                            <input type="password" name="old_password" id="id_old_password" required />
-                            {{ password_form.old_password.errors }}
-                        </div>
-                        <div class="form-group">
-                            <label for="id_new_password1">New password</label>
-                            <input type="password" name="new_password1" id="id_new_password1" required />
-                            {% if password_form.new_password1.help_text %}
-                                <p class="helptext">{{ password_form.new_password1.help_text }}</p>
-                            {% endif %}
-                            {{ password_form.new_password1.errors }}
-                        </div>
-                        <div class="form-group">
-                            <label for="id_new_password2">Confirm new password</label>
-                            <input type="password" name="new_password2" id="id_new_password2" required />
-                            {{ password_form.new_password2.errors }}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Change password</button>
-                    </form>
-                </div>
-
-                <div class="section">
-                    <h3>Delete quiz scores</h3>
-                    <p style="margin: 0 0 0.75rem 0; color: #374151;">Permanently remove all your saved quiz scores. You can retake quizzes afterward.</p>
-                    <form method="post" action="{% url 'profile_delete_scores' %}" onsubmit="return confirm('Delete all your quiz scores?');">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete all quiz scores</button>
-                    </form>
-                </div>
-
-                <div class="section">
-                    <h3>Delete account</h3>
-                    <p style="margin: 0 0 0.75rem 0; color: #374151;">Permanently delete your account and all associated data. This cannot be undone.</p>
-                    <form method="post" action="{% url 'profile_delete_account' %}" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete my account</button>
-                    </form>
-                </div>
-            </div>
-        {% endif %}
-
-        {% if active_tab == 'access' %}
-            <div class="panel">
-                <h2>{% if user_profile.is_admin %}Permissions &amp; Admin panel{% else %}Access level{% endif %}</h2>
-                <p style="margin: 0 0 0.5rem 0;">Your current access level:</p>
-                <span class="access-badge">{{ user_profile.get_access_level_display }}</span>
-
-                {% if user_profile.is_admin %}
-                <div class="admin-panel" style="margin-top: 2rem;">
-                    <h3 style="font-size: 1rem; margin: 0 0 1rem 0;">User management</h3>
-                    <p class="access-note" style="margin-bottom: 1rem;">Manage all users: edit roles, delete accounts, or delete quiz scores. You can also delete any comment on any exhibit.</p>
-                    {% if all_users %}
-                    <table class="score-table">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in all_users %}
-                            <tr>
-                                <td>
-                                    <a href="{% url 'admin_user_comments' item.user.id %}">{{ item.user.username }}</a>
-                                    {% with comment_count=item.user.comments.count %}
-                                    {% if comment_count %}<span style="font-size: 0.75rem; color: #717182;">({{ comment_count }} comment{{ comment_count|pluralize }})</span>{% endif %}
-                                    {% endwith %}
-                                </td>
-                                <td>
-                                    <form method="post" action="{% url 'admin_edit_user_role' item.user.id %}" style="display: inline-flex; gap: 0.5rem; align-items: center;">
-                                        {% csrf_token %}
-                                        <select name="access_level" onchange="this.form.submit()" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">
-                                            <option value="admin" {% if item.profile.access_level == 'admin' %}selected{% endif %}>Admin</option>
-                                            <option value="curator" {% if item.profile.access_level == 'curator' %}selected{% endif %}>Curator</option>
-                                            <option value="user" {% if item.profile.access_level == 'user' %}selected{% endif %}>User</option>
-                                        </select>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" action="{% url 'admin_delete_user_scores' item.user.id %}" style="display: inline;" onsubmit="return confirm('Delete all quiz scores for {{ item.user.username }}?');">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete scores</button>
-                                    </form>
-                                    {% if item.user.id != request.user.id %}
-                                    <form method="post" action="{% url 'admin_delete_user' item.user.id %}" style="display: inline;" onsubmit="return confirm('Permanently delete account {{ item.user.username }}?');">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete account</button>
-                                    </form>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    {% else %}
-                    <p style="color: #717182;">No users in the system.</p>
-                    {% endif %}
-                </div>
-                {% else %}
-                <p class="access-note">As a {{ user_profile.get_access_level_display }}, you can view exhibits, add comments, and take quizzes.{% if user_profile.is_curator %} You can also add, edit, and delete exhibits.{% endif %}</p>
-                {% endif %}
-            </div>
+            </tbody>
+        </table>
+        {% else %}
+        <p style="color: var(--site-text-muted); margin: 0;">You haven't taken any quizzes yet. <a href="{% url 'home' %}">Try an exhibit</a> and take its quiz to see your scores here.</p>
         {% endif %}
     </div>
-</body>
-</html>
+    {% endif %}
+
+    {% if active_tab == 'account' %}
+    <div class="panel">
+        <h2>Account settings</h2>
+
+        <div class="section">
+            <h3>Change username</h3>
+            <form method="post" action="{% url 'profile_change_username' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_new_username">New username</label>
+                    <input type="text" name="new_username" id="id_new_username" value="{{ request.user.username }}" maxlength="150" required />
+                    {% if username_form.new_username.errors %}
+                    <ul class="errorlist">{{ username_form.new_username.errors }}</ul>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Update username</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Change password</h3>
+            <form method="post" action="{% url 'profile_change_password' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_old_password">Current password</label>
+                    <input type="password" name="old_password" id="id_old_password" required />
+                    {{ password_form.old_password.errors }}
+                </div>
+                <div class="form-group">
+                    <label for="id_new_password1">New password</label>
+                    <input type="password" name="new_password1" id="id_new_password1" required />
+                    {% if password_form.new_password1.help_text %}
+                    <p class="helptext">{{ password_form.new_password1.help_text }}</p>
+                    {% endif %}
+                    {{ password_form.new_password1.errors }}
+                </div>
+                <div class="form-group">
+                    <label for="id_new_password2">Confirm new password</label>
+                    <input type="password" name="new_password2" id="id_new_password2" required />
+                    {{ password_form.new_password2.errors }}
+                </div>
+                <button type="submit" class="btn btn-primary">Change password</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Delete quiz scores</h3>
+            <p style="margin: 0 0 0.75rem 0; color: var(--site-text);">Permanently remove all your saved quiz scores. You can retake quizzes afterward.</p>
+            <form method="post" action="{% url 'profile_delete_scores' %}" onsubmit="return confirm('Delete all your quiz scores?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete all quiz scores</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Delete account</h3>
+            <p style="margin: 0 0 0.75rem 0; color: var(--site-text);">Permanently delete your account and all associated data. This cannot be undone.</p>
+            <form method="post" action="{% url 'profile_delete_account' %}" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete my account</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if active_tab == 'access' %}
+    <div class="panel">
+        <h2>{% if user_profile.is_admin %}Permissions &amp; Admin panel{% else %}Access level{% endif %}</h2>
+        <p style="margin: 0 0 0.5rem 0;">Your current access level:</p>
+        <span class="access-badge">{{ user_profile.get_access_level_display }}</span>
+
+        {% if user_profile.is_admin %}
+        <div class="admin-panel" style="margin-top: 2rem;">
+            <h3 style="font-size: 1rem; margin: 0 0 1rem 0;">User management</h3>
+            <p class="access-note" style="margin-bottom: 1rem;">Manage all users: edit roles, delete accounts, or delete quiz scores. You can also delete any comment on any exhibit.</p>
+            {% if all_users %}
+            <table class="score-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in all_users %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'admin_user_comments' item.user.id %}">{{ item.user.username }}</a>
+                            {% with comment_count=item.user.comments.count %}
+                            {% if comment_count %}<span style="font-size: 0.75rem; color: var(--site-text-muted);">({{ comment_count }} comment{{ comment_count|pluralize }})</span>{% endif %}
+                            {% endwith %}
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'admin_edit_user_role' item.user.id %}" style="display: inline-flex; gap: 0.5rem; align-items: center;">
+                                {% csrf_token %}
+                                <select name="access_level" onchange="this.form.submit()" style="padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--site-radius); border: 1px solid var(--site-border);">
+                                    <option value="admin" {% if item.profile.access_level == 'admin' %}selected{% endif %}>Admin</option>
+                                    <option value="curator" {% if item.profile.access_level == 'curator' %}selected{% endif %}>Curator</option>
+                                    <option value="user" {% if item.profile.access_level == 'user' %}selected{% endif %}>User</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'admin_delete_user_scores' item.user.id %}" style="display: inline;" onsubmit="return confirm('Delete all quiz scores for {{ item.user.username }}?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete scores</button>
+                            </form>
+                            {% if item.user.id != request.user.id %}
+                            <form method="post" action="{% url 'admin_delete_user' item.user.id %}" style="display: inline;" onsubmit="return confirm('Permanently delete account {{ item.user.username }}?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Delete account</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p style="color: var(--site-text-muted);">No users in the system.</p>
+            {% endif %}
+        </div>
+        {% else %}
+        <p class="access-note">As a {{ user_profile.get_access_level_display }}, you can view exhibits, add comments, and take quizzes.{% if user_profile.is_curator %} You can also add, edit, and delete exhibits.{% endif %}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

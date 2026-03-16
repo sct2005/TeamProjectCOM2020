@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Exhibits</title>
-</head>
-<body>
-    <h1>Interactive Ethics Museum</h1>
+{% extends "exhibits/base.html" %}
+{% load static %}
+{% block title %}Exhibits{% endblock %}
 
-    <ul>
-        {% for exhibit in exhibits %}
-            <li>
-                <a href="{% url 'exhibits:detail' exhibit.id %}">
-                    {{ exhibit.title }}
-                </a>
-                ({{ exhibit.domain }})
+{% block content %}
+<div class="wrap">
+    <div class="panel">
+        <a href="{% url 'home' %}" class="back-link">← Back to home</a>
+        <h1 class="page-title">Exhibits</h1>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for exhibit in exhibits %}
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--site-border);">
+                <a href="{% url 'exhibits:detail' exhibit.id %}">{{ exhibit.title }}</a>
+                <span style="color: var(--site-text-muted); font-size: 0.875rem;"> ({{ exhibit.domain }})</span>
             </li>
-        {% empty %}
-            <li>No exhibits yet.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+            {% empty %}
+            <li style="color: var(--site-text-muted);">No exhibits yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

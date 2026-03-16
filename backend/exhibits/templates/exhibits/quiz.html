@@ -1,140 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Quiz: {{ exhibit.title }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #0066cc;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .quiz-form {
-            margin-top: 30px;
-        }
-        .question {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            border-left: 4px solid #0066cc;
-        }
-        .question h3 {
-            margin-top: 0;
-            color: #333;
-        }
-        .options {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0;
-        }
-        .options li {
-            margin: 10px 0;
-        }
-        .options label {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-        .options label:hover {
-            background-color: #e8f0fe;
-        }
-        .options input[type="radio"] {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        .submit-btn {
-            background-color: #0066cc;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .submit-btn:hover {
-            background-color: #0052a3;
-        }
-        .error {
-            color: #d32f2f;
-            padding: 15px;
-            background-color: #ffebee;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="{% url 'exhibits:detail' exhibit.id %}" class="back-link">← Back to exhibit</a>
-            <div style="font-size: 0.875rem;">
-                {% if request.user.is_authenticated %}
-                    Signed in as <a href="{% url 'profile' %}" style="color: #0066cc; text-decoration: none; font-weight: 600;">{{ request.user.username }}</a>
-                    · <a href="{% url 'logout' %}" style="color: #0066cc; text-decoration: none;">Log out</a>
-                {% else %}
-                    <a href="{% url 'login' %}?next={% url 'exhibits:quiz' exhibit.id %}" style="color: #0066cc; text-decoration: none; margin-right: 0.5rem;">Sign in</a>
-                    <a href="{% url 'signup' %}?next={% url 'exhibits:quiz' exhibit.id %}" style="color: #0066cc; text-decoration: none;">Create account</a>
-                {% endif %}
-            </div>
-        </div>
-        
-        <h1>Quiz: {{ exhibit.title }}</h1>
-        
+{% extends "exhibits/base.html" %}
+{% load static %}
+{% block title %}Quiz: {{ exhibit.title }}{% endblock %}
+
+{% block content %}
+<div class="wrap">
+    <div class="panel">
+        <a href="{% url 'exhibits:detail' exhibit.id %}" class="back-link">← Back to exhibit</a>
+        <h1 class="page-title">Quiz: {{ exhibit.title }}</h1>
+
         {% if error %}
-            <div class="error">{{ error }}</div>
+        <div class="quiz-error">{{ error }}</div>
         {% elif quizzes %}
-            <form method="post" class="quiz-form">
-                {% csrf_token %}
-                
-                {% for quiz_data in quizzes %}
-                    <div class="question">
-                        <h3>Question {{ forloop.counter }}</h3>
-                        <p><strong>{{ quiz_data.quiz.question }}</strong></p>
-                        <input type="hidden" name="order_{{ quiz_data.quiz.id }}" value="{{ quiz_data.order_mapping }}">
-                        <ul class="options">
-                            {% for option in quiz_data.shuffled_options %}
-                                <li>
-                                    <label>
-                                        <input type="radio" name="answer_{{ quiz_data.quiz.id }}" value="{{ forloop.counter0 }}" required>
-                                        <span>{{ option }}</span>
-                                    </label>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endfor %}
-                
-                <button type="submit" class="submit-btn">Submit Quiz</button>
-            </form>
+        <form method="post" class="quiz-form">
+            {% csrf_token %}
+
+            {% for quiz_data in quizzes %}
+            <div class="quiz-question">
+                <h3>Question {{ forloop.counter }}</h3>
+                <p><strong>{{ quiz_data.quiz.question }}</strong></p>
+                <input type="hidden" name="order_{{ quiz_data.quiz.id }}" value="{{ quiz_data.order_mapping }}">
+                <ul class="quiz-options">
+                    {% for option in quiz_data.shuffled_options %}
+                    <li>
+                        <label>
+                            <input type="radio" name="answer_{{ quiz_data.quiz.id }}" value="{{ forloop.counter0 }}" required>
+                            <span>{{ option }}</span>
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+        </form>
         {% else %}
-            <div class="error">No quiz questions available for this exhibit.</div>
+        <div class="quiz-error">No quiz questions available for this exhibit.</div>
         {% endif %}
     </div>
-</body>
-</html>
-
+</div>
+{% endblock %}

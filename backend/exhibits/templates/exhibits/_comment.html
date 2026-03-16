@@ -17,7 +17,7 @@
   <div style="white-space: pre-wrap; margin-top: 6px;">{{ comment.body }}</div>
 
   <details style="margin-top: 10px;">
-    <summary style="cursor: pointer; color: #0066cc;">Reply</summary>
+    <summary style="cursor: pointer; color: #2563eb;">Reply</summary>
     {% if request.user.is_authenticated %}
       <form method="post" action="{% url 'exhibits:post_comment' exhibit.id %}" style="margin-top: 10px;">
         {% csrf_token %}
@@ -25,15 +25,15 @@
         <div style="margin-top: 8px;">
           <textarea name="body" maxlength="2000" required placeholder="Write a reply..." rows="3" style="width: 100%; padding: 8px;"></textarea>
         </div>
-        <button type="submit" style="margin-top: 8px; padding: 8px 14px; background: #0066cc; color: white; border: 0; border-radius: 4px;">
+        <button type="submit" style="margin-top: 8px; padding: 8px 14px; background: #2563eb; color: white; border: 0; border-radius: 8px;">
           Post reply
         </button>
       </form>
     {% else %}
       <p style="margin-top: 8px; font-size: 13px; color: #555;">
-        <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">Sign in</a>
+        <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #2563eb;">Sign in</a>
         or
-        <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #0066cc;">create an account</a>
+        <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments" style="color: #2563eb;">create an account</a>
         to reply.
       </p>
     {% endif %}
