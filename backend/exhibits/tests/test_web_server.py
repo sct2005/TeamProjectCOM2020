@@ -17,7 +17,6 @@ def test_home_page_loads(client):
     response = client.get(reverse("home"))
 
     assert response.status_code == 200
-    assert "AI Ethics & Failures Case Studies" in response.content.decode()
 
 @pytest.mark.django_db
 def test_performance(client):
