@@ -639,7 +639,11 @@
         <span aria-hidden="true">←</span>
         Back to home
       </a>
+          <span class="exhibit-domain-badge">
+            {{ exhibit.domain }}
+          </span>
 
+          
     </div>
 
     <section class="exhibit-card" aria-labelledby="exhibit-title">
@@ -648,9 +652,6 @@
           {{ exhibit.title }}
         </h1>
         <div class="exhibit-domain-row">
-          <span class="exhibit-domain-badge">
-            {{ exhibit.domain }}
-          </span>
 
           <div class="exhibit-meta-actions">
             {% if request.user.is_authenticated %}
