@@ -640,17 +640,6 @@
         Back to home
       </a>
 
-      <div class="exhibit-auth-meta">
-        {% if request.user.is_authenticated %}
-          <span style="color:#4b5563;">Signed in as</span>
-          <a href="{% url 'profile' %}">{{ request.user.username }}</a>
-          <span style="color:#d1d5db;">·</span>
-          <a href="{% url 'logout' %}">Log out</a>
-        {% else %}
-          <a href="{% url 'login' %}?next={% url 'exhibits:detail' exhibit.id %}#comments">Sign in</a>
-          <a href="{% url 'signup' %}?next={% url 'exhibits:detail' exhibit.id %}#comments">Create account</a>
-        {% endif %}
-      </div>
     </div>
 
     <section class="exhibit-card" aria-labelledby="exhibit-title">
