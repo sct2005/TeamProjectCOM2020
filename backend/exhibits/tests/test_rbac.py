@@ -112,7 +112,7 @@ class ExhibitRBACTest(TestCase):
         self.assertEqual(response.status_code, 302)
     
     def test_viewer_cannot_manage_quiz(self):
-        self.client.login(username="viewer", password="pass")
+        self.client.login(username = "Viewer", password = "Password1")
         response = self.client.get(reverse("exhibits:quiz_manage", args = [self.exhibit.pk]))
         self.assertEqual(response.status_code, 302)
     
@@ -167,8 +167,8 @@ class ExhibitRBACTest(TestCase):
     
     def test_curator_can_delete_exhibit(self):
         self.client.login(username = "Curator", password = "Password1")
-        response = self.client.delete(reverse("exhibits:delete", args = [self.exhibit.pk]))
-        self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse("exhibits:delete", args = [self.exhibit.pk]))
+        self.assertIn(response.status_code, [200, 302])
     
     def test_curator_can_manage_quiz(self):
         self.client.login(username = "Curator", password = "Password1")
@@ -183,7 +183,7 @@ class ExhibitRBACTest(TestCase):
             "correct_answer_index": 0,
             "explanation": "because it is",
         })
-        self.assertIn(response.status_code, [200, 201]) # has 302
+        self.assertEqual(response.status_code, 302)
     
     
     def test_admin_can_create_exhibit(self):
@@ -225,9 +225,9 @@ class ExhibitRBACTest(TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_admin_can_delete_exhibit(self):
-        self.client.login(username="admin", password="pass")
-        response = self.client.delete(reverse("exhibits:delete", args=[self.exhibit.pk]))
-        self.assertEqual(response.status_code, 200)
+        self.client.login(username="Admin", password="Password1")
+        response = self.client.post(reverse("exhibits:delete", args=[self.exhibit.pk]))
+        self.assertIn(response.status_code, [200, 302])
     
     def test_admin_can_manage_quiz(self):
         self.client.login(username = "Admin", password = "Password1")

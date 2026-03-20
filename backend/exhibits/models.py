@@ -3,7 +3,7 @@ from django.conf import settings
 import json
 
 class Exhibit(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     domain = models.CharField(max_length=100)
     deployment_context = models.TextField()
     intended_use = models.TextField()
@@ -30,6 +30,10 @@ class Exhibit(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
 
 class Quiz(models.Model):

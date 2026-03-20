@@ -46,24 +46,24 @@ class ExhibitsTest(TestCase):
     def test_create_exhibit_with_missing_title_fails(self):
         original_count = Exhibit.objects.count()
 
-        self.exhibit = Exhibit.objects.create(
-            title="",
-            domain="Test",
-            deployment_context="ctx",
-            intended_use="use",
-            system_type="type",
-            inputs_and_assumptions="in",
-            outputs_presented="out",
-            failure_description="fail",
-            detection_method="detect",
-            affected_parties="people",
-            contributing_factors="factors",
-            lessons_learned="lessons",
-        )
-
+        with self.assertRaises(Exception):
+            Exhibit.objects.create(
+                title="",
+                domain="Test",
+                deployment_context="ctx",
+                intended_use="use",
+                system_type="type",
+                inputs_and_assumptions="in",
+                outputs_presented="out",
+                failure_description="fail",
+                detection_method="detect",
+                affected_parties="people",
+                contributing_factors="factors",
+                lessons_learned="lessons",
+            )
         self.assertEqual(Exhibit.objects.count(), original_count)
     
-    def test_duplicate_exhibit_fails(self):
+    def test_duplicate_exhibit_title_fails(self):
         self.exhibit = Exhibit.objects.create(
             title="Test Exhibit",
             domain="Test",
@@ -81,20 +81,21 @@ class ExhibitsTest(TestCase):
 
         original_count = Exhibit.objects.count()
 
-        self.exhibit = Exhibit.objects.create(
-            title="Test Exhibit",
-            domain="Test",
-            deployment_context="ctx",
-            intended_use="use",
-            system_type="type",
-            inputs_and_assumptions="in",
-            outputs_presented="out",
-            failure_description="fail",
-            detection_method="detect",
-            affected_parties="people",
-            contributing_factors="factors",
-            lessons_learned="lessons",
-        )
+        with self.assertRaises(Exception):
+            self.exhibit = Exhibit.objects.create(
+                title="Test Exhibit",
+                domain="Test",
+                deployment_context="ctx",
+                intended_use="use",
+                system_type="type",
+                inputs_and_assumptions="in",
+                outputs_presented="out",
+                failure_description="fail",
+                detection_method="detect",
+                affected_parties="people",
+                contributing_factors="factors",
+                lessons_learned="lessons",
+            )
 
         self.assertEqual(Exhibit.objects.count(), original_count)
         
