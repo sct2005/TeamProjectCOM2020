@@ -17,7 +17,7 @@
     "organizational_factors": "Budget Constraints: The council refused to fund annual LIDAR surveys or data refresh cycles, citing cost as the primary barrier. Automation Bias: Officials came to regard the AI dashboard as the authoritative source of flood risk information, discontinuing manual field inspections entirely. No formal review process was in place to validate model outputs against real-world observations on a scheduled basis.",
     "timeline": "Initial Setup: AI system launched in 2021 using 2010-2015 topographic and rainfall data.\nTrigger Event: Record-breaking rainfall in Autumn 2025, later classified as a 1-in-100-year event.\nFailure Event: Dashboard displayed \"Green (Low Risk)\" for neighborhoods that were 2 feet underwater.\nDetection: Citizens posted social media footage of flooded \"Green Zone\" streets; story picked up by national media.\nAftermath: City council faced class-action lawsuits from affected homeowners; system was decommissioned and an independent review was commissioned.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "1.png",
     "image_reference": "Gemini Nano Banana"
@@ -40,7 +40,7 @@
     "organizational_factors": "Lack of Appeals Process: The system was configured to immediately publish compliance violations to the certification portal and notify buyers without any human review stage, meaning false positives had immediate and severe economic consequences for farmers before any error could be identified and corrected.",
     "timeline": "Initial Setup: System deployed to monitor approximately 10,000 hectares across participating supplier regions.\nTrigger Event: Farmers began adopting inter-cropping and canopy-farming practices to improve soil health and biodiversity - practices promoted by the same NGO as sustainable.\nFailure Event: AI flagged inter-cropping plots as \"Forest Fragmentation\" events, triggering automated violation notices.\nDetection: Audit by a human geographer comparing flagged zones with high-resolution commercial imagery confirmed the resolution error.\nAftermath: NGO issued a public apology, reinstated farmer credentials, and commissioned a re-procurement of higher-resolution imagery.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "2.png",
     "image_reference": "Gemini Nano Banana"
@@ -88,7 +88,7 @@
     "organizational_factors": "Fitness for Purpose Misrepresentation: The system was marketed and sold as a universal precision agriculture solution without disclosing its geographic training limitations or recommending pre-deployment recalibration. The vineyard's management team trusted the vendor's marketing claims and did not commission an independent technical assessment before installation.",
     "timeline": "Initial Setup: System installed across the vineyard in early spring, timed to begin operations ahead of the growing season.\nTrigger Event: The first major summer heatwave, with sustained temperatures exceeding 40°C and low humidity.\nFailure Event: AI maintained Northern European-calibrated drip rates throughout the heatwave, grossly underwatering the vines.\nDetection: Detected approximately three weeks later when vines began displaying severe drought stress symptoms despite the system reporting optimal conditions.\nAftermath: The vineyard pursued legal action against the technology provider for breach of fitness for purpose; case settled out of court.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "4.png",
     "image_reference": "Gemini Nano Banana"
@@ -111,7 +111,7 @@
     "organizational_factors": "Premature Launch: The application was launched publicly before the city's full multi-pollutant sensor network was commissioned, creating a gap between what the app implied it measured and what it actually measured. No health department review of the index's clinical validity appears to have been conducted prior to launch.",
     "timeline": "Initial Setup: App launched with significant press coverage and praised for its clean, accessible design.\nTrigger Event: A stagnant high-pressure anticyclone settled over the city, trapping ground-level NO2 and Ozone at dangerous concentrations.\nFailure Event: App displayed \"98/100 - Safe to Exercise\" while visible smog was present at street level.\nDetection: Emergency departments reported a 300% surge in respiratory admissions; cross-referencing with app usage data confirmed the link.\nAftermath: App taken offline for urgent redesign; relaunched with a multi-pollutant breakdown and explicit scope disclaimers.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "5.png",
     "image_reference": "Gemini Nano Banana"
@@ -134,7 +134,7 @@
     "organizational_factors": "Deployment Without Local Validation: The system was activated in the city centre without conducting environment-specific testing or a staged rollout in a limited zone. No Manual Override Protocol: Traffic operators had not been given a procedure for remotely resetting the system and were unaware that physical sensor coverage was required to do so.",
     "timeline": "Initial Setup: System activated across the city centre's 34 managed intersections.\nTrigger Event: A warm, sunny Friday caused cafes to deploy their large parasol umbrellas for the first time since system activation.\nFailure Event: Multiple intersections locked to indefinite red states; a cascading gridlock developed over approximately 90 minutes.\nDetection: Police officers physically covered camera sensors to force a system reset after approximately 6 hours.\nAftermath: City reverted to fixed-timer operation; vendor commissioned to retrain the model on a European urban dataset with local validation requirements.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "6.png",
     "image_reference": "Gemini Nano Banana"
@@ -157,7 +157,7 @@
     "organizational_factors": "Automation Without Verification: The system was implemented specifically to eliminate manual review steps, removing the safeguard that would have caught the systematic false positives. No Audit Cadence: No scheduled sampling or accuracy audit was built into the operational workflow.",
     "timeline": "Initial Setup: Automated counting system deployed; manual review of camera trap images discontinued to save staff time.\nTrigger Event: Routine population reporting period; AI-generated data submitted to conservation funding bodies.\nFailure Event: AI overestimated Clouded Leopard population by approximately 300%, triggering a \"species recovery\" declaration.\nDetection: Visiting researcher conducted manual audit of 500 classified images; 60% of \"Clouded Leopard\" labels were false positives.\nAftermath: Funding for anti-poaching operations had already been cut based on the false recovery data; park management launched emergency appeal to restore funding.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "7.png",
     "image_reference": "Gemini Nano Banana"
@@ -180,7 +180,7 @@
     "organizational_factors": "Automated Enforcement Without Review: The system was configured to generate and dispatch formal legal notices directly from AI outputs with no human sign-off required. No appeals mechanism was designed into the automated workflow, meaning affected homeowners had no clear route to challenge notices before legal deadlines passed.",
     "timeline": "Initial Setup: System deployed for automated encroachment detection across the national property registry.\nTrigger Event: High-volume batch processing of boundary checks initiated.\nFailure Event: Thousands of legal notices issued to homeowners based on pixel-level boundary classifications with ±2m inherent error.\nDetection: Surge in formal challenges and court filings; independent technical review identified resolution mismatch.\nAftermath: System suspended; legal notices withdrawn; registry faced significant reputational and legal liability.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "8.png",
     "image_reference": "Gemini Nano Banana"
@@ -203,7 +203,7 @@
     "organizational_factors": "AI Optimised for Cost Reduction: Senior procurement management had approved a system specification that prioritised cost savings over supply resilience, reflecting a broader organisational posture of reducing stock holdings. No Human Override: Departmental managers had no ability to manually trigger emergency procurement outside the AI's recommendation framework.",
     "timeline": "Initial Setup: System deployed hospital-wide; manual procurement processes discontinued.\nTrigger Event: A localised infectious disease outbreak began generating rapid and sustained increases in PPE demand.\nFailure Event: PPE stocks exhausted within 48 hours of the outbreak's peak demand.\nDetection: Ward staff reported shortages; investigation found the AI was still ordering at pre-outbreak volumes.\nAftermath: Emergency manual procurement initiated; AI system replaced with a hybrid \"Just-in-Case\" model retaining a defined emergency buffer stock.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "9.png",
     "image_reference": "Gemini Nano Banana"
@@ -226,7 +226,7 @@
     "organizational_factors": "No Multi-Disciplinary Review Requirement: The project governance framework did not mandate independent geological assessment of the AI model's inputs before adoption of its outputs as the design basis. The model's outputs were accepted as authoritative without challenge, partly due to the persuasive visual quality of the rendered outputs.",
     "timeline": "Initial Setup: AI model commissioned and outputs presented to elected officials via impressive 3D renderings.\nConstruction Phase: Sea wall built to the AI's recommended specification without independent geological review.\nFailure Event: Post-construction monitoring identified local land subsidence had not been accounted for.\nDetection: Tide gauge and subsidence data showed the wall would be exceeded within a decade, not the intended 50-year horizon.\nAftermath: Emergency review commissioned; remediation options assessed; significant taxpayer liability acknowledged.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "10.png",
     "image_reference": "Gemini Nano Banana"
@@ -249,7 +249,7 @@
     "organizational_factors": "Trust in High-Confidence Outputs: City maintenance teams treated the AI's 99% stability ratings as definitive, resulting in the genuinely compromised road receiving no independent verification. The digital twin's professional visual quality reinforced this over-reliance. Cost Saving Rationale: The system had been specifically justified on the basis that it would reduce expenditure on more reliable but expensive subsurface radar surveys.",
     "timeline": "Initial Setup: 500 surface seismic sensors deployed across the road network; digital twin activated.\nTrigger Event: Routine monitoring period; road in the historic core consistently classified as 99% stable.\nFailure Event: A double-decker bus fell into a sinkhole beneath a road rated as 99% structurally sound.\nDetection: Post-incident investigation using ground-penetrating radar revealed a large void masked by the cobblestone dampening layer.\nAftermath: Emergency audit of all roads in the historic core; predictive model updated to flag geological layer interference; ground-penetrating radar surveys reinstated for high-risk classifications.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "11.png",
     "image_reference": "Gemini Nano Banana"
@@ -272,7 +272,7 @@
     "organizational_factors": "Insufficient Climate Change Risk Assessment: The system was procured and deployed without an assessment of how rapidly changing Arctic conditions might undermine the validity of its historical training data. Navigator Over-Reliance: Ship navigators were trained to treat the AI's route recommendations as the primary navigation input, with insufficient emphasis on independent situational awareness.",
     "timeline": "Initial Setup: System deployed across a fleet of commercial ice-breakers operating the Northern Sea Route.\nTrigger Event: An unpredicted, high-velocity wind shift caused a large ice field to converge rapidly on the AI-recommended channel.\nFailure Event: Three vessels became ice-locked in a route the AI had classified as clear and low-risk.\nDetection: Vessels broadcast distress signals; rescue operations initiated.\nAftermath: Expensive multi-day rescue operation conducted; system scrapped and replaced with a hybrid approach requiring navigators to actively validate AI recommendations against real-time ice drift data.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "12.png",
     "image_reference": "Gemini Nano Banana"
@@ -295,7 +295,7 @@
     "organizational_factors": "Insufficient Regulatory Scrutiny: At the time of launch, regulatory requirements for consumer-grade health monitoring devices did not mandate stratified accuracy reporting by skin tone, allowing the limitation to pass through approval processes undetected. Universal Marketing: The device was marketed as suitable for all users without disclosing the population-specific accuracy limitations.",
     "timeline": "Initial Setup: Device launched with wide commercial marketing and integration into some clinical monitoring programmes.\nTrigger Event: Independent researchers begin systematic comparative studies of PPG device accuracy across skin tones.\nFailure Event: Published studies demonstrate clinically significant SpO2 over-estimation for patients with darker skin tones.\nDetection: Regulatory investigations initiated; medical professional bodies issue guidance on device limitations.\nAftermath: Manufacturer issued revised accuracy specifications; regulatory bodies updated evaluation frameworks to require stratified accuracy reporting.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "13.png",
     "image_reference": "Gemini Nano Banana"
@@ -318,7 +318,7 @@
     "organizational_factors": "No Operator Uncertainty Awareness: Island grid operators were not trained to interpret forecast limitations or to recognise conditions under which the prediction might be unreliable. No Conservative Fallback: The system had no automatic mode to reduce battery discharge and maintain a higher reserve buffer when forecast confidence was reduced by sensor degradation.",
     "timeline": "Initial Setup: AI microgrid system activated as the island's primary electricity supply.\nPreceding Event: Irradiance sensor begins degrading; forecast quality decreases without operator awareness.\nTrigger Event: Unforecast temperature inversion generates dense fog overnight.\nFailure Event: Grid collapses at 2 AM as battery reserves are exhausted; hospital loses primary power.\nDetection: Total power loss across the island; hospital activates backup generator.\nAftermath: Emergency repair and sensor replacement; system reconfigured to maintain higher minimum battery reserves and display uncertainty ranges prominently.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "14.png",
     "image_reference": "Gemini Nano Banana"
@@ -341,7 +341,7 @@
     "organizational_factors": "No Field Validation Requirement: The agency's operational process did not require AI-recommended firebreak locations to be verified by field survey before controlled burns were authorised. \"Protected\" Labelling Authority: The system's classification of downstream areas as \"Protected\" was accepted without independent verification of the firebreak's completeness.",
     "timeline": "Initial Setup: AI system deployed for firebreak placement planning; traditional manual surveys reduced.\nTrigger Event: Dry conditions and elevated fire risk prompted activation of the AI-recommended firebreak plan.\nControlled Burn Conducted: Firebreak created at AI-recommended location.\nFailure Event: Fire spread through the invisible 10-metre drainage ditch, bypassing the firebreak and entering the residential area.\nDetection: Real-time fire spread to classified \"Protected\" area; post-incident aerial survey reveals drainage ditch invisible at 50m resolution.\nAftermath: Inquiry into use of 50-metre data for life-safety planning; agency required to adopt minimum 5-metre resolution with mandatory field validation for all future firebreak placement decisions.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "15.png",
     "image_reference": "Gemini Nano Banana"
@@ -435,7 +435,7 @@
     "organizational_factors": "Institutional Inertia: Conservation organisations and government agencies may continue to rely on established AI model outputs long after their training data has become outdated, due to the cost and effort of re-training and the absence of clear governance requirements specifying when models must be updated.",
     "timeline": "Ongoing: A structural and growing challenge as climate change accelerates the rate at which historical ecological data becomes unrepresentative of current conditions.",
     "supporting_artefacts": [
-      "THIS IS AN FICTINOL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
+      "THIS IS AN FICTIONAL CASE ANY CORRALTION TO A REAL LIFE CASE IS PURLEY COINCEIDENTAL"
     ],
     "image_filename": "19.png",
     "image_reference": "Gemini Nano Banana"
